@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO"
-	MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
+<BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
 
-	<CharacteristicDefinition Id="MaterialNumber" />
-	<CharacteristicDefinition Id="Name" />
-	<CharacteristicDefinition Id="MaterialType" />
+	<CharacteristicDefinition Id="MaterialNumber">
+		<Controls>
+			<Control>
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+			</Control>
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="Name">
+		<Controls>
+			<Control>
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+				</Scope>
+			</Control>
+			<ControlGroup GroupId="Base" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="MaterialType">
+		<Controls>
+			<ControlGroupUsage GroupId="Base" />
+		</Controls>
+	</CharacteristicDefinition>
 	<CharacteristicDefinition Id="GrossWeight" />
 	<CharacteristicDefinition Id="NetWeight" />
 	<CharacteristicDefinition Id="Volume" />
@@ -125,8 +148,7 @@
 			<ProcessActivity Lifecycle="UPDATE">Approver</ProcessActivity>
 		</Assignment>
 	</ProcessChoices>
-	<ClassArtifacts UITechnology="Vaadin"
-		Package="org.agito.demo.mdm.material" />
+	<ClassArtifacts UITechnology="Vaadin" Package="org.agito.demo.mdm.material" />
 	<Actions>
 		<Action>ReadMaterial</Action>
 		<Action>UpdateMaterial</Action>
