@@ -2,6 +2,7 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
+import java.util.HashMap;
 import java.util.Map;
 
 import de.agito.cps.core.annotations.BPMO;
@@ -31,8 +32,7 @@ public class MaterialBPMOController
 		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
-	private final static Logger LOGGER = Logger
-			.getLogger(MaterialBPMOController.class);
+	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
 
 	public MaterialBPMOController(IBPMOControllerContext context) {
 		super(context);
@@ -41,13 +41,20 @@ public class MaterialBPMOController
 	// @@begin others
 
 	@Override
-	public Object cpsExecuteBPMOAction(MaterialBPMOAccess bpmoAccess,
-			MaterialBPMOAction action, Map<String, Object> parameters) {
-
-		// TODO
-
+	public Object cpsExecuteBPMOAction(MaterialBPMOAccess bpmoAccess, MaterialBPMOAction action,
+			Map<String, Object> parameters) {
 		return super.cpsExecuteBPMOAction(bpmoAccess, action, parameters);
 	}
 
+	@Override
+	public void cpsBeforeSaveBPMO(MaterialBPMOAccess bpmoAccess) {
+		Map<MaterialBPMOLanguage, String> titles = new HashMap<MaterialBPMOLanguage, String>();
+		titles.put(MaterialBPMOLanguage.en, String.format("Material (%s / %s)",
+				bpmoAccess.getName().getCurrentValue() == null ? "new" : bpmoAccess.getName().getCurrentValue(),
+				bpmoAccess.getMaterialType().getCurrentValue() == null ? "new" : bpmoAccess.getMaterialType()
+						.getCurrentValue()));
+		bpmoAccess.getContext().getBPMOHeader().getParent().setTitle(titles);
+
+	}
 	// @@end
 }
