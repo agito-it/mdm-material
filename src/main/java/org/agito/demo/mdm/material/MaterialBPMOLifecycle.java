@@ -1,0 +1,24 @@
+package org.agito.demo.mdm.material;
+
+
+import de.agito.cps.core.bpmo.api.enums.ILifecycle;
+
+
+/**
+ * Lifecycle Enum for Header.
+ *
+ * @author andreas.weise
+ */
+public enum MaterialBPMOLifecycle implements ILifecycle {
+
+	CREATE(false, "MDM_Material_Create"),
+	UPDATE(false, null);
+
+	private MaterialBPMOLifecycle(boolean supportsOriginalValue, String processDefinitionId) { this.supportsOriginalValue = supportsOriginalValue; this.processDefinitionId = processDefinitionId; }
+	private boolean supportsOriginalValue;
+	private String processDefinitionId;
+	public boolean supportsOriginalValue() { return supportsOriginalValue; }
+	public String getProcessDefinitionId() { return processDefinitionId; }
+
+}
+

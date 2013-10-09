@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO"
+	MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
+
+	<CharacteristicDefinition Id="MaterialNumber" />
+	<CharacteristicDefinition Id="Name" />
+	<CharacteristicDefinition Id="MaterialType" />
+	<CharacteristicDefinition Id="GrossWeight" />
+	<CharacteristicDefinition Id="NetWeight" />
+	<CharacteristicDefinition Id="Volume" />
+	<CharacteristicDefinition Id="AllowedPackagingWeight" />
+	<CharacteristicDefinition Id="AllowedPackagingVolume" />
+	<CharacteristicDefinition Id="ContainerRequiements" />
+	<CharacteristicDefinition Id="StorageConditions" />
+	<CharacteristicDefinition Id="TransportationGroup" />
+	<CharacteristicDefinition Id="LabelType" />
+	<CharacteristicDefinition Id="LabelForm" />
+	<CharacteristicDefinition Id="BaseUnitOfMeasure" />
+
+	<TableDefinition Id="AlternativeUnitOfMeasures">
+		<ColumnDefinition Id="AlternativeUnitOfMeasure" />
+		<ColumnDefinition Id="NumeratorConversion" />
+		<ColumnDefinition Id="DenominatorConversion" />
+	</TableDefinition>
+
+	<ChildNode NodeId="Plants">
+		<Key Id="PlantId" />
+		<CharacteristicDefinition Id="ProductionSupervisor" />
+		<CharacteristicDefinition Id="ProcessingTime" />
+		<CharacteristicDefinition Id="BaseQuantity" />
+		<CharacteristicDefinition Id="StorageCostsIndicator" />
+		<CharacteristicDefinition Id="ValuationCategory" />
+		<CharacteristicDefinition Id="MinimumLotSize" />
+		<CharacteristicDefinition Id="MaximumLotSize" />
+		<CharacteristicDefinition Id="FixedLotSize" />
+
+		<ChildNode NodeId="StorageLocations">
+			<Key Id="StorageLocationId" />
+			<CharacteristicDefinition Id="TotalStock" />
+			<CharacteristicDefinition Id="StockInQualityInspection" />
+			<CharacteristicDefinition Id="BlockedStock" />
+		</ChildNode>
+	</ChildNode>
+
+	<ChildNode NodeId="SalesOrganizations">
+		<Key Id="SalesOrganization" />
+		<Key Id="DistributionChannel" />
+
+		<CharacteristicDefinition Id="StatisticsGroup" />
+		<CharacteristicDefinition Id="VolumeRebateGroup" />
+		<CharacteristicDefinition Id="CommissionGroup" />
+		<CharacteristicDefinition Id="CashDiscount" />
+		<CharacteristicDefinition Id="DeliveryUnit" />
+		<CharacteristicDefinition Id="SalesUnit" />
+		<CharacteristicDefinition Id="MinimumOrderQuantity" />
+		<CharacteristicDefinition Id="MinimumDeliveryQuantity" />
+		<CharacteristicDefinition Id="ItemCategoryGroup" />
+		<CharacteristicDefinition Id="DeliveringPlant" />
+		<CharacteristicDefinition Id="Pricing" />
+		<CharacteristicDefinition Id="ListedInStoreFrom" />
+		<CharacteristicDefinition Id="ListedInStoreTo" />
+
+		<TableDefinition Id="SalesTexts">
+			<ColumnDefinition Id="Language" />
+			<ColumnDefinition Id="Text" />
+		</TableDefinition>
+
+	</ChildNode>
+
+	<BPMOLabel>
+		<Text>Material BPMO</Text>
+	</BPMOLabel>
+	<Languages DefaultLanguage="en" />
+	<Lifecycles>
+		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create" />
+		<Lifecycle Id="UPDATE" ProcessDefinitionId="MDM_Material_Update" />
+	</Lifecycles>
+	<ProcessActivities>
+		<ProcessActivityId Id="*" />
+		<ProcessActivityId Id="$DRAFT">
+			<Label>
+				<Text>Draft</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="Requester">
+			<Label>
+				<Text>Requester</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="HeaderMgmt">
+			<Label>
+				<Text>Header Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="PlantMgmt">
+			<Label>
+				<Text>Plant Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="StorageMgmt">
+			<Label>
+				<Text>Storage Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="DistributionMgmt">
+			<Label>
+				<Text>Distribution Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="Approver">
+			<Label>
+				<Text>Approver</Text>
+			</Label>
+		</ProcessActivityId>
+	</ProcessActivities>
+	<ProcessChoices>
+		<ProcessChoice Id="Approve" Type="FORWARD" />
+		<ProcessChoice Id="Decline" Type="FORWARD" />
+		<Assignment ProcessChoiceId="Approve">
+			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
+			<ProcessActivity Lifecycle="UPDATE">Approver</ProcessActivity>
+		</Assignment>
+		<Assignment ProcessChoiceId="Decline">
+			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
+			<ProcessActivity Lifecycle="UPDATE">Approver</ProcessActivity>
+		</Assignment>
+	</ProcessChoices>
+	<ClassArtifacts UITechnology="Vaadin"
+		Package="org.agito.demo.mdm.material" />
+	<Actions>
+		<Action>ReadMaterial</Action>
+		<Action>UpdateMaterial</Action>
+		<Action>CreateMaterial</Action>
+	</Actions>
+</BPMODefinition>
