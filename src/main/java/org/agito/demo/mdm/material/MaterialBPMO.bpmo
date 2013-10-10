@@ -108,6 +108,9 @@
 	<BPMOLabel>
 		<Text>MDM Material</Text>
 	</BPMOLabel>
+	<BPMODescription>
+		<Text><![CDATA[<h4>Sample implementation of a Material MDM Process</h4>]]></Text>
+	</BPMODescription>
 	<Languages DefaultLanguage="en" />
 	<Lifecycles>
 		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create" />
