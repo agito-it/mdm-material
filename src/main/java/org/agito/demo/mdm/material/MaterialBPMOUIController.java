@@ -1,7 +1,6 @@
 package org.agito.demo.mdm.material;
 
 // @@begin imports
-
 import de.agito.cps.core.logger.Logger;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
@@ -12,14 +11,12 @@ import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
 import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
-
 import org.agito.demo.mdm.material.MaterialBPMO;
 import org.agito.demo.mdm.material.MaterialBPMOAccess;
 import org.agito.demo.mdm.material.MaterialBPMOAction;
 import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
 import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
-
 // @@end
 
 // @@begin head:uicontroller
@@ -29,9 +26,7 @@ import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
  * @author andreas.weise
  */
 // @@end
-public class MaterialBPMOUIController
-		extends
-		BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOUIController.class);

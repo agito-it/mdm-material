@@ -1,6 +1,6 @@
 package org.agito.demo.mdm.material;
 
-
+import de.agito.cps.core.bpmo.IKeywordEntry;
 import de.agito.cps.core.bpmo.INodeElement;
 import de.agito.cps.core.bpmo.INodeElementKey;
 import de.agito.cps.core.bpmo.IRow;
@@ -12,11 +12,10 @@ import de.agito.cps.core.bpmo.api.access.NodeKeyAccess;
 import de.agito.cps.core.bpmo.api.access.RowAccess;
 import de.agito.cps.core.bpmo.api.access.TableAccessCurrent;
 
-
 /**
  * BPMOAccess for Header.
  * 
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
@@ -27,7 +26,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public MaterialNumber getMaterialNumber() { return super.<MaterialNumber>getCharacteristicAccess(MaterialNumber.class, "Header$MaterialNumber"); }
 	/**
@@ -35,15 +34,15 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public Name getName() { return super.<Name>getCharacteristicAccess(Name.class, "Header$Name"); }
 	/**
 	 * <b>MaterialType</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
-	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link DataType ENUM}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public MaterialType getMaterialType() { return super.<MaterialType>getCharacteristicAccess(MaterialType.class, "Header$MaterialType"); }
 	/**
@@ -407,7 +406,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class MaterialType extends CharacteristicAccess {
 		protected MaterialType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
+		public IKeywordEntry getCurrentValue() { return super.<IKeywordEntry>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
 	}
 

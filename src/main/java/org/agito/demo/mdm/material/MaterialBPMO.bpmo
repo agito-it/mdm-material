@@ -24,6 +24,21 @@
 		</Controls>
 	</CharacteristicDefinition>
 	<CharacteristicDefinition Id="MaterialType">
+		<FormatEnum>
+			<KeywordFormat>
+				<InlineKeyword>
+					<Entry Key="1">
+						<Value Language="en">finished material</Value>
+					</Entry>
+					<Entry Key="2">
+						<Value Language="en">primary material</Value>
+					</Entry>
+					<Entry Key="3">
+						<Value Language="en">packaging material</Value>
+					</Entry>
+				</InlineKeyword>
+			</KeywordFormat>
+		</FormatEnum>
 		<Controls>
 			<ControlGroupUsage GroupId="Base" />
 		</Controls>

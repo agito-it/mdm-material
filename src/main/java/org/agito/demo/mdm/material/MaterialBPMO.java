@@ -1,6 +1,5 @@
 package org.agito.demo.mdm.material;
 
-
 import de.agito.cps.core.bpmo.ControlType;
 import de.agito.cps.core.bpmo.DataTypeFactory;
 import de.agito.cps.core.bpmo.IEnumInspector;
@@ -8,11 +7,10 @@ import de.agito.cps.core.bpmo.api.enums.IBODataElement;
 import de.agito.cps.core.bpmo.api.enums.IBOId;
 import de.agito.cps.core.bpmo.api.enums.IBONode;
 
-
 /**
  * Enum for Header.
  *
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public enum MaterialBPMO implements IBODataElement {
 
@@ -21,27 +19,27 @@ public enum MaterialBPMO implements IBODataElement {
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
-	MaterialNumber("MaterialNumber", "Header$MaterialNumber", ControlType.DEFAULT),
+	MaterialNumber("MaterialNumber", "Header$MaterialNumber", ControlType.INTERACTIVE),
 
 	/**
 	 * <b>Name</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
-	Name("Name", "Header$Name", ControlType.DEFAULT),
+	Name("Name", "Header$Name", ControlType.INTERACTIVE),
 
 	/**
 	 * <b>MaterialType</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
-	 * <i>{@link DataType STRING}<i><br>
-	 * <i>{@link ControlType DEFAULT}<i><br>
+	 * <i>{@link DataType ENUM}<i><br>
+	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
-	MaterialType("MaterialType", "Header$MaterialType", ControlType.DEFAULT),
+	MaterialType("MaterialType", "Header$MaterialType", ControlType.INTERACTIVE),
 
 	/**
 	 * <b>GrossWeight</b>
