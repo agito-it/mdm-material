@@ -63,6 +63,8 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		layoutManager.addLineBreak();
 		layoutManager.createAndAddGroupContent().fillContent(MaterialBPMO.AlternativeUnitOfMeasures)
 				.setCaption("Packaging").setDimension(3);
+		layoutManager.addLineBreak();
+		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
 
 		// @@end
 	}
