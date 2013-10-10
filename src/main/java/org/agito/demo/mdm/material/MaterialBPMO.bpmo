@@ -28,13 +28,13 @@
 			<KeywordFormat>
 				<InlineKeyword>
 					<Entry Key="1">
-						<Value Language="en">finished material</Value>
+						<Value>finished material</Value>
 					</Entry>
 					<Entry Key="2">
-						<Value Language="en">primary material</Value>
+						<Value>primary material</Value>
 					</Entry>
 					<Entry Key="3">
-						<Value Language="en">packaging material</Value>
+						<Value>packaging material</Value>
 					</Entry>
 				</InlineKeyword>
 			</KeywordFormat>
