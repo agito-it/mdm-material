@@ -1,6 +1,7 @@
 package org.agito.demo.mdm.material;
 
 // @@begin imports
+
 import de.agito.cps.core.annotations.BPMO;
 import de.agito.cps.core.bpmo.api.controller.BPMOController;
 import de.agito.cps.core.bpmo.api.controller.IBPMOControllerContext;
@@ -13,6 +14,7 @@ import org.agito.demo.mdm.material.MaterialBPMOAction;
 import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
 import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+
 // @@end
 
 // @@begin head:controller
@@ -23,9 +25,7 @@ import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController
-		extends
-		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);

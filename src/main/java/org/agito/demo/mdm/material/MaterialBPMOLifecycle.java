@@ -1,11 +1,13 @@
 package org.agito.demo.mdm.material;
 
+
 import de.agito.cps.core.bpmo.api.enums.ILifecycle;
+
 
 /**
  * Lifecycle Enum for Header.
  *
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public enum MaterialBPMOLifecycle implements ILifecycle {
 

@@ -1,5 +1,6 @@
 package org.agito.demo.mdm.material;
 
+
 import de.agito.cps.core.bpmo.IKeywordEntry;
 import de.agito.cps.core.bpmo.INodeElement;
 import de.agito.cps.core.bpmo.INodeElementKey;
@@ -12,17 +13,18 @@ import de.agito.cps.core.bpmo.api.access.NodeKeyAccess;
 import de.agito.cps.core.bpmo.api.access.RowAccess;
 import de.agito.cps.core.bpmo.api.access.TableAccessCurrent;
 
+
 /**
  * BPMOAccess for Header.
  * 
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
 	public MaterialBPMOAccess(INodeElement context) { super(context); }
 
 	/**
-	 * <b>MaterialNumber</b>
+	 * <b>Material Number</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -38,7 +40,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Name getName() { return super.<Name>getCharacteristicAccess(Name.class, "Header$Name"); }
 	/**
-	 * <b>MaterialType</b>
+	 * <b>Material Type</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
@@ -46,7 +48,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public MaterialType getMaterialType() { return super.<MaterialType>getCharacteristicAccess(MaterialType.class, "Header$MaterialType"); }
 	/**
-	 * <b>GrossWeight</b>
+	 * <b>Gross Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -54,7 +56,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public GrossWeight getGrossWeight() { return super.<GrossWeight>getCharacteristicAccess(GrossWeight.class, "Header$GrossWeight"); }
 	/**
-	 * <b>NetWeight</b>
+	 * <b>Net Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -70,7 +72,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Volume getVolume() { return super.<Volume>getCharacteristicAccess(Volume.class, "Header$Volume"); }
 	/**
-	 * <b>AllowedPackagingWeight</b>
+	 * <b>Allowed Packaging Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -78,7 +80,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public AllowedPackagingWeight getAllowedPackagingWeight() { return super.<AllowedPackagingWeight>getCharacteristicAccess(AllowedPackagingWeight.class, "Header$AllowedPackagingWeight"); }
 	/**
-	 * <b>AllowedPackagingVolume</b>
+	 * <b>Allowed Packaging Volume</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -86,7 +88,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public AllowedPackagingVolume getAllowedPackagingVolume() { return super.<AllowedPackagingVolume>getCharacteristicAccess(AllowedPackagingVolume.class, "Header$AllowedPackagingVolume"); }
 	/**
-	 * <b>ContainerRequiements</b>
+	 * <b>Container Requiements</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -94,7 +96,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public ContainerRequiements getContainerRequiements() { return super.<ContainerRequiements>getCharacteristicAccess(ContainerRequiements.class, "Header$ContainerRequiements"); }
 	/**
-	 * <b>StorageConditions</b>
+	 * <b>Storage Conditions</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -102,7 +104,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public StorageConditions getStorageConditions() { return super.<StorageConditions>getCharacteristicAccess(StorageConditions.class, "Header$StorageConditions"); }
 	/**
-	 * <b>TransportationGroup</b>
+	 * <b>Transportation Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -110,7 +112,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public TransportationGroup getTransportationGroup() { return super.<TransportationGroup>getCharacteristicAccess(TransportationGroup.class, "Header$TransportationGroup"); }
 	/**
-	 * <b>LabelType</b>
+	 * <b>Label Type</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -118,7 +120,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public LabelType getLabelType() { return super.<LabelType>getCharacteristicAccess(LabelType.class, "Header$LabelType"); }
 	/**
-	 * <b>LabelForm</b>
+	 * <b>Label Form</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -126,7 +128,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public LabelForm getLabelForm() { return super.<LabelForm>getCharacteristicAccess(LabelForm.class, "Header$LabelForm"); }
 	/**
-	 * <b>BaseUnitOfMeasure</b>
+	 * <b>Base Unit Of Measure</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -134,7 +136,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public BaseUnitOfMeasure getBaseUnitOfMeasure() { return super.<BaseUnitOfMeasure>getCharacteristicAccess(BaseUnitOfMeasure.class, "Header$BaseUnitOfMeasure"); }
 	/**
-	 * <b>AlternativeUnitOfMeasures</b>
+	 * <b>Alternative Unit Of Measures</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
@@ -148,14 +150,14 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants getPlants() { return super.<Plants>getNodeAccess(Plants.class, "Header.Plants"); }
 	/**
-	 * <b>PlantId</b>
+	 * <b>Plant Id</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public Plants.PlantId getPlants$PlantId() { return super.<Plants.PlantId>getKeyAccess(Plants.PlantId.class, "Header.Plants$PlantId"); }
 	/**
-	 * <b>ProductionSupervisor</b>
+	 * <b>Production Supervisor</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -163,7 +165,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.ProductionSupervisor getPlants$ProductionSupervisor() { return super.<Plants.ProductionSupervisor>getCharacteristicAccess(Plants.ProductionSupervisor.class, "Header.Plants$ProductionSupervisor"); }
 	/**
-	 * <b>ProcessingTime</b>
+	 * <b>Processing Time</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -171,7 +173,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.ProcessingTime getPlants$ProcessingTime() { return super.<Plants.ProcessingTime>getCharacteristicAccess(Plants.ProcessingTime.class, "Header.Plants$ProcessingTime"); }
 	/**
-	 * <b>BaseQuantity</b>
+	 * <b>Base Quantity</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -179,7 +181,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.BaseQuantity getPlants$BaseQuantity() { return super.<Plants.BaseQuantity>getCharacteristicAccess(Plants.BaseQuantity.class, "Header.Plants$BaseQuantity"); }
 	/**
-	 * <b>StorageCostsIndicator</b>
+	 * <b>Storage Costs Indicator</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -187,7 +189,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.StorageCostsIndicator getPlants$StorageCostsIndicator() { return super.<Plants.StorageCostsIndicator>getCharacteristicAccess(Plants.StorageCostsIndicator.class, "Header.Plants$StorageCostsIndicator"); }
 	/**
-	 * <b>ValuationCategory</b>
+	 * <b>Valuation Category</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -195,7 +197,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.ValuationCategory getPlants$ValuationCategory() { return super.<Plants.ValuationCategory>getCharacteristicAccess(Plants.ValuationCategory.class, "Header.Plants$ValuationCategory"); }
 	/**
-	 * <b>MinimumLotSize</b>
+	 * <b>Minimum Lot Size</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -203,7 +205,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.MinimumLotSize getPlants$MinimumLotSize() { return super.<Plants.MinimumLotSize>getCharacteristicAccess(Plants.MinimumLotSize.class, "Header.Plants$MinimumLotSize"); }
 	/**
-	 * <b>MaximumLotSize</b>
+	 * <b>Maximum Lot Size</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -211,7 +213,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.MaximumLotSize getPlants$MaximumLotSize() { return super.<Plants.MaximumLotSize>getCharacteristicAccess(Plants.MaximumLotSize.class, "Header.Plants$MaximumLotSize"); }
 	/**
-	 * <b>FixedLotSize</b>
+	 * <b>Fixed Lot Size</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -219,21 +221,21 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.FixedLotSize getPlants$FixedLotSize() { return super.<Plants.FixedLotSize>getCharacteristicAccess(Plants.FixedLotSize.class, "Header.Plants$FixedLotSize"); }
 	/**
-	 * <b>StorageLocations</b>
+	 * <b>Storage Locations</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public Plants.StorageLocations getPlants$StorageLocations() { return super.<Plants.StorageLocations>getNodeAccess(Plants.StorageLocations.class, "Header.Plants.StorageLocations"); }
 	/**
-	 * <b>StorageLocationId</b>
+	 * <b>Storage Location Id</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public Plants.StorageLocations.StorageLocationId getPlants$StorageLocations$StorageLocationId() { return super.<Plants.StorageLocations.StorageLocationId>getKeyAccess(Plants.StorageLocations.StorageLocationId.class, "Header.Plants.StorageLocations$StorageLocationId"); }
 	/**
-	 * <b>TotalStock</b>
+	 * <b>Total Stock</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -241,7 +243,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.StorageLocations.TotalStock getPlants$StorageLocations$TotalStock() { return super.<Plants.StorageLocations.TotalStock>getCharacteristicAccess(Plants.StorageLocations.TotalStock.class, "Header.Plants.StorageLocations$TotalStock"); }
 	/**
-	 * <b>StockInQualityInspection</b>
+	 * <b>Stock In Quality Inspection</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -249,7 +251,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.StorageLocations.StockInQualityInspection getPlants$StorageLocations$StockInQualityInspection() { return super.<Plants.StorageLocations.StockInQualityInspection>getCharacteristicAccess(Plants.StorageLocations.StockInQualityInspection.class, "Header.Plants.StorageLocations$StockInQualityInspection"); }
 	/**
-	 * <b>BlockedStock</b>
+	 * <b>Blocked Stock</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -257,28 +259,28 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.StorageLocations.BlockedStock getPlants$StorageLocations$BlockedStock() { return super.<Plants.StorageLocations.BlockedStock>getCharacteristicAccess(Plants.StorageLocations.BlockedStock.class, "Header.Plants.StorageLocations$BlockedStock"); }
 	/**
-	 * <b>SalesOrganizations</b>
+	 * <b>Sales Organizations</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public SalesOrganizations getSalesOrganizations() { return super.<SalesOrganizations>getNodeAccess(SalesOrganizations.class, "Header.SalesOrganizations"); }
 	/**
-	 * <b>SalesOrganization</b>
+	 * <b>Sales Organization</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public SalesOrganizations.SalesOrganization getSalesOrganizations$SalesOrganization() { return super.<SalesOrganizations.SalesOrganization>getKeyAccess(SalesOrganizations.SalesOrganization.class, "Header.SalesOrganizations$SalesOrganization"); }
 	/**
-	 * <b>DistributionChannel</b>
+	 * <b>Distribution Channel</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
 	public SalesOrganizations.DistributionChannel getSalesOrganizations$DistributionChannel() { return super.<SalesOrganizations.DistributionChannel>getKeyAccess(SalesOrganizations.DistributionChannel.class, "Header.SalesOrganizations$DistributionChannel"); }
 	/**
-	 * <b>StatisticsGroup</b>
+	 * <b>Statistics Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -286,7 +288,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.StatisticsGroup getSalesOrganizations$StatisticsGroup() { return super.<SalesOrganizations.StatisticsGroup>getCharacteristicAccess(SalesOrganizations.StatisticsGroup.class, "Header.SalesOrganizations$StatisticsGroup"); }
 	/**
-	 * <b>VolumeRebateGroup</b>
+	 * <b>Volume Rebate Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -294,7 +296,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.VolumeRebateGroup getSalesOrganizations$VolumeRebateGroup() { return super.<SalesOrganizations.VolumeRebateGroup>getCharacteristicAccess(SalesOrganizations.VolumeRebateGroup.class, "Header.SalesOrganizations$VolumeRebateGroup"); }
 	/**
-	 * <b>CommissionGroup</b>
+	 * <b>Commission Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -302,7 +304,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.CommissionGroup getSalesOrganizations$CommissionGroup() { return super.<SalesOrganizations.CommissionGroup>getCharacteristicAccess(SalesOrganizations.CommissionGroup.class, "Header.SalesOrganizations$CommissionGroup"); }
 	/**
-	 * <b>CashDiscount</b>
+	 * <b>Cash Discount</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -310,7 +312,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.CashDiscount getSalesOrganizations$CashDiscount() { return super.<SalesOrganizations.CashDiscount>getCharacteristicAccess(SalesOrganizations.CashDiscount.class, "Header.SalesOrganizations$CashDiscount"); }
 	/**
-	 * <b>DeliveryUnit</b>
+	 * <b>Delivery Unit</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -318,7 +320,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.DeliveryUnit getSalesOrganizations$DeliveryUnit() { return super.<SalesOrganizations.DeliveryUnit>getCharacteristicAccess(SalesOrganizations.DeliveryUnit.class, "Header.SalesOrganizations$DeliveryUnit"); }
 	/**
-	 * <b>SalesUnit</b>
+	 * <b>Sales Unit</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -326,7 +328,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.SalesUnit getSalesOrganizations$SalesUnit() { return super.<SalesOrganizations.SalesUnit>getCharacteristicAccess(SalesOrganizations.SalesUnit.class, "Header.SalesOrganizations$SalesUnit"); }
 	/**
-	 * <b>MinimumOrderQuantity</b>
+	 * <b>Minimum Order Quantity</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -334,7 +336,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.MinimumOrderQuantity getSalesOrganizations$MinimumOrderQuantity() { return super.<SalesOrganizations.MinimumOrderQuantity>getCharacteristicAccess(SalesOrganizations.MinimumOrderQuantity.class, "Header.SalesOrganizations$MinimumOrderQuantity"); }
 	/**
-	 * <b>MinimumDeliveryQuantity</b>
+	 * <b>Minimum Delivery Quantity</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -342,7 +344,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.MinimumDeliveryQuantity getSalesOrganizations$MinimumDeliveryQuantity() { return super.<SalesOrganizations.MinimumDeliveryQuantity>getCharacteristicAccess(SalesOrganizations.MinimumDeliveryQuantity.class, "Header.SalesOrganizations$MinimumDeliveryQuantity"); }
 	/**
-	 * <b>ItemCategoryGroup</b>
+	 * <b>Item Category Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -350,7 +352,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.ItemCategoryGroup getSalesOrganizations$ItemCategoryGroup() { return super.<SalesOrganizations.ItemCategoryGroup>getCharacteristicAccess(SalesOrganizations.ItemCategoryGroup.class, "Header.SalesOrganizations$ItemCategoryGroup"); }
 	/**
-	 * <b>DeliveringPlant</b>
+	 * <b>Delivering Plant</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -366,7 +368,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.Pricing getSalesOrganizations$Pricing() { return super.<SalesOrganizations.Pricing>getCharacteristicAccess(SalesOrganizations.Pricing.class, "Header.SalesOrganizations$Pricing"); }
 	/**
-	 * <b>ListedInStoreFrom</b>
+	 * <b>Listed In Store From</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -374,7 +376,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.ListedInStoreFrom getSalesOrganizations$ListedInStoreFrom() { return super.<SalesOrganizations.ListedInStoreFrom>getCharacteristicAccess(SalesOrganizations.ListedInStoreFrom.class, "Header.SalesOrganizations$ListedInStoreFrom"); }
 	/**
-	 * <b>ListedInStoreTo</b>
+	 * <b>Listed In Store To</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -382,7 +384,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public SalesOrganizations.ListedInStoreTo getSalesOrganizations$ListedInStoreTo() { return super.<SalesOrganizations.ListedInStoreTo>getCharacteristicAccess(SalesOrganizations.ListedInStoreTo.class, "Header.SalesOrganizations$ListedInStoreTo"); }
 	/**
-	 * <b>SalesTexts</b>
+	 * <b>Sales Texts</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>

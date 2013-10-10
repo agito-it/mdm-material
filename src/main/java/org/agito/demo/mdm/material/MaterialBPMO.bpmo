@@ -28,13 +28,13 @@
 			<KeywordFormat>
 				<InlineKeyword>
 					<Entry Key="1">
-						<Value>finished material</Value>
+						<Value>Finished Material (ZFER)</Value>
 					</Entry>
 					<Entry Key="2">
-						<Value>primary material</Value>
+						<Value>Raw Material (ZROH)</Value>
 					</Entry>
 					<Entry Key="3">
-						<Value>packaging material</Value>
+						<Value>Packaging Material (ZVER)</Value>
 					</Entry>
 				</InlineKeyword>
 			</KeywordFormat>
@@ -106,7 +106,7 @@
 	</ChildNode>
 
 	<BPMOLabel>
-		<Text>Material BPMO</Text>
+		<Text>MDM Material</Text>
 	</BPMOLabel>
 	<Languages DefaultLanguage="en" />
 	<Lifecycles>

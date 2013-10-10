@@ -1,6 +1,7 @@
 package org.agito.demo.mdm.material;
 
 // @@begin imports
+
 import de.agito.cps.core.logger.Logger;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
@@ -17,6 +18,7 @@ import org.agito.demo.mdm.material.MaterialBPMOAction;
 import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
 import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+
 // @@end
 
 // @@begin head:uicontroller

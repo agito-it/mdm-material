@@ -1,5 +1,6 @@
 package org.agito.demo.mdm.material;
 
+
 import de.agito.cps.core.bpmo.ControlType;
 import de.agito.cps.core.bpmo.DataTypeFactory;
 import de.agito.cps.core.bpmo.IEnumInspector;
@@ -7,15 +8,16 @@ import de.agito.cps.core.bpmo.api.enums.IBODataElement;
 import de.agito.cps.core.bpmo.api.enums.IBOId;
 import de.agito.cps.core.bpmo.api.enums.IBONode;
 
+
 /**
  * Enum for Header.
  *
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public enum MaterialBPMO implements IBODataElement {
 
 	/**
-	 * <b>MaterialNumber</b>
+	 * <b>Material Number</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -33,7 +35,7 @@ public enum MaterialBPMO implements IBODataElement {
 	Name("Name", "Header$Name", ControlType.INTERACTIVE),
 
 	/**
-	 * <b>MaterialType</b>
+	 * <b>Material Type</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
@@ -42,7 +44,7 @@ public enum MaterialBPMO implements IBODataElement {
 	MaterialType("MaterialType", "Header$MaterialType", ControlType.INTERACTIVE),
 
 	/**
-	 * <b>GrossWeight</b>
+	 * <b>Gross Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -51,7 +53,7 @@ public enum MaterialBPMO implements IBODataElement {
 	GrossWeight("GrossWeight", "Header$GrossWeight", ControlType.DEFAULT),
 
 	/**
-	 * <b>NetWeight</b>
+	 * <b>Net Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -69,7 +71,7 @@ public enum MaterialBPMO implements IBODataElement {
 	Volume("Volume", "Header$Volume", ControlType.DEFAULT),
 
 	/**
-	 * <b>AllowedPackagingWeight</b>
+	 * <b>Allowed Packaging Weight</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -78,7 +80,7 @@ public enum MaterialBPMO implements IBODataElement {
 	AllowedPackagingWeight("AllowedPackagingWeight", "Header$AllowedPackagingWeight", ControlType.DEFAULT),
 
 	/**
-	 * <b>AllowedPackagingVolume</b>
+	 * <b>Allowed Packaging Volume</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -87,7 +89,7 @@ public enum MaterialBPMO implements IBODataElement {
 	AllowedPackagingVolume("AllowedPackagingVolume", "Header$AllowedPackagingVolume", ControlType.DEFAULT),
 
 	/**
-	 * <b>ContainerRequiements</b>
+	 * <b>Container Requiements</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -96,7 +98,7 @@ public enum MaterialBPMO implements IBODataElement {
 	ContainerRequiements("ContainerRequiements", "Header$ContainerRequiements", ControlType.DEFAULT),
 
 	/**
-	 * <b>StorageConditions</b>
+	 * <b>Storage Conditions</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -105,7 +107,7 @@ public enum MaterialBPMO implements IBODataElement {
 	StorageConditions("StorageConditions", "Header$StorageConditions", ControlType.DEFAULT),
 
 	/**
-	 * <b>TransportationGroup</b>
+	 * <b>Transportation Group</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -114,7 +116,7 @@ public enum MaterialBPMO implements IBODataElement {
 	TransportationGroup("TransportationGroup", "Header$TransportationGroup", ControlType.DEFAULT),
 
 	/**
-	 * <b>LabelType</b>
+	 * <b>Label Type</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -123,7 +125,7 @@ public enum MaterialBPMO implements IBODataElement {
 	LabelType("LabelType", "Header$LabelType", ControlType.DEFAULT),
 
 	/**
-	 * <b>LabelForm</b>
+	 * <b>Label Form</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -132,7 +134,7 @@ public enum MaterialBPMO implements IBODataElement {
 	LabelForm("LabelForm", "Header$LabelForm", ControlType.DEFAULT),
 
 	/**
-	 * <b>BaseUnitOfMeasure</b>
+	 * <b>Base Unit Of Measure</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -141,7 +143,7 @@ public enum MaterialBPMO implements IBODataElement {
 	BaseUnitOfMeasure("BaseUnitOfMeasure", "Header$BaseUnitOfMeasure", ControlType.DEFAULT),
 
 	/**
-	 * <b>AlternativeUnitOfMeasures</b>
+	 * <b>Alternative Unit Of Measures</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
@@ -149,7 +151,7 @@ public enum MaterialBPMO implements IBODataElement {
 	AlternativeUnitOfMeasures("AlternativeUnitOfMeasures", "Header$AlternativeUnitOfMeasures", ControlType.DEFAULT),
 
 	/**
-	 * <b>AlternativeUnitOfMeasure</b>
+	 * <b>Alternative Unit Of Measure</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -158,7 +160,7 @@ public enum MaterialBPMO implements IBODataElement {
 	AlternativeUnitOfMeasures$AlternativeUnitOfMeasure("AlternativeUnitOfMeasure", "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", ControlType.DEFAULT),
 
 	/**
-	 * <b>NumeratorConversion</b>
+	 * <b>Numerator Conversion</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -167,7 +169,7 @@ public enum MaterialBPMO implements IBODataElement {
 	AlternativeUnitOfMeasures$NumeratorConversion("NumeratorConversion", "Header$AlternativeUnitOfMeasures$NumeratorConversion", ControlType.DEFAULT),
 
 	/**
-	 * <b>DenominatorConversion</b>
+	 * <b>Denominator Conversion</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
@@ -217,7 +219,7 @@ public enum MaterialBPMO implements IBODataElement {
 	public static enum Plants implements IBODataElement {
 
 		/**
-		 * <b>PlantId</b>
+		 * <b>Plant Id</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -226,7 +228,7 @@ public enum MaterialBPMO implements IBODataElement {
 		PlantId("PlantId", "Header.Plants$PlantId", ControlType.DEFAULT),
 
 		/**
-		 * <b>ProductionSupervisor</b>
+		 * <b>Production Supervisor</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -235,7 +237,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ProductionSupervisor("ProductionSupervisor", "Header.Plants$ProductionSupervisor", ControlType.DEFAULT),
 
 		/**
-		 * <b>ProcessingTime</b>
+		 * <b>Processing Time</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -244,7 +246,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ProcessingTime("ProcessingTime", "Header.Plants$ProcessingTime", ControlType.DEFAULT),
 
 		/**
-		 * <b>BaseQuantity</b>
+		 * <b>Base Quantity</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -253,7 +255,7 @@ public enum MaterialBPMO implements IBODataElement {
 		BaseQuantity("BaseQuantity", "Header.Plants$BaseQuantity", ControlType.DEFAULT),
 
 		/**
-		 * <b>StorageCostsIndicator</b>
+		 * <b>Storage Costs Indicator</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -262,7 +264,7 @@ public enum MaterialBPMO implements IBODataElement {
 		StorageCostsIndicator("StorageCostsIndicator", "Header.Plants$StorageCostsIndicator", ControlType.DEFAULT),
 
 		/**
-		 * <b>ValuationCategory</b>
+		 * <b>Valuation Category</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -271,7 +273,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ValuationCategory("ValuationCategory", "Header.Plants$ValuationCategory", ControlType.DEFAULT),
 
 		/**
-		 * <b>MinimumLotSize</b>
+		 * <b>Minimum Lot Size</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -280,7 +282,7 @@ public enum MaterialBPMO implements IBODataElement {
 		MinimumLotSize("MinimumLotSize", "Header.Plants$MinimumLotSize", ControlType.DEFAULT),
 
 		/**
-		 * <b>MaximumLotSize</b>
+		 * <b>Maximum Lot Size</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -289,7 +291,7 @@ public enum MaterialBPMO implements IBODataElement {
 		MaximumLotSize("MaximumLotSize", "Header.Plants$MaximumLotSize", ControlType.DEFAULT),
 
 		/**
-		 * <b>FixedLotSize</b>
+		 * <b>Fixed Lot Size</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -313,7 +315,7 @@ public enum MaterialBPMO implements IBODataElement {
 		public static enum StorageLocations implements IBODataElement {
 
 			/**
-			 * <b>StorageLocationId</b>
+			 * <b>Storage Location Id</b>
 			 * <p>
 			 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
@@ -322,7 +324,7 @@ public enum MaterialBPMO implements IBODataElement {
 			StorageLocationId("StorageLocationId", "Header.Plants.StorageLocations$StorageLocationId", ControlType.DEFAULT),
 
 			/**
-			 * <b>TotalStock</b>
+			 * <b>Total Stock</b>
 			 * <p>
 			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
@@ -331,7 +333,7 @@ public enum MaterialBPMO implements IBODataElement {
 			TotalStock("TotalStock", "Header.Plants.StorageLocations$TotalStock", ControlType.DEFAULT),
 
 			/**
-			 * <b>StockInQualityInspection</b>
+			 * <b>Stock In Quality Inspection</b>
 			 * <p>
 			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
@@ -340,7 +342,7 @@ public enum MaterialBPMO implements IBODataElement {
 			StockInQualityInspection("StockInQualityInspection", "Header.Plants.StorageLocations$StockInQualityInspection", ControlType.DEFAULT),
 
 			/**
-			 * <b>BlockedStock</b>
+			 * <b>Blocked Stock</b>
 			 * <p>
 			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
@@ -368,7 +370,7 @@ public enum MaterialBPMO implements IBODataElement {
 	public static enum SalesOrganizations implements IBODataElement {
 
 		/**
-		 * <b>SalesOrganization</b>
+		 * <b>Sales Organization</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -377,7 +379,7 @@ public enum MaterialBPMO implements IBODataElement {
 		SalesOrganization("SalesOrganization", "Header.SalesOrganizations$SalesOrganization", ControlType.DEFAULT),
 
 		/**
-		 * <b>DistributionChannel</b>
+		 * <b>Distribution Channel</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -386,7 +388,7 @@ public enum MaterialBPMO implements IBODataElement {
 		DistributionChannel("DistributionChannel", "Header.SalesOrganizations$DistributionChannel", ControlType.DEFAULT),
 
 		/**
-		 * <b>StatisticsGroup</b>
+		 * <b>Statistics Group</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -395,7 +397,7 @@ public enum MaterialBPMO implements IBODataElement {
 		StatisticsGroup("StatisticsGroup", "Header.SalesOrganizations$StatisticsGroup", ControlType.DEFAULT),
 
 		/**
-		 * <b>VolumeRebateGroup</b>
+		 * <b>Volume Rebate Group</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -404,7 +406,7 @@ public enum MaterialBPMO implements IBODataElement {
 		VolumeRebateGroup("VolumeRebateGroup", "Header.SalesOrganizations$VolumeRebateGroup", ControlType.DEFAULT),
 
 		/**
-		 * <b>CommissionGroup</b>
+		 * <b>Commission Group</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -413,7 +415,7 @@ public enum MaterialBPMO implements IBODataElement {
 		CommissionGroup("CommissionGroup", "Header.SalesOrganizations$CommissionGroup", ControlType.DEFAULT),
 
 		/**
-		 * <b>CashDiscount</b>
+		 * <b>Cash Discount</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -422,7 +424,7 @@ public enum MaterialBPMO implements IBODataElement {
 		CashDiscount("CashDiscount", "Header.SalesOrganizations$CashDiscount", ControlType.DEFAULT),
 
 		/**
-		 * <b>DeliveryUnit</b>
+		 * <b>Delivery Unit</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -431,7 +433,7 @@ public enum MaterialBPMO implements IBODataElement {
 		DeliveryUnit("DeliveryUnit", "Header.SalesOrganizations$DeliveryUnit", ControlType.DEFAULT),
 
 		/**
-		 * <b>SalesUnit</b>
+		 * <b>Sales Unit</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -440,7 +442,7 @@ public enum MaterialBPMO implements IBODataElement {
 		SalesUnit("SalesUnit", "Header.SalesOrganizations$SalesUnit", ControlType.DEFAULT),
 
 		/**
-		 * <b>MinimumOrderQuantity</b>
+		 * <b>Minimum Order Quantity</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -449,7 +451,7 @@ public enum MaterialBPMO implements IBODataElement {
 		MinimumOrderQuantity("MinimumOrderQuantity", "Header.SalesOrganizations$MinimumOrderQuantity", ControlType.DEFAULT),
 
 		/**
-		 * <b>MinimumDeliveryQuantity</b>
+		 * <b>Minimum Delivery Quantity</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -458,7 +460,7 @@ public enum MaterialBPMO implements IBODataElement {
 		MinimumDeliveryQuantity("MinimumDeliveryQuantity", "Header.SalesOrganizations$MinimumDeliveryQuantity", ControlType.DEFAULT),
 
 		/**
-		 * <b>ItemCategoryGroup</b>
+		 * <b>Item Category Group</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -467,7 +469,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ItemCategoryGroup("ItemCategoryGroup", "Header.SalesOrganizations$ItemCategoryGroup", ControlType.DEFAULT),
 
 		/**
-		 * <b>DeliveringPlant</b>
+		 * <b>Delivering Plant</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -485,7 +487,7 @@ public enum MaterialBPMO implements IBODataElement {
 		Pricing("Pricing", "Header.SalesOrganizations$Pricing", ControlType.DEFAULT),
 
 		/**
-		 * <b>ListedInStoreFrom</b>
+		 * <b>Listed In Store From</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -494,7 +496,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ListedInStoreFrom("ListedInStoreFrom", "Header.SalesOrganizations$ListedInStoreFrom", ControlType.DEFAULT),
 
 		/**
-		 * <b>ListedInStoreTo</b>
+		 * <b>Listed In Store To</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
@@ -503,7 +505,7 @@ public enum MaterialBPMO implements IBODataElement {
 		ListedInStoreTo("ListedInStoreTo", "Header.SalesOrganizations$ListedInStoreTo", ControlType.DEFAULT),
 
 		/**
-		 * <b>SalesTexts</b>
+		 * <b>Sales Texts</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
 		 * <i>{@link ControlType DEFAULT}<i><br>

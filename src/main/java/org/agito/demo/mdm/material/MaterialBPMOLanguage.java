@@ -1,12 +1,14 @@
 package org.agito.demo.mdm.material;
 
+
 import de.agito.cps.core.bpmo.api.enums.ILanguage;
 import java.util.Locale;
+
 
 /**
  * Languages for Header.
  *
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public enum MaterialBPMOLanguage implements ILanguage {
 
