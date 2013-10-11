@@ -41,7 +41,7 @@
     <sequenceFlow id="flow7" sourceRef="parallelgateway2" targetRef="Approver"></sequenceFlow>
     <userTask id="Approver" name="Approver" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
     <sequenceFlow id="approved" name="approved" sourceRef="exclusivegateway1" targetRef="MaterialCreate">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${$cpsLastChoiceId}=='Approve']]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${$cpsLastChoiceId.equals("Approve")}]]></conditionExpression>
     </sequenceFlow>
     <serviceTask id="MaterialCreate" name="Create Material in ERP" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
       <extensionElements>

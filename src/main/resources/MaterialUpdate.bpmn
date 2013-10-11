@@ -29,7 +29,7 @@
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow4" sourceRef="Requester" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="approved" name="Approved" sourceRef="exclusivegateway1" targetRef="servicetask1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${$cpsLastChoiceId=='Approve'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${$cpsLastChoiceId.equals("Approve")}]]></conditionExpression>
     </sequenceFlow>
     <serviceTask id="servicetask1" name="Update Material in ERP" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
       <extensionElements>
@@ -74,7 +74,7 @@
         <omgdc:Bounds height="55.0" width="105.0" x="410.0" y="350.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
-        <omgdc:Bounds height="35.0" width="35.0" x="570.0" y="360.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="580.0" y="360.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="125.0" y="77.0"></omgdi:waypoint>
@@ -91,7 +91,7 @@
         <omgdi:waypoint x="370.0" y="78.0"></omgdi:waypoint>
         <omgdi:waypoint x="410.0" y="77.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="10.0" y="59.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="41.0" x="10.0" y="59.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
@@ -108,7 +108,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
         <omgdi:waypoint x="515.0" y="377.0"></omgdi:waypoint>
-        <omgdi:waypoint x="570.0" y="377.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="377.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
