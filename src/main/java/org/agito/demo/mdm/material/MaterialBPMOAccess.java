@@ -12,6 +12,8 @@ import de.agito.cps.core.bpmo.api.access.NodeAccess;
 import de.agito.cps.core.bpmo.api.access.NodeKeyAccess;
 import de.agito.cps.core.bpmo.api.access.RowAccess;
 import de.agito.cps.core.bpmo.api.access.TableAccessCurrent;
+import de.agito.cps.core.bpmo.api.access.TableAccessOriginal;
+
 
 
 /**
@@ -141,7 +143,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
 	 * <i>{@link ControlType DEFAULT}<i><br>
 	 */
-	public AlternativeUnitOfMeasures getAlternativeUnitOfMeasures() { return super.<AlternativeUnitOfMeasures>getTableAccessCV(AlternativeUnitOfMeasures.class, "Header$AlternativeUnitOfMeasures"); }
+	public AlternativeUnitOfMeasures getAlternativeUnitOfMeasures() { return super.<AlternativeUnitOfMeasures>getTableAccessOV(AlternativeUnitOfMeasures.class, "Header$AlternativeUnitOfMeasures"); }
 	/**
 	 * <b>Plants</b>
 	 * <p>
@@ -396,6 +398,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected MaterialNumber(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -403,6 +407,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected Name(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -410,6 +416,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected MaterialType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public IKeywordEntry getCurrentValue() { return super.<IKeywordEntry>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -417,6 +425,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected GrossWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -424,6 +434,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected NetWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -431,6 +443,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected Volume(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -438,6 +452,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected AllowedPackagingWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -445,6 +461,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected AllowedPackagingVolume(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -452,6 +470,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected ContainerRequiements(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -459,6 +479,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected StorageConditions(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -466,6 +488,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected TransportationGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -473,6 +497,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected LabelType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -480,6 +506,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected LabelForm(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -487,9 +515,11 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		protected BaseUnitOfMeasure(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public String getCurrentValue() { return super.<String>getCurrentValue(); }
 		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getOriginalValue() { return super.<String>getOriginalValue(); }
+		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
-	public final static class AlternativeUnitOfMeasures extends TableAccessCurrent<AlternativeUnitOfMeasures.Current> {
+	public final static class AlternativeUnitOfMeasures extends TableAccessOriginal<AlternativeUnitOfMeasures.Current, AlternativeUnitOfMeasures.Original> {
 		protected AlternativeUnitOfMeasures(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 
 		public final static class Current extends RowAccess {
@@ -518,6 +548,31 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 				protected DenominatorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
 				public String getValue() { return super.<String>getValue(); }
 				public void setValue(String value) { super.setValue(value); }
+			}
+		}
+
+		public final static class Original extends RowAccess {
+			protected Original(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
+			public AlternativeUnitOfMeasure getAlternativeUnitOfMeasure() { return super.<AlternativeUnitOfMeasure>getCellAccess(AlternativeUnitOfMeasure.class, "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", "AlternativeUnitOfMeasure"); }
+			public NumeratorConversion getNumeratorConversion() { return super.<NumeratorConversion>getCellAccess(NumeratorConversion.class, "Header$AlternativeUnitOfMeasures$NumeratorConversion", "NumeratorConversion"); }
+			public DenominatorConversion getDenominatorConversion() { return super.<DenominatorConversion>getCellAccess(DenominatorConversion.class, "Header$AlternativeUnitOfMeasures$DenominatorConversion", "DenominatorConversion"); }
+
+			@SuppressWarnings("unchecked")
+			public final static class AlternativeUnitOfMeasure extends CellAccess {
+				protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+				public String getValue() { return super.<String>getValue(); }
+			}
+
+			@SuppressWarnings("unchecked")
+			public final static class NumeratorConversion extends CellAccess {
+				protected NumeratorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+				public String getValue() { return super.<String>getValue(); }
+			}
+
+			@SuppressWarnings("unchecked")
+			public final static class DenominatorConversion extends CellAccess {
+				protected DenominatorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+				public String getValue() { return super.<String>getValue(); }
 			}
 		}
 	}

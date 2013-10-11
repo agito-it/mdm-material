@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
 
-	<CharacteristicDefinition Id="MaterialNumber">
+	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
 		<Controls>
 			<Control>
 				<Scope ScopeId="VISIBILITY">
@@ -10,7 +10,7 @@
 			</Control>
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="Name">
+	<CharacteristicDefinition Id="Name" SupportsOriginalValue="true">
 		<Controls>
 			<Control>
 				<Scope ScopeId="VISIBILITY">
@@ -23,7 +23,7 @@
 			<ControlGroup GroupId="Base" />
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="MaterialType">
+	<CharacteristicDefinition Id="MaterialType" SupportsOriginalValue="true">
 		<FormatEnum>
 			<KeywordFormat>
 				<InlineKeyword>
@@ -40,23 +40,35 @@
 			</KeywordFormat>
 		</FormatEnum>
 		<Controls>
-			<ControlGroupUsage GroupId="Base" />
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="EDITABILITY">
+					<ProcessActivityId Id="$DRAFT" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+			</Control>
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="GrossWeight" />
-	<CharacteristicDefinition Id="NetWeight" />
-	<CharacteristicDefinition Id="Volume" />
-	<CharacteristicDefinition Id="AllowedPackagingWeight" />
-	<CharacteristicDefinition Id="AllowedPackagingVolume" />
-	<CharacteristicDefinition Id="ContainerRequiements" />
-	<CharacteristicDefinition Id="StorageConditions" />
-	<CharacteristicDefinition Id="TransportationGroup" />
-	<CharacteristicDefinition Id="LabelType" />
-	<CharacteristicDefinition Id="LabelForm" />
-	<CharacteristicDefinition Id="BaseUnitOfMeasure" />
+	<CharacteristicDefinition Id="GrossWeight" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="NetWeight" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="Volume" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="AllowedPackagingWeight" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="AllowedPackagingVolume" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="ContainerRequiements" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="StorageConditions" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="TransportationGroup" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="LabelType" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="LabelForm" SupportsOriginalValue="true" />
+	<CharacteristicDefinition Id="BaseUnitOfMeasure" SupportsOriginalValue="true" />
 
-	<TableDefinition Id="AlternativeUnitOfMeasures">
-		<ColumnDefinition Id="AlternativeUnitOfMeasure" />
+	<TableDefinition Id="AlternativeUnitOfMeasures" SupportsOriginalValue="true">
+		<ColumnDefinition Id="AlternativeUnitOfMeasure" Key="true" />
 		<ColumnDefinition Id="NumeratorConversion" />
 		<ColumnDefinition Id="DenominatorConversion" />
 	</TableDefinition>
@@ -114,7 +126,7 @@
 	<Languages DefaultLanguage="en" />
 	<Lifecycles>
 		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create" />
-		<Lifecycle Id="UPDATE" ProcessDefinitionId="MDM_Material_Update" />
+		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update" />
 	</Lifecycles>
 	<ProcessActivities>
 		<ProcessActivityId Id="*" />

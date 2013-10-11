@@ -12,7 +12,7 @@ import de.agito.cps.core.bpmo.api.enums.ILifecycle;
 public enum MaterialBPMOLifecycle implements ILifecycle {
 
 	CREATE(false, "MDM_Material_Create"),
-	UPDATE(false, "MDM_Material_Update");
+	UPDATE(true, "MDM_Material_Update");
 
 	private MaterialBPMOLifecycle(boolean supportsOriginalValue, String processDefinitionId) { this.supportsOriginalValue = supportsOriginalValue; this.processDefinitionId = processDefinitionId; }
 	private boolean supportsOriginalValue;

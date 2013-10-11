@@ -2,22 +2,28 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
+
+import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.ui.MenuBar.Command;
+import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.Window;
+
+import de.agito.cps.core.bpmo.BPMOState;
+import de.agito.cps.core.bpmo.ClientMode;
 import de.agito.cps.core.logger.Logger;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
 import de.agito.cps.ui.vaadin.bpmo.annotation.StyleController;
+import de.agito.cps.ui.vaadin.bpmo.context.UIClientContextFactory;
 import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
 import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
 import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
+import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
-import org.agito.demo.mdm.material.MaterialBPMO;
-import org.agito.demo.mdm.material.MaterialBPMOAccess;
-import org.agito.demo.mdm.material.MaterialBPMOAction;
-import org.agito.demo.mdm.material.MaterialBPMOLanguage;
-import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
-import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
 
 // @@end
 
@@ -43,7 +49,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	 */
 	// @@end
 	@Navigation(artifact = "Header", type = NavigationType.NODE_ELEMENT_INIT)
-	public void cpsInitHeader(MaterialBPMOAccess bpmoAccess) {
+	public void cpsInitHeader(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:Header
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
 		layoutManager
@@ -68,6 +74,24 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		layoutManager.addLineBreak();
 		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
 
+		if (getBPMO().getBPMOHeader().getBPMOState() == BPMOState.DRAFT
+				&& (MaterialBPMOLifecycle.valueOf(getBPMO().getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
+			IDefaultActionMenuBar menuBar = styleController.getActionMenu();
+			menuBar.add(MenutItem.FIND_MATERIAL, MenutItem.FIND_MATERIAL.getLabel(), new Command() {
+				private static final long serialVersionUID = 200736023610368808L;
+
+				public void menuSelected(MenuItem selectedItem) {
+					FindMaterialDialog dialog = new FindMaterialDialog(bpmoAccess);
+					Window window = new Window(MenutItem.FIND_MATERIAL.getLabel());
+					window.setModal(true);
+					window.setCloseShortcut(KeyCode.ESCAPE);
+					window.setContent(dialog);
+					UIClientContextFactory.getContext().getBPMOComponent().addWindow(window);
+
+				}
+			}, null, true, ClientMode.EDIT);
+		}
+
 		// @@end
 	}
 
@@ -79,7 +103,10 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	@Navigation(artifact = "Header", type = NavigationType.NODE_ELEMENT_DESTROY)
 	public void cpsDestroyHeader(MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:destroy:Header
-
+		IDefaultActionMenuBar menuBar = styleController.getActionMenu();
+		MenuItem menuItem = menuBar.getMenuItemById(MenutItem.FIND_MATERIAL);
+		if (menuItem != null)
+			menuBar.removeMenuItem(menuItem);
 		// @@end
 	}
 
@@ -185,6 +212,20 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 
 	@StyleController
 	public IDefaultStyleController styleController;
+
+	public enum MenutItem {
+		FIND_MATERIAL("Find Material");
+
+		private String label;
+
+		private MenutItem(String label) {
+			this.label = label;
+		}
+
+		public String getLabel() {
+			return label;
+		}
+	}
 
 	// @@end
 }
