@@ -9,11 +9,10 @@ import de.agito.cps.core.bpmo.api.enums.IBOId;
 import de.agito.cps.core.bpmo.api.enums.IBONode;
 
 
-
 /**
  * Enum for Header.
  *
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public enum MaterialBPMO implements IBODataElement {
 

@@ -30,7 +30,7 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
 
-	public MaterialBPMOController(IBPMOControllerContext context) {
+	public MaterialBPMOController(final IBPMOControllerContext context) {
 		super(context);
 	}
 
@@ -47,9 +47,9 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 		Map<MaterialBPMOLanguage, String> titles = new HashMap<MaterialBPMOLanguage, String>();
 		for (MaterialBPMOLanguage language : MaterialBPMOLanguage.values())
 			titles.put(language, String.format("Material (%s / %s)",
-					bpmoAccess.getName().getCurrentValue() == null ? "" : bpmoAccess.getName().getCurrentValue(),
-					bpmoAccess.getMaterialType().getCurrentValue() == null ? "" : bpmoAccess.getMaterialType()
-							.getCurrentValue().getValue()));
+					bpmoAccess.getName().getValue() == null ? "" : bpmoAccess.getName().getValue(),
+					bpmoAccess.getMaterialType().getValue() == null ? "" : bpmoAccess.getMaterialType()
+							.getValue().getValue()));
 		bpmoAccess.getContext().getBPMOHeader().getParent().setTitle(titles);
 	}
 	// @@end

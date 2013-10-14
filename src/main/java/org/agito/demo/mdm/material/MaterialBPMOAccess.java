@@ -15,11 +15,10 @@ import de.agito.cps.core.bpmo.api.access.TableAccessCurrent;
 import de.agito.cps.core.bpmo.api.access.TableAccessOriginal;
 
 
-
 /**
  * BPMOAccess for Header.
  * 
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
@@ -396,8 +395,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class MaterialNumber extends CharacteristicAccess {
 		protected MaterialNumber(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -405,8 +404,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class Name extends CharacteristicAccess {
 		protected Name(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -414,8 +413,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class MaterialType extends CharacteristicAccess {
 		protected MaterialType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public IKeywordEntry getCurrentValue() { return super.<IKeywordEntry>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public IKeywordEntry getValue() { return super.<IKeywordEntry>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -423,8 +422,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class GrossWeight extends CharacteristicAccess {
 		protected GrossWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -432,8 +431,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class NetWeight extends CharacteristicAccess {
 		protected NetWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -441,8 +440,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class Volume extends CharacteristicAccess {
 		protected Volume(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -450,8 +449,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class AllowedPackagingWeight extends CharacteristicAccess {
 		protected AllowedPackagingWeight(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -459,8 +458,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class AllowedPackagingVolume extends CharacteristicAccess {
 		protected AllowedPackagingVolume(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -468,8 +467,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class ContainerRequiements extends CharacteristicAccess {
 		protected ContainerRequiements(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -477,8 +476,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class StorageConditions extends CharacteristicAccess {
 		protected StorageConditions(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -486,8 +485,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class TransportationGroup extends CharacteristicAccess {
 		protected TransportationGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -495,8 +494,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class LabelType extends CharacteristicAccess {
 		protected LabelType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -504,8 +503,8 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class LabelForm extends CharacteristicAccess {
 		protected LabelForm(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -513,67 +512,41 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	@SuppressWarnings("unchecked")
 	public final static class BaseUnitOfMeasure extends CharacteristicAccess {
 		protected BaseUnitOfMeasure(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-		public String getCurrentValue() { return super.<String>getCurrentValue(); }
-		public void setCurrentValue(String value) { super.setCurrentValue(value); }
+		public String getValue() { return super.<String>getCurrentValue(); }
+		public void setValue(String value) { super.setCurrentValue(value); }
 		public String getOriginalValue() { return super.<String>getOriginalValue(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
-	public final static class AlternativeUnitOfMeasures extends TableAccessOriginal<AlternativeUnitOfMeasures.Current, AlternativeUnitOfMeasures.Original> {
+	public final static class AlternativeUnitOfMeasures extends TableAccessOriginal<AlternativeUnitOfMeasures.Row> {
 		protected AlternativeUnitOfMeasures(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 
-		public final static class Current extends RowAccess {
-			protected Current(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
+		public final static class Row extends RowAccess {
+			protected Row(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
 			public AlternativeUnitOfMeasure getAlternativeUnitOfMeasure() { return super.<AlternativeUnitOfMeasure>getCellAccess(AlternativeUnitOfMeasure.class, "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", "AlternativeUnitOfMeasure"); }
 			public NumeratorConversion getNumeratorConversion() { return super.<NumeratorConversion>getCellAccess(NumeratorConversion.class, "Header$AlternativeUnitOfMeasures$NumeratorConversion", "NumeratorConversion"); }
 			public DenominatorConversion getDenominatorConversion() { return super.<DenominatorConversion>getCellAccess(DenominatorConversion.class, "Header$AlternativeUnitOfMeasures$DenominatorConversion", "DenominatorConversion"); }
-			public void erase() { super.eraseRow(); }
-
-			@SuppressWarnings("unchecked")
-			public final static class AlternativeUnitOfMeasure extends CellAccess {
-				protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-				public void setValue(String value) { super.setValue(value); }
-			}
-
-			@SuppressWarnings("unchecked")
-			public final static class NumeratorConversion extends CellAccess {
-				protected NumeratorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-				public void setValue(String value) { super.setValue(value); }
-			}
-
-			@SuppressWarnings("unchecked")
-			public final static class DenominatorConversion extends CellAccess {
-				protected DenominatorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-				public void setValue(String value) { super.setValue(value); }
-			}
 		}
 
-		public final static class Original extends RowAccess {
-			protected Original(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
-			public AlternativeUnitOfMeasure getAlternativeUnitOfMeasure() { return super.<AlternativeUnitOfMeasure>getCellAccess(AlternativeUnitOfMeasure.class, "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", "AlternativeUnitOfMeasure"); }
-			public NumeratorConversion getNumeratorConversion() { return super.<NumeratorConversion>getCellAccess(NumeratorConversion.class, "Header$AlternativeUnitOfMeasures$NumeratorConversion", "NumeratorConversion"); }
-			public DenominatorConversion getDenominatorConversion() { return super.<DenominatorConversion>getCellAccess(DenominatorConversion.class, "Header$AlternativeUnitOfMeasures$DenominatorConversion", "DenominatorConversion"); }
+		@SuppressWarnings("unchecked")
+		public final static class AlternativeUnitOfMeasure extends CellAccess {
+			protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+			public String getValue() { return super.<String>getValue(); }
+			public void setValue(String value) { super.setValue(value); }
+		}
 
-			@SuppressWarnings("unchecked")
-			public final static class AlternativeUnitOfMeasure extends CellAccess {
-				protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-			}
+		@SuppressWarnings("unchecked")
+		public final static class NumeratorConversion extends CellAccess {
+			protected NumeratorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+			public String getValue() { return super.<String>getValue(); }
+			public void setValue(String value) { super.setValue(value); }
+		}
 
-			@SuppressWarnings("unchecked")
-			public final static class NumeratorConversion extends CellAccess {
-				protected NumeratorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-			}
-
-			@SuppressWarnings("unchecked")
-			public final static class DenominatorConversion extends CellAccess {
-				protected DenominatorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
-			}
+		@SuppressWarnings("unchecked")
+		public final static class DenominatorConversion extends CellAccess {
+			protected DenominatorConversion(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+			public String getValue() { return super.<String>getValue(); }
+			public void setValue(String value) { super.setValue(value); }
 		}
 	}
 
@@ -594,57 +567,57 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		@SuppressWarnings("unchecked")
 		public final static class ProductionSupervisor extends CharacteristicAccess {
 			protected ProductionSupervisor(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class ProcessingTime extends CharacteristicAccess {
 			protected ProcessingTime(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class BaseQuantity extends CharacteristicAccess {
 			protected BaseQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class StorageCostsIndicator extends CharacteristicAccess {
 			protected StorageCostsIndicator(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class ValuationCategory extends CharacteristicAccess {
 			protected ValuationCategory(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class MinimumLotSize extends CharacteristicAccess {
 			protected MinimumLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class MaximumLotSize extends CharacteristicAccess {
 			protected MaximumLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class FixedLotSize extends CharacteristicAccess {
 			protected FixedLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		public final static class StorageLocations extends NodeAccess<MaterialBPMOAccess> {
@@ -664,22 +637,22 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			@SuppressWarnings("unchecked")
 			public final static class TotalStock extends CharacteristicAccess {
 				protected TotalStock(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-				public String getCurrentValue() { return super.<String>getCurrentValue(); }
-				public void setCurrentValue(String value) { super.setCurrentValue(value); }
+				public String getValue() { return super.<String>getCurrentValue(); }
+				public void setValue(String value) { super.setCurrentValue(value); }
 			}
 
 			@SuppressWarnings("unchecked")
 			public final static class StockInQualityInspection extends CharacteristicAccess {
 				protected StockInQualityInspection(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-				public String getCurrentValue() { return super.<String>getCurrentValue(); }
-				public void setCurrentValue(String value) { super.setCurrentValue(value); }
+				public String getValue() { return super.<String>getCurrentValue(); }
+				public void setValue(String value) { super.setCurrentValue(value); }
 			}
 
 			@SuppressWarnings("unchecked")
 			public final static class BlockedStock extends CharacteristicAccess {
 				protected BlockedStock(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-				public String getCurrentValue() { return super.<String>getCurrentValue(); }
-				public void setCurrentValue(String value) { super.setCurrentValue(value); }
+				public String getValue() { return super.<String>getCurrentValue(); }
+				public void setValue(String value) { super.setCurrentValue(value); }
 			}
 		}
 	}
@@ -710,116 +683,115 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		@SuppressWarnings("unchecked")
 		public final static class StatisticsGroup extends CharacteristicAccess {
 			protected StatisticsGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class VolumeRebateGroup extends CharacteristicAccess {
 			protected VolumeRebateGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class CommissionGroup extends CharacteristicAccess {
 			protected CommissionGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class CashDiscount extends CharacteristicAccess {
 			protected CashDiscount(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class DeliveryUnit extends CharacteristicAccess {
 			protected DeliveryUnit(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class SalesUnit extends CharacteristicAccess {
 			protected SalesUnit(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class MinimumOrderQuantity extends CharacteristicAccess {
 			protected MinimumOrderQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class MinimumDeliveryQuantity extends CharacteristicAccess {
 			protected MinimumDeliveryQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class ItemCategoryGroup extends CharacteristicAccess {
 			protected ItemCategoryGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class DeliveringPlant extends CharacteristicAccess {
 			protected DeliveringPlant(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class Pricing extends CharacteristicAccess {
 			protected Pricing(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class ListedInStoreFrom extends CharacteristicAccess {
 			protected ListedInStoreFrom(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
 		@SuppressWarnings("unchecked")
 		public final static class ListedInStoreTo extends CharacteristicAccess {
 			protected ListedInStoreTo(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
-			public String getCurrentValue() { return super.<String>getCurrentValue(); }
-			public void setCurrentValue(String value) { super.setCurrentValue(value); }
+			public String getValue() { return super.<String>getCurrentValue(); }
+			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		public final static class SalesTexts extends TableAccessCurrent<SalesTexts.Current> {
+		public final static class SalesTexts extends TableAccessCurrent<SalesTexts.Row> {
 			protected SalesTexts(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 
-			public final static class Current extends RowAccess {
-				protected Current(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
+			public final static class Row extends RowAccess {
+				protected Row(BPMOAccess<?> bpmoAccess, IRow row) { super(bpmoAccess, row); }
 				public Language getLanguage() { return super.<Language>getCellAccess(Language.class, "Header.SalesOrganizations$SalesTexts$Language", "Language"); }
 				public Text getText() { return super.<Text>getCellAccess(Text.class, "Header.SalesOrganizations$SalesTexts$Text", "Text"); }
-				public void erase() { super.eraseRow(); }
+			}
 
-				@SuppressWarnings("unchecked")
-				public final static class Language extends CellAccess {
-					protected Language(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-					public String getValue() { return super.<String>getValue(); }
-					public void setValue(String value) { super.setValue(value); }
-				}
+			@SuppressWarnings("unchecked")
+			public final static class Language extends CellAccess {
+				protected Language(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+				public String getValue() { return super.<String>getValue(); }
+				public void setValue(String value) { super.setValue(value); }
+			}
 
-				@SuppressWarnings("unchecked")
-				public final static class Text extends CellAccess {
-					protected Text(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-					public String getValue() { return super.<String>getValue(); }
-					public void setValue(String value) { super.setValue(value); }
-				}
+			@SuppressWarnings("unchecked")
+			public final static class Text extends CellAccess {
+				protected Text(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
+				public String getValue() { return super.<String>getValue(); }
+				public void setValue(String value) { super.setValue(value); }
 			}
 		}
 	}
