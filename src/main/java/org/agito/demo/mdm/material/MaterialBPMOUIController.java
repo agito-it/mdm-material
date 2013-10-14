@@ -2,22 +2,24 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
-
 import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.Material;
 
-import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.Window;
 
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
+import de.agito.cps.core.bpmo.IRow;
+import de.agito.cps.core.bpmo.ITable;
 import de.agito.cps.core.logger.Logger;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
 import de.agito.cps.ui.vaadin.bpmo.annotation.StyleController;
-import de.agito.cps.ui.vaadin.bpmo.context.UIClientContextFactory;
 import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
 import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
 import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
@@ -34,7 +36,9 @@ import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
  * @author andreas.weise
  */
 // @@end
-public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOUIController
+		extends
+		BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOUIController.class);
@@ -76,20 +80,17 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 
 		if (getBPMO().getBPMOHeader().getBPMOState() == BPMOState.DRAFT
 				&& (MaterialBPMOLifecycle.valueOf(getBPMO().getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
-			IDefaultActionMenuBar menuBar = styleController.getActionMenu();
-			menuBar.add(MenutItem.FIND_MATERIAL, MenutItem.FIND_MATERIAL.getLabel(), new Command() {
-				private static final long serialVersionUID = 200736023610368808L;
+			if (bpmoAccess.getMaterialNumber().getOriginalValue() == null) {
+				final IDefaultActionMenuBar menuBar = styleController.getActionMenu();
+				menuBar.add(MenutItem.FIND_MATERIAL, MenutItem.FIND_MATERIAL.getLabel(), new Command() {
+					private static final long serialVersionUID = 200736023610368808L;
 
-				public void menuSelected(MenuItem selectedItem) {
-					FindMaterialDialog dialog = new FindMaterialDialog(bpmoAccess);
-					Window window = new Window(MenutItem.FIND_MATERIAL.getLabel());
-					window.setModal(true);
-					window.setCloseShortcut(KeyCode.ESCAPE);
-					window.setContent(dialog);
-					UIClientContextFactory.getContext().getBPMOComponent().addWindow(window);
-
-				}
-			}, null, true, ClientMode.EDIT);
+					public void menuSelected(MenuItem selectedItem) {
+						openFindMaterialDialog(bpmoAccess);
+					}
+				}, null, true, ClientMode.EDIT);
+				openFindMaterialDialog(bpmoAccess);
+			}
 		}
 
 		// @@end
@@ -225,6 +226,47 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		public String getLabel() {
 			return label;
 		}
+	}
+
+	private void openFindMaterialDialog(final MaterialBPMOAccess bpmoAccess) {
+		final FindMaterialDialog findMaterialDialog = new FindMaterialDialog();
+		styleController.getActionMenu().getWindow().addWindow(findMaterialDialog);
+		findMaterialDialog.init(bpmoAccess, new ClickListener() {
+			private static final long serialVersionUID = -5884817909375913870L;
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				ButtonAction action = (ButtonAction) event.getButton().getData();
+				switch (action) {
+				case CANCEL:
+					break;
+				case OK:
+					Material material = findMaterialDialog.getSelectedMaterial();
+					bpmoAccess.getName().setOriginalValue(material.getName());
+					bpmoAccess.getMaterialNumber().setOriginalValue(material.getNumber());
+					bpmoAccess.getMaterialType().setOriginalValue("1");
+					bpmoAccess.getGrossWeight().setOriginalValue("10");
+					bpmoAccess.getNetWeight().setOriginalValue("12");
+					bpmoAccess.getAllowedPackagingWeight().setOriginalValue("15");
+					bpmoAccess.getAllowedPackagingVolume().setOriginalValue("60");
+					bpmoAccess.getVolume().setOriginalValue("14");
+					bpmoAccess.getBaseUnitOfMeasure().setOriginalValue("part");
+
+					// TODO use bpmoAccess
+					ITable table = bpmoAccess.getContext().getTable(MaterialBPMO.AlternativeUnitOfMeasures);
+					IRow row = table.getOriginalValue().createRow();
+					row.getCellValue(MaterialBPMO.AlternativeUnitOfMeasures$AlternativeUnitOfMeasure).setStringValue(
+							"part");
+					row.getCellValue(MaterialBPMO.AlternativeUnitOfMeasures$DenominatorConversion).setStringValue("1");
+					row.getCellValue(MaterialBPMO.AlternativeUnitOfMeasures$NumeratorConversion).setStringValue("5");
+					table.getOriginalValue().addRow(row);
+					styleController.getActionMenu().getMenuItemById(MenutItem.FIND_MATERIAL).setVisible(false);
+					break;
+				}
+				styleController.getActionMenu().getWindow().removeWindow(findMaterialDialog);
+
+			}
+		});
 	}
 
 	// @@end

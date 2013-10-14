@@ -11,22 +11,47 @@ import org.agito.demo.mdm.material.MaterialBPMOAccess;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 import de.agito.cps.core.utils.StringUtils;
 import de.agito.cps.ui.vaadin.bpmo.styles.StyleName;
 
-public class FindMaterialDialog extends VerticalLayout {
+public class FindMaterialDialog extends Window {
 
 	private static final long serialVersionUID = 879199253393682997L;
 
-	public FindMaterialDialog(final MaterialBPMOAccess bpmoAccess) {
-		setSizeFull();
-		setMargin(true);
+	final BeanItemContainer<FindMaterialDialog.Material> container = new BeanItemContainer<FindMaterialDialog.Material>(
+			FindMaterialDialog.Material.class);
+	final Table table = new Table("", container);
+	final Button buttonOK = new Button("OK") {
+
+		private static final long serialVersionUID = -4682784358651527031L;
+
+		{
+			setEnabled(false);
+			setData(ButtonAction.OK);
+		}
+	};
+
+	public void init(final MaterialBPMOAccess bpmoAccess, final Button.ClickListener clickListener) {
+		setCaption("Find Material");
+		setModal(true);
+		setCloseShortcut(KeyCode.ESCAPE);
+		setWidth(505, Sizeable.UNITS_PIXELS);
+		VerticalLayout bodyLayout = new VerticalLayout();
+		setContent(bodyLayout);
+		bodyLayout.setSizeFull();
+		bodyLayout.setMargin(true);
 		final TextField materialNumber = new TextField(bpmoAccess.getMaterialNumber().getContext().getDefinition()
 				.getLabel().getText());
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
@@ -34,20 +59,30 @@ public class FindMaterialDialog extends VerticalLayout {
 		materialName.setWidth(300, UNITS_PIXELS);
 		HorizontalLayout body = new HorizontalLayout();
 		body.setWidth(500, UNITS_PIXELS);
-		addComponent(body);
+		bodyLayout.addComponent(body);
 		body.addComponent(materialNumber);
 		body.addComponent(materialName);
 
+		CssLayout buttonLayout = new CssLayout();
+		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
+		buttonLayout.setMargin(false, true, true, true);
+		buttonLayout.setStyleName(StyleName.BUTTON_CONTAINER.getCssClass());
+		bodyLayout.addComponent(buttonLayout);
+
 		Button button = new Button("Search");
-		button.setStyleName(StyleName.FLOAT_RIGHT.getCssClass());
-		addComponent(button);
+		button.addListener(new ClickListener() {
+			private static final long serialVersionUID = -7929426254254303014L;
 
-		final MaterialListDTO materialListDTO = new MaterialListDTO();
+			@Override
+			public void buttonClick(ClickEvent event) {
 
-		BeanItemContainer<Material> container = new BeanItemContainer<FindMaterialDialog.Material>(
-				FindMaterialDialog.Material.class);
+			}
+		});
+		buttonLayout.addComponent(button);
+
+		final MaterialListAccessor materialListDTO = new MaterialListAccessor();
+
 		container.addAll(materialListDTO.getMaterialByName("Mat"));
-		final Table table = new Table("", container);
 		table.setWidth(100, UNITS_PERCENTAGE);
 		table.setPageLength(5);
 		table.setImmediate(true);
@@ -57,32 +92,40 @@ public class FindMaterialDialog extends VerticalLayout {
 
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				if (table.getValue() != null) {
-					Material material = (Material) table.getValue();
-					bpmoAccess.getName().setOriginalValue(material.getName());
-					bpmoAccess.getMaterialNumber().setOriginalValue(material.getNumber());
-					bpmoAccess.getMaterialType().setOriginalValue("1");
-					bpmoAccess.getGrossWeight().setOriginalValue("10");
-					bpmoAccess.getNetWeight().setOriginalValue("12");
-					bpmoAccess.getAllowedPackagingWeight().setOriginalValue("15");
-					bpmoAccess.getAllowedPackagingVolume().setOriginalValue("60");
-					bpmoAccess.getVolume().setOriginalValue("14");
-					bpmoAccess.getBaseUnitOfMeasure().setOriginalValue("part");
-					//bpmoAccess.getAlternativeUnitOfMeasures().createOriginalRow().
-					//getWindow().getWindow().removeWindow(getWindow());
-				}
+				buttonOK.setEnabled(table.getValue() != null);
 			}
 		});
-		addComponent(table);
+		bodyLayout.addComponent(table);
+
+		buttonLayout = new CssLayout();
+		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
+		buttonLayout.setMargin(false, true, true, true);
+		buttonLayout.setStyleName(StyleName.BUTTON_CONTAINER.getCssClass());
+		bodyLayout.addComponent(buttonLayout);
+
+		buttonLayout.addComponent(new Button("Cancel") {
+			private static final long serialVersionUID = -303529397058170688L;
+			{
+				addListener(clickListener);
+				setData(ButtonAction.CANCEL);
+			}
+		});
+
+		buttonOK.addListener(clickListener);
+		buttonLayout.addComponent(buttonOK);
 	}
 
-	public class MaterialListDTO implements Serializable {
+	public Material getSelectedMaterial() {
+		return (Material) table.getValue();
+	}
+
+	public class MaterialListAccessor implements Serializable {
 
 		private static final long serialVersionUID = 8084910359894112137L;
 
 		private Map<String, Material> map = new TreeMap<String, Material>();
 
-		private MaterialListDTO() {
+		private MaterialListAccessor() {
 			for (int i = 1; i < 20; i++)
 				map.put(StringUtils.leftPad(String.valueOf(i), 10),
 						new Material(StringUtils.leftPad(String.valueOf(i), 10), String.format("Material %s", i)));
@@ -124,6 +167,12 @@ public class FindMaterialDialog extends VerticalLayout {
 		public String getName() {
 			return name;
 		}
+	}
+
+	public enum ButtonAction {
+		OK,
+
+		CANCEL;
 	}
 
 }
