@@ -2,16 +2,10 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.Material;
-
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
-
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
 import de.agito.cps.core.logger.Logger;
@@ -25,6 +19,16 @@ import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
+import org.agito.demo.mdm.material.MaterialBPMO;
+import org.agito.demo.mdm.material.MaterialBPMOAccess;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
+import org.agito.demo.mdm.material.MaterialBPMOAction;
+import org.agito.demo.mdm.material.MaterialBPMOLanguage;
+import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
+import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.Material;
 
 // @@end
 

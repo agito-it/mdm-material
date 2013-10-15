@@ -564,56 +564,48 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			public String getValue() { return super.<String>getValue(); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ProductionSupervisor extends CharacteristicAccess {
 			protected ProductionSupervisor(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ProcessingTime extends CharacteristicAccess {
 			protected ProcessingTime(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class BaseQuantity extends CharacteristicAccess {
 			protected BaseQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class StorageCostsIndicator extends CharacteristicAccess {
 			protected StorageCostsIndicator(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ValuationCategory extends CharacteristicAccess {
 			protected ValuationCategory(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class MinimumLotSize extends CharacteristicAccess {
 			protected MinimumLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class MaximumLotSize extends CharacteristicAccess {
 			protected MaximumLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class FixedLotSize extends CharacteristicAccess {
 			protected FixedLotSize(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
@@ -634,21 +626,18 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 				public String getValue() { return super.<String>getValue(); }
 			}
 
-			@SuppressWarnings("unchecked")
 			public final static class TotalStock extends CharacteristicAccess {
 				protected TotalStock(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 				public String getValue() { return super.<String>getCurrentValue(); }
 				public void setValue(String value) { super.setCurrentValue(value); }
 			}
 
-			@SuppressWarnings("unchecked")
 			public final static class StockInQualityInspection extends CharacteristicAccess {
 				protected StockInQualityInspection(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 				public String getValue() { return super.<String>getCurrentValue(); }
 				public void setValue(String value) { super.setCurrentValue(value); }
 			}
 
-			@SuppressWarnings("unchecked")
 			public final static class BlockedStock extends CharacteristicAccess {
 				protected BlockedStock(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 				public String getValue() { return super.<String>getCurrentValue(); }
@@ -680,91 +669,78 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			public String getValue() { return super.<String>getValue(); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class StatisticsGroup extends CharacteristicAccess {
 			protected StatisticsGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class VolumeRebateGroup extends CharacteristicAccess {
 			protected VolumeRebateGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class CommissionGroup extends CharacteristicAccess {
 			protected CommissionGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class CashDiscount extends CharacteristicAccess {
 			protected CashDiscount(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class DeliveryUnit extends CharacteristicAccess {
 			protected DeliveryUnit(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class SalesUnit extends CharacteristicAccess {
 			protected SalesUnit(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class MinimumOrderQuantity extends CharacteristicAccess {
 			protected MinimumOrderQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class MinimumDeliveryQuantity extends CharacteristicAccess {
 			protected MinimumDeliveryQuantity(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ItemCategoryGroup extends CharacteristicAccess {
 			protected ItemCategoryGroup(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class DeliveringPlant extends CharacteristicAccess {
 			protected DeliveringPlant(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class Pricing extends CharacteristicAccess {
 			protected Pricing(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ListedInStoreFrom extends CharacteristicAccess {
 			protected ListedInStoreFrom(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
 			public void setValue(String value) { super.setCurrentValue(value); }
 		}
 
-		@SuppressWarnings("unchecked")
 		public final static class ListedInStoreTo extends CharacteristicAccess {
 			protected ListedInStoreTo(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			public String getValue() { return super.<String>getCurrentValue(); }
