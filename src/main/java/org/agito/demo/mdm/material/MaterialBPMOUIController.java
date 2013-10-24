@@ -19,16 +19,18 @@ import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
+import java.util.HashMap;
+import java.util.Map;
 import org.agito.demo.mdm.material.MaterialBPMO;
 import org.agito.demo.mdm.material.MaterialBPMOAccess;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
 import org.agito.demo.mdm.material.MaterialBPMOAction;
+import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
 import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
 import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
 import org.agito.demo.mdm.material.ui.FindMaterialDialog;
 import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.Material;
 
 // @@end
 
@@ -78,8 +80,8 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		layoutManager.addLineBreak();
 		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
 
-		if (getBPMO().getBPMOHeader().getBPMOState() == BPMOState.DRAFT
-				&& (MaterialBPMOLifecycle.valueOf(getBPMO().getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
+		if (bpmoAccess.getBPMOHeader().getBPMOState() == BPMOState.DRAFT
+				&& (MaterialBPMOLifecycle.valueOf(bpmoAccess.getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
 			if (bpmoAccess.getMaterialNumber().getOriginalValue() == null) {
 				final IDefaultActionMenuBar menuBar = styleController.getActionMenu();
 				menuBar.add(MenutItem.FIND_MATERIAL, MenutItem.FIND_MATERIAL.getLabel(), new Command() {
@@ -121,8 +123,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		// @@begin body:init:Plants
 
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.createAndAddSeparator()
-				.setTitle(String.format("Plant %s", bpmoAccess.getPlants$PlantId().getValue()))
+		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
 				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
 				.setContentWidth(90, UNIT.PERCENTAGE);
 		layoutManager.fillContent(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
@@ -155,11 +156,8 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		// @@begin body:init:Plants$StorageLocations
 
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager
-				.createAndAddSeparator()
-				.setTitle(
-						String.format("Storage Location %s", bpmoAccess.getPlants$StorageLocations$StorageLocationId()
-								.getValue())).setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
+		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
+				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
 				.setContentWidth(90, UNIT.PERCENTAGE);
 
 		// @@end
@@ -186,12 +184,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	public void cpsInitSalesOrganizations(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:SalesOrganizations
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager
-				.createAndAddSeparator()
-				.setTitle(
-						String.format("Sales Organization %s Distribution Channel %s", bpmoAccess
-								.getSalesOrganizations$SalesOrganization().getValue(), bpmoAccess
-								.getSalesOrganizations$DistributionChannel().getValue()))
+		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
 				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
 				.setContentWidth(90, UNIT.PERCENTAGE);
 		// @@end
@@ -228,6 +221,11 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		}
 	}
 
+	/**
+	 * Open the dialog to find a specific material
+	 * 
+	 * @param bpmoAccess
+	 */
 	private void openFindMaterialDialog(final MaterialBPMOAccess bpmoAccess) {
 		final FindMaterialDialog findMaterialDialog = new FindMaterialDialog();
 		styleController.getActionMenu().getWindow().addWindow(findMaterialDialog);
@@ -241,27 +239,14 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 				case CANCEL:
 					break;
 				case OK:
-					Material material = findMaterialDialog.getSelectedMaterial();
-					bpmoAccess.getName().setOriginalValue(material.getName());
-					bpmoAccess.getMaterialNumber().setOriginalValue(material.getNumber());
-					bpmoAccess.getMaterialType().setOriginalValue("1");
-					bpmoAccess.getGrossWeight().setOriginalValue("10");
-					bpmoAccess.getNetWeight().setOriginalValue("12");
-					bpmoAccess.getAllowedPackagingWeight().setOriginalValue("15");
-					bpmoAccess.getAllowedPackagingVolume().setOriginalValue("60");
-					bpmoAccess.getVolume().setOriginalValue("14");
-					bpmoAccess.getBaseUnitOfMeasure().setOriginalValue("part");
-
-					Row row = bpmoAccess.getAlternativeUnitOfMeasures().createOriginalRow();
-					row.getAlternativeUnitOfMeasure().setValue(bpmoAccess.getBaseUnitOfMeasure().getOriginalValue());
-					row.getDenominatorConversion().setValue("1");
-					row.getNumeratorConversion().setValue("5");
-					bpmoAccess.getAlternativeUnitOfMeasures().addOriginalRow(row);
+					MaterialHeaderDTO material = findMaterialDialog.getSelectedMaterial();
+					Map<String, Object> parameters = new HashMap<String, Object>();
+					parameters.put(ActionParameter.MATERIAL_HEADER_DTO.toString(), material);
+					bpmoAccess.getBPMO().execute(MaterialBPMOAction.ReadMaterial, parameters);
 					styleController.getActionMenu().getMenuItemById(MenutItem.FIND_MATERIAL).setVisible(false);
 					break;
 				}
 				styleController.getActionMenu().getWindow().removeWindow(findMaterialDialog);
-
 			}
 		});
 	}

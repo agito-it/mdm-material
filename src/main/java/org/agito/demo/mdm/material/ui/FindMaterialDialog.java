@@ -1,16 +1,18 @@
 package org.agito.demo.mdm.material.ui;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.agito.demo.mdm.material.MaterialBPMOAccess;
+import org.agito.demo.mdm.material.MaterialBPMOAction;
+import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
@@ -23,15 +25,21 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import de.agito.cps.core.utils.StringUtils;
 import de.agito.cps.ui.vaadin.bpmo.styles.StyleName;
 
+/**
+ * @author Jörg Burmeister
+ * 
+ *         As sample dialog to find a material.
+ *         Use the business controller action implementation to access a simulated service interface
+ * 
+ */
 public class FindMaterialDialog extends Window {
 
 	private static final long serialVersionUID = 879199253393682997L;
 
-	final BeanItemContainer<FindMaterialDialog.Material> container = new BeanItemContainer<FindMaterialDialog.Material>(
-			FindMaterialDialog.Material.class);
+	final BeanItemContainer<MaterialHeaderDTO> container = new BeanItemContainer<MaterialHeaderDTO>(
+			MaterialHeaderDTO.class);
 	final Table table = new Table("", container);
 	final Button buttonOK = new Button("OK") {
 
@@ -41,6 +49,7 @@ public class FindMaterialDialog extends Window {
 			setEnabled(false);
 			setData(ButtonAction.OK);
 		}
+
 	};
 
 	public void init(final MaterialBPMOAccess bpmoAccess, final Button.ClickListener clickListener) {
@@ -54,6 +63,8 @@ public class FindMaterialDialog extends Window {
 		bodyLayout.setMargin(true);
 		final TextField materialNumber = new TextField(bpmoAccess.getMaterialNumber().getContext().getDefinition()
 				.getLabel().getText());
+		materialNumber.focus();
+		materialNumber.setNullRepresentation("");
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
 				.getText());
 		materialName.setWidth(300, UNITS_PIXELS);
@@ -70,19 +81,32 @@ public class FindMaterialDialog extends Window {
 		bodyLayout.addComponent(buttonLayout);
 
 		Button button = new Button("Search");
+		button.setClickShortcut(KeyCode.ENTER);
 		button.addListener(new ClickListener() {
 			private static final long serialVersionUID = -7929426254254303014L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-
+				container.removeAllItems();
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NAME.toString(), materialName.getValue());
+				try {
+					parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NUMBER.toString(),
+							Integer.valueOf((String) materialNumber.getValue()));
+				} catch (Exception e) {
+					materialNumber.setValue(null);
+					parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NUMBER.toString(), new Integer(0));
+				}
+				@SuppressWarnings("unchecked")
+				List<MaterialHeaderDTO> list = (List<MaterialHeaderDTO>) bpmoAccess.getContext().getBPMOHeader()
+						.getParent().execute(MaterialBPMOAction.FindMaterial, parameters);
+				container.addAll(list);
+				if (container.size() == 0)
+					getWindow().showNotification("No entries found");
 			}
 		});
 		buttonLayout.addComponent(button);
 
-		final MaterialListAccessor materialListDTO = new MaterialListAccessor();
-
-		container.addAll(materialListDTO.getMaterialByName("Mat"));
 		table.setWidth(100, UNITS_PERCENTAGE);
 		table.setPageLength(5);
 		table.setImmediate(true);
@@ -93,6 +117,18 @@ public class FindMaterialDialog extends Window {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				buttonOK.setEnabled(table.getValue() != null);
+			}
+		});
+
+		table.addListener(new ItemClickEvent.ItemClickListener() {
+			private static final long serialVersionUID = 666727040165970080L;
+
+			@Override
+			public void itemClick(ItemClickEvent event) {
+				if (event.isDoubleClick()) {
+					table.setValue(event.getItemId());
+					buttonOK.click();
+				}
 			}
 		});
 		bodyLayout.addComponent(table);
@@ -108,6 +144,7 @@ public class FindMaterialDialog extends Window {
 			{
 				addListener(clickListener);
 				setData(ButtonAction.CANCEL);
+				setClickShortcut(KeyCode.ESCAPE);
 			}
 		});
 
@@ -115,58 +152,8 @@ public class FindMaterialDialog extends Window {
 		buttonLayout.addComponent(buttonOK);
 	}
 
-	public Material getSelectedMaterial() {
-		return (Material) table.getValue();
-	}
-
-	public class MaterialListAccessor implements Serializable {
-
-		private static final long serialVersionUID = 8084910359894112137L;
-
-		private Map<String, Material> map = new TreeMap<String, Material>();
-
-		private MaterialListAccessor() {
-			for (int i = 1; i < 20; i++)
-				map.put(StringUtils.leftPad(String.valueOf(i), 10),
-						new Material(StringUtils.leftPad(String.valueOf(i), 10), String.format("Material %s", i)));
-		}
-
-		public List<Material> getMaterialByNumber(int number) {
-			List<Material> list = new ArrayList<FindMaterialDialog.Material>();
-			if (map.containsKey(StringUtils.leftPad(String.valueOf(number), 10)))
-				list.add(map.get(StringUtils.leftPad(String.valueOf(number), 10)));
-			return list;
-		}
-
-		public List<Material> getMaterialByName(String name) {
-			List<Material> list = new ArrayList<FindMaterialDialog.Material>();
-			if (StringUtils.trim(name) != null) {
-				name = name.replace("*", "");
-				for (Material material : map.values())
-					if (material.getName().toLowerCase().startsWith(name.toLowerCase()))
-						list.add(material);
-			}
-			return list;
-		}
-	}
-
-	public class Material implements Serializable {
-		private static final long serialVersionUID = 8335919741279724481L;
-		String number;
-		String name;
-
-		private Material(String number, String name) {
-			this.number = number;
-			this.name = name;
-		}
-
-		public String getNumber() {
-			return number;
-		}
-
-		public String getName() {
-			return name;
-		}
+	public MaterialHeaderDTO getSelectedMaterial() {
+		return (MaterialHeaderDTO) table.getValue();
 	}
 
 	public enum ButtonAction {
