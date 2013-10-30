@@ -850,7 +850,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			@SuppressWarnings("unchecked")
 			public final static class Language extends CellAccess {
 				protected Language(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
-				public String getValue() { return super.<String>getValue(); }
+				public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
 				public void setValue(String value) { super.setValue(value); }
 			}
 

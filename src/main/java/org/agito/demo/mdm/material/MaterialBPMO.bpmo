@@ -825,11 +825,13 @@
 				<Text>Approver</Text>
 			</Label>
 		</ProcessActivityId>
+		<ProcessActivityId Id="CreateMaterial" />
 	</ProcessActivities>
 	<ProcessChoices>
 		<ProcessChoice Id="Approve" Type="FORWARD" />
-		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true"/>
-		<ProcessChoice Id="Repeat" Type="FORWARD" RequireComment="true"/>
+		<ProcessChoice Id="Complete" Type="FORWARD" />
+		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true" />
+		<ProcessChoice Id="Repeat" Type="FORWARD" RequireComment="true" />
 		<Assignment ProcessChoiceId="Approve">
 			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
@@ -839,13 +841,25 @@
 		</Assignment>
 		<Assignment ProcessChoiceId="Decline">
 			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">HeaderMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">PlantMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">StorageMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">DistributionMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
 		</Assignment>
+		<Assignment ProcessChoiceId="Complete">
+			<ProcessActivity Lifecycle="CREATE">HeaderMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
+			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
+		</Assignment>
 		<Assignment ProcessChoiceId="Repeat">
+			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
 		</Assignment>
 	</ProcessChoices>

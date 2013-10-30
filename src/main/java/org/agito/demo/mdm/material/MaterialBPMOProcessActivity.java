@@ -17,7 +17,8 @@ public enum MaterialBPMOProcessActivity implements IProcessActivity {
 	PlantMgmt,
 	StorageMgmt,
 	DistributionMgmt,
-	Approver;
+	Approver,
+	CreateMaterial;
 
 }
 

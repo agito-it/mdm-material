@@ -2,19 +2,6 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.BaseUnitOfMeasure;
-import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.dto.MaterialHeaderList;
-
 import de.agito.cps.core.annotations.BPMO;
 import de.agito.cps.core.annotations.Expression;
 import de.agito.cps.core.annotations.ExpressionDependency;
@@ -32,6 +19,24 @@ import de.agito.cps.core.bpmo.api.controller.BPMOController;
 import de.agito.cps.core.bpmo.api.controller.IBPMOControllerContext;
 import de.agito.cps.core.engine.runtime.BusinessLog;
 import de.agito.cps.core.logger.Logger;
+import de.agito.cps.core.utils.StringUtils;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import org.agito.demo.mdm.material.MaterialBPMO;
+import org.agito.demo.mdm.material.MaterialBPMOAccess;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.BaseUnitOfMeasure;
+import org.agito.demo.mdm.material.MaterialBPMOAction;
+import org.agito.demo.mdm.material.MaterialBPMOLanguage;
+import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
+import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
+import org.agito.demo.mdm.material.dto.MaterialHeaderList;
 
 // @@end
 
@@ -43,9 +48,7 @@ import de.agito.cps.core.logger.Logger;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController
-		extends
-		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
@@ -115,8 +118,7 @@ public class MaterialBPMOController
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
-			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure
 		 */
@@ -135,6 +137,7 @@ public class MaterialBPMOController
 	@Override
 	public Object cpsExecuteBPMOAction(MaterialBPMOAccess bpmoAccess, MaterialBPMOAction action,
 			Map<String, Object> parameters) {
+		BusinessLog businessLog;
 		switch (action) {
 		case ReadMaterial:
 			MaterialHeaderDTO material = (MaterialHeaderDTO) parameters.get(ActionParameter.MATERIAL_HEADER_DTO
@@ -224,16 +227,39 @@ public class MaterialBPMOController
 			// +++ evaluate all responsible activities for request approval +++
 			return getResponsibleProcessActivities(bpmoAccess.getContext(), null);
 		case CreateMaterial:
+			String tmp = String.valueOf(String.valueOf(System.currentTimeMillis()));
+			// +++ simulate a service interface to create or update material +++
+
+			// -------- do something on interface
+
+			// this service task is not explicit allowed to modify the MaterialNumber item.
+			// Disable control check for the following setValue operation
+			bpmoAccess.getBPMOData().setIgnoreControlsOnValueChange();
+
+			bpmoAccess.getMaterialNumber().setValue(
+					StringUtils.leftPad(tmp.substring(tmp.length() - 6, tmp.length()), 10, "0"));
+			// reset ignore control check
+			bpmoAccess.getBPMOData().resetIgnoreControlsOnValueChange();
+
+			// write processing info to business log
+			businessLog = DataTypeFactory.getInstance().createBusinessLog();
+			businessLog.addInfoLogEntry("Request processed", String.format("%s: Material %s Processing id \"%s\"",
+					action, bpmoAccess.getMaterialNumber().getValue(), UUID.randomUUID().toString()));
+			bpmoAccess.getBPMO().saveBusinessLog(businessLog, false);
+
+			parameters.put("IsProcessed", true);
+			break;
 		case UpdateMaterial:
+
 			// +++ simulate a service interface to create or update material +++
 
 			// -------- do something on interface
 
 			// write processing info to business log
-			BusinessLog businessLog = DataTypeFactory.getInstance().createBusinessLog();
-			businessLog.addInfoLogEntry("Request processed",
-					String.format("%s: Processing id \"%s\"", action, UUID.randomUUID().toString()));
-			bpmoAccess.getBPMO().saveBusinessLog(businessLog, true);
+			businessLog = DataTypeFactory.getInstance().createBusinessLog();
+			businessLog.addInfoLogEntry("Request processed", String.format("%s: Material %s Processing id \"%s\"",
+					action, bpmoAccess.getMaterialNumber().getValue(), UUID.randomUUID().toString()));
+			bpmoAccess.getBPMO().saveBusinessLog(businessLog, false);
 
 			parameters.put("IsProcessed", true);
 

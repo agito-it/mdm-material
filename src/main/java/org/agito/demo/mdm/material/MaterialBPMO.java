@@ -516,7 +516,7 @@ public enum MaterialBPMO implements IBODataElement {
 		 * <b>Language</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
-		 * <i>{@link DataType STRING}<i><br>
+		 * <i>{@link DataType ENUM}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
 		SalesTexts$Language("Language", "Header.SalesOrganizations$SalesTexts$Language", ControlType.INTERACTIVE),

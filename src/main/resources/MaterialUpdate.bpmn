@@ -19,14 +19,14 @@
 				<flowNodeRef>boundaryerror1</flowNodeRef>
 			</lane>
 			<lane id="TechnicalSystemsLane" name="Technical Systems">
-				<flowNodeRef>servicetask1</flowNodeRef>
 				<flowNodeRef>endevent2</flowNodeRef>
+				<flowNodeRef>UpdateMaterial</flowNodeRef>
 			</lane>
 		</laneSet>
 		<startEvent id="startevent1" name="Start"></startEvent>
 		<userTask id="Requester" name="Requester" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
 		<endEvent id="endevent1" name="End"></endEvent>
-		<serviceTask id="servicetask1" name="Update Material in ERP" activiti:async="true" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
+		<serviceTask id="UpdateMaterial" name="Update Material in ERP" activiti:async="true" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
 			<extensionElements>
 				<activiti:field name="action">
 					<activiti:string>UpdateMaterial</activiti:string>
@@ -34,7 +34,7 @@
 			</extensionElements>
 		</serviceTask>
 		<endEvent id="endevent2" name="End"></endEvent>
-		<sequenceFlow id="flow6" sourceRef="servicetask1" targetRef="endevent2"></sequenceFlow>
+		<sequenceFlow id="flow6" sourceRef="UpdateMaterial" targetRef="endevent2"></sequenceFlow>
 		<subProcess id="subprocess1" name="Approve changes">
 			<extensionElements>
 				<activiti:executionListener event="start" class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionListener">
@@ -105,7 +105,7 @@
 				<errorEventDefinition errorRef="NotApproved"></errorEventDefinition>
 			</endEvent>
 		</subProcess>
-		<sequenceFlow id="flow29" sourceRef="subprocess1" targetRef="servicetask1"></sequenceFlow>
+		<sequenceFlow id="flow29" sourceRef="subprocess1" targetRef="UpdateMaterial"></sequenceFlow>
 		<sequenceFlow id="flow30" sourceRef="startevent1" targetRef="subprocess1"></sequenceFlow>
 		<boundaryEvent id="DeclineRequester" name="Signal" attachedToRef="Requester" cancelActivity="true">
 			<signalEventDefinition signalRef="Decline"></signalEventDefinition>
@@ -143,7 +143,7 @@
 			<bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
 				<omgdc:Bounds height="35.0" width="35.0" x="840.0" y="40.0"></omgdc:Bounds>
 			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+			<bpmndi:BPMNShape bpmnElement="UpdateMaterial" id="BPMNShape_UpdateMaterial">
 				<omgdc:Bounds height="55.0" width="105.0" x="690.0" y="600.0"></omgdc:Bounds>
 			</bpmndi:BPMNShape>
 			<bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
