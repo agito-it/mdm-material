@@ -48,7 +48,9 @@ import org.agito.demo.mdm.material.dto.MaterialHeaderList;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController
+		extends
+		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
@@ -118,7 +120,8 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
+			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure
 		 */
@@ -140,6 +143,7 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 		BusinessLog businessLog;
 		switch (action) {
 		case ReadMaterial:
+			bpmoAccess.getBPMOData().clearMessages();
 			MaterialHeaderDTO material = (MaterialHeaderDTO) parameters.get(ActionParameter.MATERIAL_HEADER_DTO
 					.toString());
 			bpmoAccess.getName().setOriginalValue(material.getName());
@@ -296,6 +300,23 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 					: bpmoAccess.getName().getValue(), bpmoAccess.getMaterialType().getValue() == null ? ""
 					: bpmoAccess.getMaterialType().getValue().getValue()));
 		bpmoAccess.getBPMO().setTitle(titles);
+	}
+
+	@Override
+	public boolean cpsBeforeValidate(MaterialBPMOAccess bpmoAccess, boolean formatOnly, boolean resetInvalidValue) {
+		if (!formatOnly)
+			switch (getLifecycle()) {
+			case CREATE:
+				break;
+			case UPDATE:
+				if (bpmoAccess.getMaterialNumber().getValue() == null) {
+					bpmoAccess.addMessage(DataTypeFactory.getInstance().createMessage(MessageSeverity.ERROR, "000",
+							"Please select a material"));
+					return false;
+				}
+
+			}
+		return true;
 	}
 
 	public enum ActionParameter {
