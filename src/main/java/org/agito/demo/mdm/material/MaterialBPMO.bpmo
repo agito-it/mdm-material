@@ -828,8 +828,8 @@
 	</ProcessActivities>
 	<ProcessChoices>
 		<ProcessChoice Id="Approve" Type="FORWARD" />
-		<ProcessChoice Id="Decline" Type="FORWARD" />
-		<ProcessChoice Id="Repeat" Type="FORWARD" />
+		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true"/>
+		<ProcessChoice Id="Repeat" Type="FORWARD" RequireComment="true"/>
 		<Assignment ProcessChoiceId="Approve">
 			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
