@@ -2,7 +2,15 @@
 <BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
 	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
 		<Controls>
-			<Control>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="CreateMaterial" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
 				<Scope ScopeId="VISIBILITY">
 					<ProcessActivityId Id="*" />
 				</Scope>

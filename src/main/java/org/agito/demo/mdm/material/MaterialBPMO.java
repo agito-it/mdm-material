@@ -2,7 +2,9 @@ package org.agito.demo.mdm.material;
 
 
 import de.agito.cps.core.bpmo.ControlType;
+import de.agito.cps.core.bpmo.DataType;
 import de.agito.cps.core.bpmo.DataTypeFactory;
+import de.agito.cps.core.bpmo.DefinitionArtifactType;
 import de.agito.cps.core.bpmo.IEnumInspector;
 import de.agito.cps.core.bpmo.api.enums.IBODataElement;
 import de.agito.cps.core.bpmo.api.enums.IBOId;
