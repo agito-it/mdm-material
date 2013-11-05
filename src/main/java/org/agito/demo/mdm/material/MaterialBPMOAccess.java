@@ -570,7 +570,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		public final static class PlantId extends NodeKeyAccess {
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path, INodeElementKey nodeElementKey, Object value) { super(bpmoAccess, path, nodeElementKey, value); }
-			public String getValue() { return super.<String>getValue(); }
+			public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
 		}
 
 		@SuppressWarnings("unchecked")

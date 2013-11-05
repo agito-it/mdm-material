@@ -2,9 +2,7 @@ package org.agito.demo.mdm.material;
 
 
 import de.agito.cps.core.bpmo.ControlType;
-import de.agito.cps.core.bpmo.DataType;
 import de.agito.cps.core.bpmo.DataTypeFactory;
-import de.agito.cps.core.bpmo.DefinitionArtifactType;
 import de.agito.cps.core.bpmo.IEnumInspector;
 import de.agito.cps.core.bpmo.api.enums.IBODataElement;
 import de.agito.cps.core.bpmo.api.enums.IBOId;
@@ -224,7 +222,7 @@ public enum MaterialBPMO implements IBODataElement {
 		 * <b>Plant Id</b>
 		 * <p>
 		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
-		 * <i>{@link DataType STRING}<i><br>
+		 * <i>{@link DataType ENUM}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
 		PlantId("PlantId", "Header.Plants$PlantId", ControlType.INTERACTIVE),

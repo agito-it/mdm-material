@@ -448,7 +448,35 @@
 		</ValidationExpression>
 	</TableDefinition>
 	<ChildNode NodeId="Plants" MinOccur="1">
-		<Key Id="PlantId" />
+		<Key Id="PlantId">
+			<FormatEnum>
+				<KeywordFormat>
+					<InlineKeyword>
+						<Entry Key="Berlin">
+							<Value>Berlin</Value>
+						</Entry>
+						<Entry Key="Hamburg">
+							<Value>Hamburg</Value>
+						</Entry>
+						<Entry Key="Dresden">
+							<Value>Dresden</Value>
+						</Entry>
+						<Entry Key="Rostock">
+							<Value>Rostock</Value>
+						</Entry>
+						<Entry Key="Stuttgard">
+							<Value>Stuttgard</Value>
+						</Entry>
+						<Entry Key="Frankurt">
+							<Value>Stuttgard</Value>
+						</Entry>
+						<Entry Key="Munich">
+							<Value>Munich</Value>
+						</Entry>
+					</InlineKeyword>
+				</KeywordFormat>
+			</FormatEnum>
+		</Key>
 		<Label>
 			<Text>Plant</Text>
 		</Label>
@@ -793,8 +821,16 @@
 	</BPMODescription>
 	<Languages DefaultLanguage="en" />
 	<Lifecycles>
-		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create" />
-		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update" />
+		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create">
+			<Description>
+				<Text>Create a new Material</Text>
+			</Description>
+		</Lifecycle>
+		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update">
+			<Description>
+				<Text>Update a existing Material</Text>
+			</Description>
+		</Lifecycle>
 	</Lifecycles>
 	<ProcessActivities>
 		<ProcessActivityId Id="*" />
