@@ -285,7 +285,7 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 	}
 
 	@Override
-	public boolean cpsBeforeValidate(MaterialBPMOAccess bpmoAccess, boolean formatOnly, boolean resetInvalidValue) {
+	public boolean cpsBeforeValidation(MaterialBPMOAccess bpmoAccess, boolean formatOnly, boolean resetInvalidValue) {
 		if (!formatOnly)
 			switch (getLifecycle()) {
 			case CREATE:
