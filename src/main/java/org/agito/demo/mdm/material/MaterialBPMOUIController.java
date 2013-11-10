@@ -18,7 +18,7 @@ import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
 import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
-import de.agito.cps.ui.vaadin.bpmo.styles.IDefaultStyleController;
+import de.agito.cps.ui.vaadin.bpmo.styles.IFlowStyleController;
 import java.util.HashMap;
 import java.util.Map;
 import org.agito.demo.mdm.material.MaterialBPMO;
@@ -75,7 +75,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		layoutManager.addLineBreak();
 		layoutManager.createAndAddSeparator().setHeight(20, UNIT.PIXEL);
 		layoutManager.addLineBreak();
-		layoutManager.createAndAddGroupContent().fillContent(MaterialBPMO.AlternativeUnitOfMeasures)
+		layoutManager.createAndAddGroupContent().addRemainingElements(MaterialBPMO.AlternativeUnitOfMeasures)
 				.setCaption("Packaging").setDimension(3);
 		layoutManager.addLineBreak();
 		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
@@ -126,10 +126,10 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
 				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
 				.setContentWidth(90, UNIT.PERCENTAGE);
-		layoutManager.fillContent(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
+		layoutManager.addRemainingElements(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
 				MaterialBPMO.Plants.FixedLotSize);
 		layoutManager.addLineBreak();
-		layoutManager.createAndAddGroupContent().fillContent().setCaption("Lot Sizes").setDimension(3);
+		layoutManager.createAndAddGroupContent().addRemainingElements().setCaption("Lot Sizes").setDimension(3);
 
 		// @@end
 	}
@@ -205,7 +205,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	// @@begin others
 
 	@StyleController
-	public IDefaultStyleController styleController;
+	public IFlowStyleController styleController;
 
 	public enum MenutItem {
 		FIND_MATERIAL("Find Material");

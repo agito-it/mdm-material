@@ -25,7 +25,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import de.agito.cps.ui.vaadin.bpmo.styles.StyleName;
+import de.agito.cps.ui.vaadin.bpmo.styles.CssName;
 
 /**
  * @author Jörg Burmeister
@@ -77,7 +77,7 @@ public class FindMaterialDialog extends Window {
 		CssLayout buttonLayout = new CssLayout();
 		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
 		buttonLayout.setMargin(false, true, true, true);
-		buttonLayout.setStyleName(StyleName.BUTTON_CONTAINER.getCssClass());
+		buttonLayout.setStyleName(CssName.BUTTON_CONTAINER.getCssClass());
 		bodyLayout.addComponent(buttonLayout);
 
 		Button button = new Button("Search");
@@ -136,7 +136,7 @@ public class FindMaterialDialog extends Window {
 		buttonLayout = new CssLayout();
 		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
 		buttonLayout.setMargin(false, true, true, true);
-		buttonLayout.setStyleName(StyleName.BUTTON_CONTAINER.getCssClass());
+		buttonLayout.setStyleName(CssName.BUTTON_CONTAINER.getCssClass());
 		bodyLayout.addComponent(buttonLayout);
 
 		buttonLayout.addComponent(new Button("Cancel") {
