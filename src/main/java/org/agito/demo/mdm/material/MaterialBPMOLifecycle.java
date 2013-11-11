@@ -5,7 +5,7 @@ import de.agito.cps.core.bpmo.api.enums.ILifecycle;
 
 
 /**
- * Lifecycle Enum for Header.
+ * Lifecycle Enum for MaterialBPMO.
  *
  * @author Jörg Burmeister
  */

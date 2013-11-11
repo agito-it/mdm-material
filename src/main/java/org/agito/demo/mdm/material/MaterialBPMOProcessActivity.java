@@ -5,7 +5,7 @@ import de.agito.cps.core.bpmo.api.enums.IProcessActivity;
 
 
 /**
- * Process Activity Enum for Header.
+ * Process Activity Enum for MaterialBPMO.
  *
  * @author Jörg Burmeister
  */

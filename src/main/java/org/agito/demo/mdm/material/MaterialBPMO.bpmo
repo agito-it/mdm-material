@@ -444,7 +444,7 @@
 		</ColumnDefinition>
 		<ValidationExpression>
 			<Dependency>Header$BaseUnitOfMeasure</Dependency>
-			<Description>Check, if the value of BaseUnitOfMeasure part of table entries</Description>
+			<Description>Check, if the BaseUnitOfMeasure is part of the AOM table.</Description>
 		</ValidationExpression>
 	</TableDefinition>
 	<ChildNode NodeId="Plants" MinOccur="1">
@@ -828,7 +828,7 @@
 		</Lifecycle>
 		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update">
 			<Description>
-				<Text>Update a existing Material</Text>
+				<Text>Update an existing Material</Text>
 			</Description>
 		</Lifecycle>
 	</Lifecycles>
@@ -874,8 +874,9 @@
 	<ProcessChoices>
 		<ProcessChoice Id="Approve" Type="FORWARD" />
 		<ProcessChoice Id="Complete" Type="FORWARD" />
-		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true" />
 		<ProcessChoice Id="Repeat" Type="FORWARD" RequireComment="true" />
+		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true" />
+		<ProcessChoice Id="Cancel" Type="FORWARD" RequireComment="true" />
 		<Assignment ProcessChoiceId="Approve">
 			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
@@ -889,11 +890,17 @@
 			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">PlantMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">StorageMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">DistributionMgmt</ProcessActivity>
+		</Assignment>
+		<Assignment ProcessChoiceId="Repeat">
+			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
+			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
+		</Assignment>
+		<Assignment ProcessChoiceId="Cancel">
+			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
 			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
 		</Assignment>
 		<Assignment ProcessChoiceId="Complete">
@@ -901,10 +908,6 @@
 			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
 			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
-		</Assignment>
-		<Assignment ProcessChoiceId="Repeat">
-			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
 		</Assignment>
 	</ProcessChoices>
 	<ClassArtifacts UITechnology="Vaadin" Package="org.agito.demo.mdm.material" />

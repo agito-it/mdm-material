@@ -6,7 +6,7 @@ import java.util.Locale;
 
 
 /**
- * Languages for Header.
+ * Languages for MaterialBPMO.
  *
  * @author Jörg Burmeister
  */

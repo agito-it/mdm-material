@@ -10,7 +10,7 @@ import de.agito.cps.core.bpmo.api.enums.IBONode;
 
 
 /**
- * Enum for Header.
+ * Enum for MaterialBPMO.
  *
  * @author Jörg Burmeister
  */
