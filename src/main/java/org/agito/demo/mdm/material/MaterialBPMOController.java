@@ -2,6 +2,20 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
+
+import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
+import org.agito.demo.mdm.material.MaterialBPMOAccess.BaseUnitOfMeasure;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
+import org.agito.demo.mdm.material.dto.MaterialHeaderList;
+
 import de.agito.cps.core.annotations.BPMO;
 import de.agito.cps.core.annotations.Expression;
 import de.agito.cps.core.annotations.ExpressionDependency;
@@ -20,24 +34,6 @@ import de.agito.cps.core.bpmo.api.controller.IBPMOControllerContext;
 import de.agito.cps.core.engine.runtime.BusinessLog;
 import de.agito.cps.core.logger.Logger;
 import de.agito.cps.core.utils.StringUtils;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
-import org.agito.demo.mdm.material.MaterialBPMO;
-import org.agito.demo.mdm.material.MaterialBPMOAccess;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.BaseUnitOfMeasure;
-import org.agito.demo.mdm.material.MaterialBPMOAction;
-import org.agito.demo.mdm.material.MaterialBPMOLanguage;
-import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
-import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
-import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.dto.MaterialHeaderList;
 
 // @@end
 
@@ -49,7 +45,9 @@ import org.agito.demo.mdm.material.dto.MaterialHeaderList;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController
+		extends
+		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
@@ -74,9 +72,12 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 		if (baseUnitOfMeasure.getValue() != null)
 
 			if (bpmoAccess.getAlternativeUnitOfMeasures().getRowsByKeyValues(baseUnitOfMeasure.getValue().getKey())
-					.isEmpty())
-				bpmoAccess.getAlternativeUnitOfMeasures().createAndAddRow().getAlternativeUnitOfMeasure()
-						.setValue(baseUnitOfMeasure.getValue().getKey());
+					.isEmpty()) {
+				AlternativeUnitOfMeasures.Row altRow = bpmoAccess.getAlternativeUnitOfMeasures().createAndAddRow();
+				altRow.getAlternativeUnitOfMeasure().setValue(baseUnitOfMeasure.getValue().getKey());
+				altRow.getDenominatorConversion().setValue("1");
+				altRow.getNumeratorConversion().setValue("1");
+			}
 
 		// @@end
 	}
@@ -119,7 +120,8 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
+			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure
 		 */
