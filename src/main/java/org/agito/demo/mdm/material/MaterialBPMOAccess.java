@@ -543,6 +543,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		public final static class AlternativeUnitOfMeasure extends CellAccess {
 			protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
 			public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+			public String getValueKey() { return super.getValueKey(); }
 			public void setValue(String value) { super.setValue(value); }
 		}
 
@@ -874,6 +875,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			public final static class Language extends CellAccess {
 				protected Language(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
 				public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+				public String getValueKey() { return super.getValueKey(); }
 				public void setValue(String value) { super.setValue(value); }
 			}
 

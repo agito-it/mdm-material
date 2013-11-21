@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
-	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
+	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true"> 
 		<Controls>
 			<Control Lifecycle="CREATE">
 				<Scope ScopeId="VISIBILITY">
