@@ -32,7 +32,6 @@ import de.agito.cps.core.bpmo.MessageSeverity;
 import de.agito.cps.core.bpmo.api.controller.BPMOController;
 import de.agito.cps.core.bpmo.api.controller.IBPMOControllerContext;
 import de.agito.cps.core.engine.runtime.BusinessLog;
-import de.agito.cps.core.logger.Logger;
 import de.agito.cps.core.utils.StringUtils;
 
 // @@end
@@ -45,12 +44,7 @@ import de.agito.cps.core.utils.StringUtils;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController
-		extends
-		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
-
-	@SuppressWarnings("unused")
-	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOController.class);
+public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOController(final IBPMOControllerContext context) {
 		super(context);
@@ -91,10 +85,10 @@ public class MaterialBPMOController
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
 	public boolean cpsValidateAlternativeUnitOfMeasures(final MaterialBPMOAccess bpmoAccess) {
 		final AlternativeUnitOfMeasures alternativeUnitOfMeasures = bpmoAccess.getAlternativeUnitOfMeasures();
-		/*
-		 * Check, if the value of BaseUnitOfMeasure part of table entries
-		 */
 		final BaseUnitOfMeasure baseUnitOfMeasure = bpmoAccess.getBaseUnitOfMeasure();
+		/*
+		 * Check, if the BaseUnitOfMeasure is part of the AOM table.
+		 */
 		// @@begin body:validate:AlternativeUnitOfMeasures
 
 		if (baseUnitOfMeasure.getValue() != null)
@@ -120,12 +114,11 @@ public class MaterialBPMOController
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
-			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+		final BaseUnitOfMeasure baseUnitOfMeasure = bpmoAccess.getBaseUnitOfMeasure();
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure
 		 */
-		final BaseUnitOfMeasure baseUnitOfMeasure = bpmoAccess.getBaseUnitOfMeasure();
 		// @@begin body:controlcell:AlternativeUnitOfMeasures$AlternativeUnitOfMeasure
 		if (baseUnitOfMeasure.getValue() != null && rowAccess.getAlternativeUnitOfMeasure().getValue() != null)
 			if (controlAttributes.getRequestedAttributes().contains(ControlAttribute.EDITABLE))

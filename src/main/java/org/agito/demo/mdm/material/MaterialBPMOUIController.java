@@ -8,7 +8,6 @@ import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
-import de.agito.cps.core.logger.Logger;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
@@ -42,9 +41,6 @@ import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
  */
 // @@end
 public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
-
-	@SuppressWarnings("unused")
-	private final static Logger LOGGER = Logger.getLogger(MaterialBPMOUIController.class);
 
 	public MaterialBPMOUIController(final IBPMOUIControllerContext context) {
 		super(context);

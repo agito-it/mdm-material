@@ -7,18 +7,14 @@ import de.agito.cps.core.bpmo.api.enums.IAction;
 /**
  * BPMO Actions for MaterialBPMO.
  *
- * @author agito
+ * @author andreas.weise
  */
 public enum MaterialBPMOAction implements IAction {
 
 	FindMaterial,
-	
 	ReadMaterial,
-	
 	UpdateMaterial,
-	
 	CreateMaterial,
-	
 	EvaluateApproveActivities;
 
 }

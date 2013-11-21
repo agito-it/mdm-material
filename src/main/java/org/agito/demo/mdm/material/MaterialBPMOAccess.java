@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * BPMOAccess for Header.
  * 
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
@@ -415,8 +415,10 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	public final static class MaterialType extends CharacteristicAccess {
 		protected MaterialType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public IKeywordEntry getValue() { return super.<IKeywordEntry>getCurrentValue(); }
+		public String getValueKey() { return super.getCurrentValueKey(); }
 		public void setValue(String value) { super.setCurrentValue(value); }
 		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
+		public String getOriginalValueKey() { return super.getOriginalValueKey(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
@@ -514,8 +516,10 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	public final static class BaseUnitOfMeasure extends CharacteristicAccess {
 		protected BaseUnitOfMeasure(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public IKeywordEntry getValue() { return super.<IKeywordEntry>getCurrentValue(); }
+		public String getValueKey() { return super.getCurrentValueKey(); }
 		public void setValue(String value) { super.setCurrentValue(value); }
 		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
+		public String getOriginalValueKey() { return super.getOriginalValueKey(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
 
@@ -565,12 +569,19 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		public MaterialBPMOAccess createAndAddElement(Plants.PlantId plantId) { return super.createAndAddElement(plantId); }
 
 		public MaterialBPMOAccess createAndAddElement(String plantIdValue) { return super.createAndAddElementByValue(plantIdValue); }
+		public MaterialBPMOAccess getBPMOAccess(Plants.PlantId plantId) { return super.getBPMOAccess(plantId); }
+
+		public MaterialBPMOAccess getBPMOAccess(String plantIdValue) { return super.getBPMOAccess(plantIdValue); }
+		public void erase(Plants.PlantId plantId) { super.erase(plantId); }
+
+		public void erase(String plantIdValue) { super.erase(plantIdValue); }
 
 		@SuppressWarnings("unchecked")
 		public final static class PlantId extends NodeKeyAccess {
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path, INodeElementKey nodeElementKey, Object value) { super(bpmoAccess, path, nodeElementKey, value); }
 			public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+			public String getValueKey() { return super.getValueKey(); }
 		}
 
 		@SuppressWarnings("unchecked")
@@ -653,6 +664,12 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			public MaterialBPMOAccess createAndAddElement(Plants.StorageLocations.StorageLocationId storageLocationId) { return super.createAndAddElement(storageLocationId); }
 
 			public MaterialBPMOAccess createAndAddElement(String storageLocationIdValue) { return super.createAndAddElementByValue(storageLocationIdValue); }
+			public MaterialBPMOAccess getBPMOAccess(Plants.StorageLocations.StorageLocationId storageLocationId) { return super.getBPMOAccess(storageLocationId); }
+
+			public MaterialBPMOAccess getBPMOAccess(String storageLocationIdValue) { return super.getBPMOAccess(storageLocationIdValue); }
+			public void erase(Plants.StorageLocations.StorageLocationId storageLocationId) { super.erase(storageLocationId); }
+
+			public void erase(String storageLocationIdValue) { super.erase(storageLocationIdValue); }
 
 			@SuppressWarnings("unchecked")
 			public final static class StorageLocationId extends NodeKeyAccess {
@@ -700,6 +717,12 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		public MaterialBPMOAccess createAndAddElement(SalesOrganizations.SalesOrganization salesOrganization, SalesOrganizations.DistributionChannel distributionChannel) { return super.createAndAddElement(salesOrganization, distributionChannel); }
 
 		public MaterialBPMOAccess createAndAddElement(String salesOrganizationValue, String distributionChannelValue) { return super.createAndAddElementByValue(salesOrganizationValue, distributionChannelValue); }
+		public MaterialBPMOAccess getBPMOAccess(SalesOrganizations.SalesOrganization salesOrganization, SalesOrganizations.DistributionChannel distributionChannel) { return super.getBPMOAccess(salesOrganization, distributionChannel); }
+
+		public MaterialBPMOAccess getBPMOAccess(String salesOrganizationValue, String distributionChannelValue) { return super.getBPMOAccess(salesOrganizationValue, distributionChannelValue); }
+		public void erase(SalesOrganizations.SalesOrganization salesOrganization, SalesOrganizations.DistributionChannel distributionChannel) { super.erase(salesOrganization, distributionChannel); }
+
+		public void erase(String salesOrganizationValue, String distributionChannelValue) { super.erase(salesOrganizationValue, distributionChannelValue); }
 
 		@SuppressWarnings("unchecked")
 		public final static class SalesOrganization extends NodeKeyAccess {

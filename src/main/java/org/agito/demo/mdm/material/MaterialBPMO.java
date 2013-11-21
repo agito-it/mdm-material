@@ -12,7 +12,7 @@ import de.agito.cps.core.bpmo.api.enums.IBONode;
 /**
  * Enum for MaterialBPMO.
  *
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public enum MaterialBPMO implements IBODataElement {
 
