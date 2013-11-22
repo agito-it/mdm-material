@@ -67,10 +67,10 @@ public class MaterialBPMOController
 		// @@begin body:change:BaseUnitOfMeasure
 		if (baseUnitOfMeasure.getValue() != null)
 
-			if (bpmoAccess.getAlternativeUnitOfMeasures().getRowsByKeyValues(baseUnitOfMeasure.getValue().getKey())
+			if (bpmoAccess.getAlternativeUnitOfMeasures().getRowsByKeyValues(baseUnitOfMeasure.getValueKey())
 					.isEmpty()) {
 				AlternativeUnitOfMeasures.Row altRow = bpmoAccess.getAlternativeUnitOfMeasures().createAndAddRow();
-				altRow.getAlternativeUnitOfMeasure().setValue(baseUnitOfMeasure.getValue().getKey());
+				altRow.getAlternativeUnitOfMeasure().setValue(baseUnitOfMeasure.getValueKey());
 				altRow.getDenominatorConversion().setValue("1");
 				altRow.getNumeratorConversion().setValue("1");
 			}
@@ -94,7 +94,7 @@ public class MaterialBPMOController
 		// @@begin body:validate:AlternativeUnitOfMeasures
 
 		if (baseUnitOfMeasure.getValue() != null)
-			if (alternativeUnitOfMeasures.getRowsByKeyValues(baseUnitOfMeasure.getValue().getKey()).isEmpty()) {
+			if (alternativeUnitOfMeasures.getRowsByKeyValues(baseUnitOfMeasure.getValueKey()).isEmpty()) {
 				alternativeUnitOfMeasures
 						.addMessage(DataTypeFactory.getInstance().createMessage(
 								MessageSeverity.ERROR,
@@ -123,10 +123,10 @@ public class MaterialBPMOController
 		 * Should only editable if the value not equals BaseUnitOfMeasure
 		 */
 		// @@begin body:controlcell:AlternativeUnitOfMeasures$AlternativeUnitOfMeasure
-		if (baseUnitOfMeasure.getValue() != null && rowAccess.getAlternativeUnitOfMeasure().getValue() != null)
-			if (controlAttributes.getRequestedAttributes().contains(ControlAttribute.EDITABLE))
-				controlAttributes.setEditable(!baseUnitOfMeasure.getValue().getKey()
-						.equals(rowAccess.getAlternativeUnitOfMeasure().getValue().getKey()));
+		if (controlAttributes.getRequestedAttributes().contains(ControlAttribute.EDITABLE))
+			if (baseUnitOfMeasure.getValue() != null && rowAccess.getAlternativeUnitOfMeasure().getValue() != null)
+				controlAttributes.setEditable(!baseUnitOfMeasure.getValueKey().equals(
+						rowAccess.getAlternativeUnitOfMeasure().getValueKey()));
 
 		// @@end
 	}
@@ -184,8 +184,7 @@ public class MaterialBPMOController
 				plant.setErasable(false);
 
 				// add storage location
-				MaterialBPMOAccess storageLocation = plant.getPlants$StorageLocations().createAndAddElement(
-						plant.getPlants$StorageLocations().createStorageLocationId("0971"));
+				MaterialBPMOAccess storageLocation = plant.getPlants$StorageLocations().createAndAddElement("0971");
 				storageLocation.getPlants$StorageLocations$StockInQualityInspection().setOriginalValue("done");
 				storageLocation = plant.getPlants$StorageLocations().createAndAddElement(
 						plant.getPlants$StorageLocations().createStorageLocationId("0972"));
@@ -201,15 +200,12 @@ public class MaterialBPMOController
 				plant.getContext().setDeletionFlagOriginalValue();
 
 				// add storage location
-				storageLocation = plant.getPlants$StorageLocations().createAndAddElement(
-						plant.getPlants$StorageLocations().createStorageLocationId("1071"));
+				storageLocation = plant.getPlants$StorageLocations().createAndAddElement("1071");
 				storageLocation.getPlants$StorageLocations$StockInQualityInspection().setOriginalValue("done");
 				storageLocation.setErasable(false);
 
 				// add sales org
-				MaterialBPMOAccess salesOrg = bpmoAccess.getSalesOrganizations().createAndAddElement(
-						bpmoAccess.getSalesOrganizations().createSalesOrganization("8637"),
-						bpmoAccess.getSalesOrganizations().createDistributionChannel("98"));
+				MaterialBPMOAccess salesOrg = bpmoAccess.getSalesOrganizations().createAndAddElement("8637", "98");
 				salesOrg.getSalesOrganizations$StatisticsGroup().setOriginalValue("group 1");
 				salesOrg.getSalesOrganizations$MinimumOrderQuantity().setOriginalValue("3");
 				salesOrg.getSalesOrganizations$MinimumDeliveryQuantity().setOriginalValue("9");
