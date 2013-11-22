@@ -2,7 +2,6 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,10 +10,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures;
-import org.agito.demo.mdm.material.MaterialBPMOAccess.AlternativeUnitOfMeasures.Row;
 import org.agito.demo.mdm.material.MaterialBPMOAccess.BaseUnitOfMeasure;
 import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.dto.MaterialHeaderList;
+import org.agito.demo.mdm.material.dto.MaterialMockService;
 
 import de.agito.cps.core.annotations.BPMO;
 import de.agito.cps.core.annotations.Expression;
@@ -67,8 +65,7 @@ public class MaterialBPMOController
 		// @@begin body:change:BaseUnitOfMeasure
 		if (baseUnitOfMeasure.getValue() != null)
 
-			if (bpmoAccess.getAlternativeUnitOfMeasures().getRowsByKeyValues(baseUnitOfMeasure.getValueKey())
-					.isEmpty()) {
+			if (bpmoAccess.getAlternativeUnitOfMeasures().getRowsByKeyValues(baseUnitOfMeasure.getValueKey()).isEmpty()) {
 				AlternativeUnitOfMeasures.Row altRow = bpmoAccess.getAlternativeUnitOfMeasures().createAndAddRow();
 				altRow.getAlternativeUnitOfMeasure().setValue(baseUnitOfMeasure.getValueKey());
 				altRow.getDenominatorConversion().setValue("1");
@@ -140,94 +137,27 @@ public class MaterialBPMOController
 		switch (action) {
 		case ReadMaterial:
 			try {
-				// IgnoreControls to avoid Invalid value change access to read only element trigger by modifications of Elements with DeletionFlag=true
+				// IgnoreControls on the bpmo
 				bpmoAccess.getBPMOData().setIgnoreControlsOnValueChange();
 
 				// clear all previous generated messages
 				bpmoAccess.getBPMOData().clearMessages();
 				MaterialHeaderDTO material = (MaterialHeaderDTO) parameters.get(ActionParameter.MATERIAL_HEADER_DTO
 						.toString());
-				bpmoAccess.getName().setOriginalValue(material.getName());
-				bpmoAccess.getMaterialNumber().setOriginalValue(material.getNumber());
 
 				// +++ simulate a service interface to get more details of material +++
+				new MaterialMockService().fillMaterial(material, bpmoAccess);
 
-				// set same sample data
-				bpmoAccess.getMaterialType().setOriginalValue("1");
-				bpmoAccess.getGrossWeight().setOriginalValue("10");
-				bpmoAccess.getNetWeight().setOriginalValue("12");
-				bpmoAccess.getAllowedPackagingWeight().setOriginalValue("15");
-				bpmoAccess.getAllowedPackagingVolume().setOriginalValue("60");
-				bpmoAccess.getVolume().setOriginalValue("14");
-				bpmoAccess.getBaseUnitOfMeasure().setOriginalValue("KGM");
-
-				// add row for BaseUnitOfMeasure
-				Row row = bpmoAccess.getAlternativeUnitOfMeasures().createOriginalRow();
-				row.getAlternativeUnitOfMeasure().setValue(
-						bpmoAccess.getBaseUnitOfMeasure().getOriginalValue().getKey());
-				row.getDenominatorConversion().setValue("1");
-				row.getNumeratorConversion().setValue("5");
-				bpmoAccess.getAlternativeUnitOfMeasures().addOriginalRow(row);
-
-				// add further UnitOfMeasure
-				row = bpmoAccess.getAlternativeUnitOfMeasures().createOriginalRow();
-				row.getAlternativeUnitOfMeasure().setValue("GRM");
-				row.getDenominatorConversion().setValue("4");
-				row.getNumeratorConversion().setValue("6");
-				bpmoAccess.getAlternativeUnitOfMeasures().addOriginalRow(row);
-
-				// add plant
-				MaterialBPMOAccess plant = bpmoAccess.getPlants().createAndAddElement("Berlin");
-				plant.getPlants$ProductionSupervisor().setOriginalValue("Supervisor a");
-				plant.getPlants$MinimumLotSize().setOriginalValue(new BigDecimal(1));
-				plant.getPlants$MaximumLotSize().setOriginalValue(new BigDecimal(5));
-				plant.setErasable(false);
-
-				// add storage location
-				MaterialBPMOAccess storageLocation = plant.getPlants$StorageLocations().createAndAddElement("0971");
-				storageLocation.getPlants$StorageLocations$StockInQualityInspection().setOriginalValue("done");
-				storageLocation = plant.getPlants$StorageLocations().createAndAddElement(
-						plant.getPlants$StorageLocations().createStorageLocationId("0972"));
-				storageLocation.getPlants$StorageLocations$StockInQualityInspection().setOriginalValue("none");
-				storageLocation.setErasable(false);
-
-				// add plant
-				plant = bpmoAccess.getPlants().createAndAddElement("Munich");
-				plant.getPlants$ProductionSupervisor().setOriginalValue("Supervisor b");
-				plant.getPlants$MinimumLotSize().setOriginalValue(new BigDecimal(2));
-				plant.getPlants$MaximumLotSize().setOriginalValue(new BigDecimal(7));
-				plant.setErasable(false);
-				plant.getContext().setDeletionFlagOriginalValue();
-
-				// add storage location
-				storageLocation = plant.getPlants$StorageLocations().createAndAddElement("1071");
-				storageLocation.getPlants$StorageLocations$StockInQualityInspection().setOriginalValue("done");
-				storageLocation.setErasable(false);
-
-				// add sales org
-				MaterialBPMOAccess salesOrg = bpmoAccess.getSalesOrganizations().createAndAddElement("8637", "98");
-				salesOrg.getSalesOrganizations$StatisticsGroup().setOriginalValue("group 1");
-				salesOrg.getSalesOrganizations$MinimumOrderQuantity().setOriginalValue("3");
-				salesOrg.getSalesOrganizations$MinimumDeliveryQuantity().setOriginalValue("9");
-				salesOrg.setErasable(false);
-
-				org.agito.demo.mdm.material.MaterialBPMOAccess.SalesOrganizations.SalesTexts.Row rowTexts = salesOrg
-						.getSalesOrganizations$SalesTexts().createOriginalRow();
-				rowTexts.getLanguage().setValue("en");
-				rowTexts.getText().setValue("text en");
-				salesOrg.getSalesOrganizations$SalesTexts().addOriginalRow(rowTexts);
-				bpmoAccess.getBPMOData().resetIgnoreControlsOnValueChange();
 			} catch (RuntimeException e) {
 				throw e;
 			} finally {
 				// reset IgnoreControls
-				bpmoAccess.getBPMOData().setIgnoreControlsOnValueChange();
+				bpmoAccess.getBPMOData().resetIgnoreControlsOnValueChange();
 			}
 			return null;
 		case FindMaterial:
 			// +++ simulate a service interface to find material +++
-			MaterialHeaderList headerList = new MaterialHeaderList();
-			return headerList.findMaterialByElements(
+			return new MaterialMockService().findMaterialByElements(
 					(String) parameters.get(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NAME.toString()),
 					(Integer) parameters.get(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NUMBER.toString()));
 		case EvaluateApproveActivities:
