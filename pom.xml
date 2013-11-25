@@ -37,12 +37,7 @@
 			<version>${version.bpmo}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.2-1002.jdbc4</version>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
