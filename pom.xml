@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.agito.demo</groupId>
 	<artifactId>mdm-material</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>agito BPMO Master Data Management Material</name>
 	<description>agito BPMO Master Data Management Material</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.bpmo>5.3</version.bpmo>
+		<version.bpmo>5.4-SNAPSHOT</version.bpmo>
 	</properties>
 	<packaging>war</packaging>
 	<dependencies>
