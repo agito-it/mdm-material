@@ -37,16 +37,6 @@
     <endEvent id="endevent2" name="End"></endEvent>
     <sequenceFlow id="flow6" sourceRef="CreateMaterial" targetRef="endevent2"></sequenceFlow>
     <subProcess id="subprocess1" name="Maintain and Approve">
-	    <extensionElements>
-	      <activiti:executionListener event="start" class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionListener">
-	        <activiti:field name="action">
-	          <activiti:string>EvaluateApproveActivities</activiti:string>
-	        </activiti:field>
-	        <activiti:field name="variable">
-	          <activiti:string>requiredActivities</activiti:string>
-	        </activiti:field>
-	      </activiti:executionListener>
-	    </extensionElements>    
       <startEvent id="startevent2" name="Start"></startEvent>
       <userTask id="HeaderMgmt" name="Header Management" activiti:exclusive="false" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
       <userTask id="PlantMgmt" name="Plant Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
