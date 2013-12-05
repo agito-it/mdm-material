@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
-	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true"> 
+	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
 		<Controls>
 			<Control Lifecycle="CREATE">
 				<Scope ScopeId="VISIBILITY">
@@ -874,40 +874,48 @@
 	<ProcessChoices>
 		<ProcessChoice Id="Approve" Type="FORWARD" />
 		<ProcessChoice Id="Complete" Type="FORWARD" />
-		<ProcessChoice Id="Repeat" Type="FORWARD" RequireComment="true" />
-		<ProcessChoice Id="Decline" Type="SIGNAL" RequireComment="true" />
-		<ProcessChoice Id="Cancel" Type="FORWARD" RequireComment="true" />
-		<Assignment ProcessChoiceId="Approve">
-			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">PlantMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">StorageMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">DistributionMgmt</ProcessActivity>
+		<ProcessChoice Id="Repeat" Type="FORWARD" RequiresComment="true" />
+		<ProcessChoice Id="Decline" Type="SIGNAL" RequiresComment="true" />
+		<ProcessChoice Id="Cancel" Type="FORWARD" RequiresComment="true" />
+ 		<Assignment ProcessActivityId="Requester">
+			<ProcessChoiceId>Repeat</ProcessChoiceId>
+			<ProcessChoiceId>Cancel</ProcessChoiceId>
 		</Assignment>
-		<Assignment ProcessChoiceId="Decline">
-			<ProcessActivity Lifecycle="CREATE">Approver</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">HeaderMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">HeaderMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">PlantMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">StorageMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">DistributionMgmt</ProcessActivity>
+		<Assignment ProcessActivityId="Approver">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
-		<Assignment ProcessChoiceId="Repeat">
-			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
+		<Assignment Lifecycle="CREATE" ProcessActivityId="HeaderMgmt" >
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
-		<Assignment ProcessChoiceId="Cancel">
-			<ProcessActivity Lifecycle="CREATE">Requester</ProcessActivity>
-			<ProcessActivity Lifecycle="UPDATE">Requester</ProcessActivity>
+ 		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
-		<Assignment ProcessChoiceId="Complete">
-			<ProcessActivity Lifecycle="CREATE">HeaderMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">PlantMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">StorageMgmt</ProcessActivity>
-			<ProcessActivity Lifecycle="CREATE">DistributionMgmt</ProcessActivity>
+		<Assignment ProcessActivityId="StorageMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="DistributionMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="HeaderMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="StorageMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="DistributionMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
 	</ProcessChoices>
 	<ClassArtifacts UITechnology="Vaadin" Package="org.agito.demo.mdm.material" />
@@ -918,4 +926,4 @@
 		<Action>CreateMaterial</Action>
 		<Action>EvaluateApproveActivities</Action>
 	</Actions>
-</BPMODefinition>
+</BPMODefinition> 
