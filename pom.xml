@@ -161,4 +161,11 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<scm>
+		<connection>scm:git:git://git.agito.corp/USECASE/DEMO/mdm-material.git</connection>
+		<developerConnection>scm:git:ssh://git@git.agito.corp/srv/git/browse/USECASE/DEMO/mdm-material.git</developerConnection>
+		<url>http://git.agito.corp/USECASE/DEMO/mdm-material.git</url>
+	</scm>
+
 </project>
