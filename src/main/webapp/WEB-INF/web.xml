@@ -5,7 +5,7 @@
 	<display-name>Sample 1</display-name>
 	<filter>
 		<filter-name>ApplicationServletFilter</filter-name>
-		<filter-class>de.agito.cps.ui.servlet.ApplicationServletFilter</filter-class>
+		<filter-class>de.agito.cps.servlet.ApplicationServletFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ApplicationServletFilter</filter-name>
