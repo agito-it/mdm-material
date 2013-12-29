@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * BPMOAccess for Header.
  * 
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 

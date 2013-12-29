@@ -7,7 +7,7 @@ import de.agito.cps.core.bpmo.api.enums.IProcessActivity;
 /**
  * Process Activity Enum for MaterialBPMO.
  *
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public enum MaterialBPMOProcessActivity implements IProcessActivity {
 

@@ -275,7 +275,7 @@
 			<ControlGroupUsage GroupId="RequiredHeaderData" />
 		</Controls>
 		<ChangeExpression>
-			<Dependency>Header$BaseUnitOfMeasure</Dependency>
+			<Dependency>./$BaseUnitOfMeasure</Dependency>
 			<Description>The value of BaseUnitOfMeasure must exist on AlternativeUnitOfMeasures as well</Description>
 		</ChangeExpression>
 	</CharacteristicDefinition>
@@ -427,7 +427,7 @@
 					</Scope>
 				</Control>
 				<CellBasedControlExpression>
-					<Dependency>Header$BaseUnitOfMeasure</Dependency>
+					<Dependency>./$BaseUnitOfMeasure</Dependency>
 					<Description>Should only editable if the value not equals BaseUnitOfMeasure</Description>
 				</CellBasedControlExpression>
 			</Controls>
@@ -443,7 +443,7 @@
 			</Controls>
 		</ColumnDefinition>
 		<ValidationExpression>
-			<Dependency>Header$BaseUnitOfMeasure</Dependency>
+			<Dependency>./$BaseUnitOfMeasure</Dependency>
 			<Description>Check, if the BaseUnitOfMeasure is part of the AOM table.</Description>
 		</ValidationExpression>
 	</TableDefinition>

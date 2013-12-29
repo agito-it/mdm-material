@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * Languages for MaterialBPMO.
  *
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public enum MaterialBPMOLanguage implements ILanguage {
 
