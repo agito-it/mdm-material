@@ -2,10 +2,19 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
+
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
+
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
@@ -16,20 +25,9 @@ import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
 import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
 import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowTabSheet;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IFlowStyleController;
-import java.util.HashMap;
-import java.util.Map;
-import org.agito.demo.mdm.material.MaterialBPMO;
-import org.agito.demo.mdm.material.MaterialBPMOAccess;
-import org.agito.demo.mdm.material.MaterialBPMOAction;
-import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
-import org.agito.demo.mdm.material.MaterialBPMOLanguage;
-import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
-import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
-import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
 
 // @@end
 
@@ -40,7 +38,9 @@ import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
  * @author andreas.weise
  */
 // @@end
-public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOUIController
+		extends
+		BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOUIController(final IBPMOUIControllerContext context) {
 		super(context);
@@ -63,17 +63,15 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 				.addTitleStyleName(SeparatorStyle.HR).setContentWidth(90, UNIT.PERCENTAGE);
 		layoutManager.createAndAddElements(MaterialBPMO.MaterialNumber, MaterialBPMO.Name, MaterialBPMO.MaterialType);
 		layoutManager.addLineBreak();
-		layoutManager
-				.createAndAddGroupContent()
-				.createAndAddElements(MaterialBPMO.GrossWeight, MaterialBPMO.NetWeight,
-						MaterialBPMO.AllowedPackagingWeight, MaterialBPMO.Volume, MaterialBPMO.AllowedPackagingVolume,
-						MaterialBPMO.BaseUnitOfMeasure).setCaption("Dimension").setDimension(3);
-		layoutManager.addLineBreak();
-		layoutManager.createAndAddSeparator().setHeight(20, UNIT.PIXEL);
-		layoutManager.addLineBreak();
-		layoutManager.createAndAddGroupContent().addRemainingElements(MaterialBPMO.AlternativeUnitOfMeasures)
-				.setCaption("Packaging").setDimension(3);
-		layoutManager.addLineBreak();
+		
+		
+		IFlowTabSheet tabSheet = layoutManager.createAndAddTabSheet();
+		tabSheet.setDimension(3);
+		tabSheet.createAndAddTabContent("Dimension").createAndAddElements(MaterialBPMO.GrossWeight,
+				MaterialBPMO.NetWeight, MaterialBPMO.AllowedPackagingWeight, MaterialBPMO.Volume,
+				MaterialBPMO.AllowedPackagingVolume, MaterialBPMO.BaseUnitOfMeasure);
+		tabSheet.createAndAddTabContent("Packaging").addRemainingElements(MaterialBPMO.AlternativeUnitOfMeasures);
+
 		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
 
 		if (bpmoAccess.getBPMOHeader().getBPMOState() == BPMOState.DRAFT
