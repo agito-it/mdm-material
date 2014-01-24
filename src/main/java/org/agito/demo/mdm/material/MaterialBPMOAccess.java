@@ -14,6 +14,7 @@ import de.agito.cps.core.bpmo.api.access.RowAccess;
 import de.agito.cps.core.bpmo.api.access.TableAccessOriginal;
 import java.math.BigDecimal;
 import java.util.List;
+import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 
 
 /**
@@ -415,9 +416,11 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	public final static class MaterialType extends CharacteristicAccess {
 		protected MaterialType(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public IKeywordEntry getValue() { return super.<IKeywordEntry>getCurrentValue(); }
+		public IKeywordEntry getValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getCurrentValue(language); }
 		public String getValueKey() { return super.getCurrentValueKey(); }
 		public void setValue(String value) { super.setCurrentValue(value); }
 		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
+		public IKeywordEntry getOriginalValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getOriginalValue(language); }
 		public String getOriginalValueKey() { return super.getOriginalValueKey(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -516,9 +519,11 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	public final static class BaseUnitOfMeasure extends CharacteristicAccess {
 		protected BaseUnitOfMeasure(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 		public IKeywordEntry getValue() { return super.<IKeywordEntry>getCurrentValue(); }
+		public IKeywordEntry getValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getCurrentValue(language); }
 		public String getValueKey() { return super.getCurrentValueKey(); }
 		public void setValue(String value) { super.setCurrentValue(value); }
 		public IKeywordEntry getOriginalValue() { return super.<IKeywordEntry>getOriginalValue(); }
+		public IKeywordEntry getOriginalValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getOriginalValue(language); }
 		public String getOriginalValueKey() { return super.getOriginalValueKey(); }
 		public void setOriginalValue(String value) { super.setOriginalValue(value); }
 	}
@@ -543,6 +548,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 		public final static class AlternativeUnitOfMeasure extends CellAccess {
 			protected AlternativeUnitOfMeasure(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
 			public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+			public IKeywordEntry getValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getValue(language); }
 			public String getValueKey() { return super.getValueKey(); }
 			public void setValue(String value) { super.setValue(value); }
 		}
@@ -582,6 +588,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path) { super(bpmoAccess, path); }
 			protected PlantId(BPMOAccess<?> bpmoAccess, String path, INodeElementKey nodeElementKey, Object value) { super(bpmoAccess, path, nodeElementKey, value); }
 			public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+			public IKeywordEntry getValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getValue(language); }
 			public String getValueKey() { return super.getValueKey(); }
 		}
 
@@ -875,6 +882,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 			public final static class Language extends CellAccess {
 				protected Language(BPMOAccess<?> bpmoAccess, RowAccess rowAccess, String path, String id) { super(bpmoAccess, rowAccess, path, id); }
 				public IKeywordEntry getValue() { return super.<IKeywordEntry>getValue(); }
+				public IKeywordEntry getValue(MaterialBPMOLanguage language) { return super.<IKeywordEntry>getValue(language); }
 				public String getValueKey() { return super.getValueKey(); }
 				public void setValue(String value) { super.setValue(value); }
 			}

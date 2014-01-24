@@ -2,19 +2,10 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
-import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
-
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
-
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
@@ -28,6 +19,18 @@ import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowTabSheet;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IFlowStyleController;
+import java.util.HashMap;
+import java.util.Map;
+import org.agito.demo.mdm.material.MaterialBPMO;
+import org.agito.demo.mdm.material.MaterialBPMOAccess;
+import org.agito.demo.mdm.material.MaterialBPMOAction;
+import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
+import org.agito.demo.mdm.material.MaterialBPMOLanguage;
+import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
+import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
 
 // @@end
 
@@ -38,9 +41,7 @@ import de.agito.cps.ui.vaadin.bpmo.styles.IFlowStyleController;
  * @author andreas.weise
  */
 // @@end
-public class MaterialBPMOUIController
-		extends
-		BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOUIController(final IBPMOUIControllerContext context) {
 		super(context);

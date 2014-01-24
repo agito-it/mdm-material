@@ -46,7 +46,9 @@ import org.agito.demo.mdm.material.dto.MaterialMockService;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController
+		extends
+		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOController(final IBPMOControllerContext context) {
 		super(context);
@@ -94,12 +96,8 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 
 		if (baseUnitOfMeasure.getValue() != null)
 			if (alternativeUnitOfMeasures.getRowsByKeyValues(baseUnitOfMeasure.getValueKey()).isEmpty()) {
-				alternativeUnitOfMeasures
-						.addMessage(DataTypeFactory.getInstance().createMessage(
-								MessageSeverity.ERROR,
-								"000",
-								String.format("The Alternative Unit Of Measure %s is mandatory",
-										baseUnitOfMeasure.getValue())));
+				alternativeUnitOfMeasures.addMessage(MessageSeverity.ERROR, "000",
+						String.format("The Alternative Unit Of Measure %s is mandatory", baseUnitOfMeasure.getValue()));
 				return false;
 			}
 
@@ -115,7 +113,8 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
+			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
 		final BaseUnitOfMeasure baseUnitOfMeasure = bpmoAccess.getBaseUnitOfMeasure();
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure
@@ -217,7 +216,7 @@ public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, M
 		for (MaterialBPMOLanguage language : MaterialBPMOLanguage.values())
 			titles.put(language, String.format("Material (%s / %s)", bpmoAccess.getName().getValue() == null ? ""
 					: bpmoAccess.getName().getValue(), bpmoAccess.getMaterialType().getValue() == null ? ""
-					: bpmoAccess.getMaterialType().getValue().getValue()));
+					: bpmoAccess.getMaterialType().getValue(language).getValue()));
 		bpmoAccess.getBPMO().setTitle(titles);
 	}
 
