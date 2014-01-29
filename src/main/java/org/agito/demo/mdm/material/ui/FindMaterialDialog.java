@@ -63,7 +63,6 @@ public class FindMaterialDialog extends Window {
 		bodyLayout.setMargin(true);
 		final TextField materialNumber = new TextField(bpmoAccess.getMaterialNumber().getContext().getDefinition()
 				.getLabel().getText());
-		materialNumber.focus();
 		materialNumber.setInputPrompt("# 1-19 available");
 		materialNumber.setNullRepresentation("");
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
