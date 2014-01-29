@@ -22,7 +22,7 @@
       </lane>
     </laneSet>
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="Requester" name="Requester" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+    <userTask id="Requester" name="Requester" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <serviceTask id="UpdateMaterial" name="Update Material in ERP" activiti:async="true" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
       <extensionElements>
@@ -47,19 +47,19 @@
       <startEvent id="startevent2" name="Start"></startEvent>
       <sequenceFlow id="flow7" sourceRef="startevent2" targetRef="inclusivegateway1"></sequenceFlow>
       <inclusiveGateway id="inclusivegateway1" name="Apporval required?" default="ErrorFlow"></inclusiveGateway>
-      <userTask id="HeaderMgmt" name="Header Management" activiti:exclusive="false" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="HeaderMgmt" name="Header Management" activiti:exclusive="false" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <sequenceFlow id="HeaderMgmtFlow" name="required" sourceRef="inclusivegateway1" targetRef="HeaderMgmt">
         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${requiredActivities.contains("HeaderMgmt")}]]></conditionExpression>
       </sequenceFlow>
-      <userTask id="PlantMgmt" name="Plant Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="PlantMgmt" name="Plant Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <sequenceFlow id="PlantMgmtFlow" name="required" sourceRef="inclusivegateway1" targetRef="PlantMgmt">
         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${requiredActivities.contains("PlantMgmt")}]]></conditionExpression>
       </sequenceFlow>
-      <userTask id="StorageMgmt" name="Storage Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="StorageMgmt" name="Storage Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <sequenceFlow id="StorageMgmtFlow" name="required" sourceRef="inclusivegateway1" targetRef="StorageMgmt">
         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${requiredActivities.contains("StorageMgmt")}]]></conditionExpression>
       </sequenceFlow>
-      <userTask id="DistributionMgmt" name="Distribution Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="DistributionMgmt" name="Distribution Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <sequenceFlow id="DistributionMgmtFlow" name="required" sourceRef="inclusivegateway1" targetRef="DistributionMgmt">
         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${requiredActivities.contains("DistributionMgmt")}]]></conditionExpression>
       </sequenceFlow>

@@ -22,15 +22,15 @@
       </lane>
     </laneSet>
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="Requester" name="Requester" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+    <userTask id="Requester" name="Requester" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <serviceTask id="CreateMaterial" name="Create Material in ERP" activiti:async="true" activiti:class="de.agito.cps.process.activiti.listener.ExecuteBPMOActionDelegate">
       <extensionElements>
         <activiti:field name="action">
-          <activiti:string>CreateMaterial</activiti:string>
+          <activiti:string><![CDATA[CreateMaterial]]></activiti:string>
         </activiti:field>
         <activiti:field name="mode">
-          <activiti:string>EDIT</activiti:string>
+          <activiti:string><![CDATA[EDIT]]></activiti:string>
         </activiti:field>
       </extensionElements>
     </serviceTask>
@@ -38,10 +38,10 @@
     <sequenceFlow id="flow6" sourceRef="CreateMaterial" targetRef="endevent2"></sequenceFlow>
     <subProcess id="subprocess1" name="Maintain and Approve">
       <startEvent id="startevent2" name="Start"></startEvent>
-      <userTask id="HeaderMgmt" name="Header Management" activiti:exclusive="false" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
-      <userTask id="PlantMgmt" name="Plant Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
-      <userTask id="StorageMgmt" name="Storage Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
-      <userTask id="DistributionMgmt" name="Distribution Management" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="HeaderMgmt" name="Header Management" activiti:exclusive="false" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
+      <userTask id="PlantMgmt" name="Plant Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
+      <userTask id="StorageMgmt" name="Storage Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
+      <userTask id="DistributionMgmt" name="Distribution Management" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <endEvent id="endevent3" name="End"></endEvent>
       <boundaryEvent id="DeclineHeaderMgmt" name="Signal" attachedToRef="HeaderMgmt" cancelActivity="true">
         <signalEventDefinition signalRef="Decline"></signalEventDefinition>
@@ -80,7 +80,7 @@
       <sequenceFlow id="flow47" sourceRef="StorageMgmt" targetRef="parallelgateway2"></sequenceFlow>
       <parallelGateway id="parallelgateway2" name="Exclusive Gateway"></parallelGateway>
       <sequenceFlow id="flow48" sourceRef="DistributionMgmt" targetRef="parallelgateway2"></sequenceFlow>
-      <userTask id="Approver" name="Approval" activiti:candidateGroups="Everyone,roleAnyone"></userTask>
+      <userTask id="Approver" name="Approval" activiti:candidateUsers="${$cpsInitiator}" activiti:candidateGroups="roleAnyone"></userTask>
       <sequenceFlow id="flow49" sourceRef="parallelgateway2" targetRef="Approver"></sequenceFlow>
       <sequenceFlow id="flow50" sourceRef="Approver" targetRef="endevent3"></sequenceFlow>
       <boundaryEvent id="DeclineApproval" name="Signal" attachedToRef="Approver" cancelActivity="true">
@@ -142,29 +142,29 @@
       <bpmndi:BPMNShape bpmnElement="HeaderMgmt" id="BPMNShape_HeaderMgmt">
         <omgdc:Bounds height="55.0" width="105.0" x="180.0" y="353.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="DeclineHeaderMgmt" id="BPMNShape_DeclineHeaderMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="260.0" y="346.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="PlantMgmt" id="BPMNShape_PlantMgmt">
         <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="294.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="DeclinePantMgmt" id="BPMNShape_DeclinePantMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="470.0" y="286.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="StorageMgmt" id="BPMNShape_StorageMgmt">
         <omgdc:Bounds height="55.0" width="105.0" x="548.0" y="294.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="DeclineStorageMgmt" id="BPMNShape_DeclineStorageMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="624.0" y="284.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="DistributionMgmt" id="BPMNShape_DistributionMgmt">
         <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="397.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="DeclineDistributionMgmt" id="BPMNShape_DeclineDistributionMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="465.0" y="387.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
         <omgdc:Bounds height="35.0" width="35.0" x="910.0" y="353.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DeclineHeaderMgmt" id="BPMNShape_DeclineHeaderMgmt">
+        <omgdc:Bounds height="30.0" width="30.0" x="260.0" y="346.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DeclinePantMgmt" id="BPMNShape_DeclinePantMgmt">
+        <omgdc:Bounds height="30.0" width="30.0" x="470.0" y="286.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DeclineStorageMgmt" id="BPMNShape_DeclineStorageMgmt">
+        <omgdc:Bounds height="30.0" width="30.0" x="624.0" y="284.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DeclineDistributionMgmt" id="BPMNShape_DeclineDistributionMgmt">
+        <omgdc:Bounds height="30.0" width="30.0" x="465.0" y="387.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="errorendevent1" id="BPMNShape_errorendevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="270.0" y="294.0"></omgdc:Bounds>
