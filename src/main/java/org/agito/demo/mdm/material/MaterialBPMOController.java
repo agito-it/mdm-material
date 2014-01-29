@@ -46,9 +46,7 @@ import org.agito.demo.mdm.material.dto.MaterialMockService;
  */
 // @@end
 @BPMO(id = "MaterialBPMO", version = "1.0.0", xml = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
-public class MaterialBPMOController
-		extends
-		BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOController extends BPMOController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOController(final IBPMOControllerContext context) {
 		super(context);
@@ -113,8 +111,7 @@ public class MaterialBPMOController
 	// @@end
 	@Expression(artifact = "Header$AlternativeUnitOfMeasures$AlternativeUnitOfMeasure", type = ExpressionType.CELL_BASED_CONTROL)
 	@ExpressionDependency("Header$BaseUnitOfMeasure")
-	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess,
-			final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
+	public void cpsControlAlternativeUnitOfMeasures$AlternativeUnitOfMeasure(final MaterialBPMOAccess bpmoAccess, final IControlAttributes controlAttributes, final AlternativeUnitOfMeasures.Row rowAccess) {
 		final BaseUnitOfMeasure baseUnitOfMeasure = bpmoAccess.getBaseUnitOfMeasure();
 		/*
 		 * Should only editable if the value not equals BaseUnitOfMeasure

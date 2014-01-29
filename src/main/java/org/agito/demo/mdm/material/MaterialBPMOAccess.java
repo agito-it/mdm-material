@@ -20,7 +20,7 @@ import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 /**
  * BPMOAccess for Header.
  * 
- * @author Jörg Burmeister
+ * @author andreas.weise
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
@@ -224,7 +224,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.FixedLotSize getPlants$FixedLotSize() { return super.<Plants.FixedLotSize>getCharacteristicAccess(Plants.FixedLotSize.class, "Header.Plants$FixedLotSize"); }
 	/**
-	 * <b>StorageLocation</b>
+	 * <b>Storage Location</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
@@ -262,7 +262,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	 */
 	public Plants.StorageLocations.BlockedStock getPlants$StorageLocations$BlockedStock() { return super.<Plants.StorageLocations.BlockedStock>getCharacteristicAccess(Plants.StorageLocations.BlockedStock.class, "Header.Plants.StorageLocations$BlockedStock"); }
 	/**
-	 * <b>SalesOrganization</b>
+	 * <b>Sales Organization</b>
 	 * <p>
 	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>

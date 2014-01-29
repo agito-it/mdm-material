@@ -586,7 +586,7 @@
 		<ChildNode NodeId="StorageLocations" MinOccur="1">
 			<Key Id="StorageLocationId" />
 			<Label>
-				<Text>StorageLocation</Text>
+				<Text>Storage Location</Text>
 			</Label>
 			<Controls>
 				<Control Lifecycle="CREATE">
@@ -664,7 +664,7 @@
 		<Key Id="SalesOrganization" />
 		<Key Id="DistributionChannel" />
 		<Label>
-			<Text>SalesOrganization</Text>
+			<Text>Sales Organization</Text>
 		</Label>
 		<Controls>
 			<Control Lifecycle="CREATE">
