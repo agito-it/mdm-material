@@ -823,12 +823,12 @@
 	<Lifecycles>
 		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create">
 			<Description>
-				<Text>Create a new Material</Text>
+				<Text><![CDATA[<ul><li>The initiator creates a new material by entering all data he knows at that point in time and starts the process.</li><li>Each structure (Header, Plants, Storage Locations or Sales-Organizations) belongs to a specific unit within an organization, which is responsible for the data on the structure. The process engine therefore creates tasks for each unit, and the task participants can maintain existing data entered by the initiator or add additional information on their corresponding structure. </li><li>After all tasks have been completed, the data will be written to a backend system.</li></ul>]]></Text>
 			</Description>
 		</Lifecycle>
 		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update">
 			<Description>
-				<Text>Update an existing Material</Text>
+				<Text><![CDATA[<ul><li>The initiator selects an existing material from a backend system (for example SAP ERP), modifies data on different structures and starts the process.</li><li>Each structure belongs to a specific unit within an organization, which is responsible for the data on the structure. The process engine therefore resolves the required approval activities by evaluating the modified data of the material change request and will create corresponding approval tasks</li><li>Within each approval activity, the participant can either approve or reject the change. If all necessary approval activities have been completed, all changes will be transferred to the backend system.</li><li>If an approver declines a task, all other approval task are canceled and the token is sent back to the initiator. The initiator may refine the request to proceed with the approval again or simply cancels the process.</li></ul>]]></Text>
 			</Description>
 		</Lifecycle>
 	</Lifecycles>
@@ -877,7 +877,7 @@
 		<ProcessChoice Id="Repeat" Type="FORWARD" RequiresComment="true" />
 		<ProcessChoice Id="Decline" Type="SIGNAL" RequiresComment="true" />
 		<ProcessChoice Id="Cancel" Type="FORWARD" RequiresComment="true" />
- 		<Assignment ProcessActivityId="Requester">
+		<Assignment ProcessActivityId="Requester">
 			<ProcessChoiceId>Repeat</ProcessChoiceId>
 			<ProcessChoiceId>Cancel</ProcessChoiceId>
 		</Assignment>
@@ -885,11 +885,11 @@
 			<ProcessChoiceId>Approve</ProcessChoiceId>
 			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
-		<Assignment Lifecycle="CREATE" ProcessActivityId="HeaderMgmt" >
+		<Assignment Lifecycle="CREATE" ProcessActivityId="HeaderMgmt">
 			<ProcessChoiceId>Complete</ProcessChoiceId>
 			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
- 		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="CREATE">
+		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="CREATE">
 			<ProcessChoiceId>Complete</ProcessChoiceId>
 			<ProcessChoiceId>Decline</ProcessChoiceId>
 		</Assignment>
@@ -926,4 +926,4 @@
 		<Action>CreateMaterial</Action>
 		<Action>EvaluateApproveActivities</Action>
 	</Actions>
-</BPMODefinition> 
+</BPMODefinition>

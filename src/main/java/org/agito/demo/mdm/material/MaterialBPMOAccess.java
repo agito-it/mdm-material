@@ -20,7 +20,7 @@ import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 /**
  * BPMOAccess for Header.
  * 
- * @author andreas.weise
+ * @author Jörg Burmeister
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
