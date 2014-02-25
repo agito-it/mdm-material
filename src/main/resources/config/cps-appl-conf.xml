@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ApplicationConfiguration ApplicationContextRoot="/mdm-material" ApplicationId="MDM_Material" xmlns="http://de.agito/cps/appconf">
-    <ApplicationLabel DefaultLanguage="en">
-        <Label Language="en">MDM Material</Label>
-    </ApplicationLabel>
-</ApplicationConfiguration>

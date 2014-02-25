@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
+	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="CreateMaterial" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+			</Control>
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="Name" SupportsOriginalValue="true">
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+				</Scope>
+				<Scope ScopeId="RESPONSIBILITY">
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+			</Control>
+			<ControlGroup GroupId="RequiredHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="MaterialType" SupportsOriginalValue="true">
+		<FormatEnum>
+			<KeywordFormat>
+				<InlineKeyword>
+					<Entry Key="1">
+						<Value>Finished Material (ZFER)</Value>
+					</Entry>
+					<Entry Key="2">
+						<Value>Raw Material (ZROH)</Value>
+					</Entry>
+					<Entry Key="3">
+						<Value>Packaging Material (ZVER)</Value>
+					</Entry>
+				</InlineKeyword>
+			</KeywordFormat>
+		</FormatEnum>
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+			</Control>
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="GrossWeight" SupportsOriginalValue="true">
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="EDITABILITY">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="EDITABILITY">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+				</Scope>
+				<Scope ScopeId="RESPONSIBILITY">
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+			</Control>
+			<ControlGroup GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="NetWeight" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="Volume" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="AllowedPackagingWeight" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="AllowedPackagingVolume" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="ContainerRequiements" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="StorageConditions" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="TransportationGroup" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="LabelType" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="LabelForm" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="OptionalHeaderData" />
+		</Controls>
+	</CharacteristicDefinition>
+	<CharacteristicDefinition Id="BaseUnitOfMeasure" SupportsOriginalValue="true">
+		<FormatEnum>
+			<KeywordFormat>
+				<InlineKeyword>
+					<Entry Key="5B">
+						<Value>Batch</Value>
+					</Entry>
+					<Entry Key="ACT">
+						<Value>activity</Value>
+					</Entry>
+					<Entry Key="ANN">
+						<Value>Year</Value>
+					</Entry>
+					<Entry Key="AU">
+						<Value>Activity unit</Value>
+					</Entry>
+					<Entry Key="DAY">
+						<Value>Day</Value>
+					</Entry>
+					<Entry Key="DZN">
+						<Value>dozen</Value>
+					</Entry>
+					<Entry Key="E49">
+						<Value>working day</Value>
+					</Entry>
+					<Entry Key="EA">
+						<Value>Each</Value>
+					</Entry>
+					<Entry Key="FOT">
+						<Value>Foot</Value>
+					</Entry>
+					<Entry Key="FTQ">
+						<Value>cubic foot</Value>
+					</Entry>
+					<Entry Key="GLL">
+						<Value>gallon (US)</Value>
+					</Entry>
+					<Entry Key="GRM">
+						<Value>Gram</Value>
+					</Entry>
+					<Entry Key="HUR">
+						<Value>Hour</Value>
+					</Entry>
+					<Entry Key="INH">
+						<Value>Inch</Value>
+					</Entry>
+					<Entry Key="KGM">
+						<Value>kilogram</Value>
+					</Entry>
+					<Entry Key="KMT">
+						<Value>kilometre</Value>
+					</Entry>
+					<Entry Key="LBR">
+						<Value>pound</Value>
+					</Entry>
+					<Entry Key="LTR">
+						<Value>Litre</Value>
+					</Entry>
+					<Entry Key="MIN">
+						<Value>minute [unit of time]</Value>
+					</Entry>
+					<Entry Key="MMT">
+						<Value>millimetre</Value>
+					</Entry>
+					<Entry Key="MON">
+						<Value>month</Value>
+					</Entry>
+					<Entry Key="MTQ">
+						<Value>cubic metre</Value>
+					</Entry>
+					<Entry Key="MTR">
+						<Value>Metre</Value>
+					</Entry>
+					<Entry Key="ONZ">
+						<Value>ounce</Value>
+					</Entry>
+					<Entry Key="SEC">
+						<Value>second [unit of time]</Value>
+					</Entry>
+					<Entry Key="SMI">
+						<Value>mile (statute mile)</Value>
+					</Entry>
+					<Entry Key="STN">
+						<Value>ton (US) or short ton (UK/US)</Value>
+					</Entry>
+					<Entry Key="TNE">
+						<Value>tonne (metric ton)</Value>
+					</Entry>
+					<Entry Key="WEE">
+						<Value>Week</Value>
+					</Entry>
+					<Entry Key="XBG">
+						<Value>Bag</Value>
+					</Entry>
+					<Entry Key="XBX">
+						<Value>Box</Value>
+					</Entry>
+					<Entry Key="XCR">
+						<Value>Crate</Value>
+					</Entry>
+					<Entry Key="XCS">
+						<Value>Case</Value>
+					</Entry>
+					<Entry Key="XCT">
+						<Value>Carton</Value>
+					</Entry>
+					<Entry Key="XPK">
+						<Value>Package</Value>
+					</Entry>
+					<Entry Key="XPX">
+						<Value>Pallet</Value>
+					</Entry>
+					<Entry Key="XSX">
+						<Value>Set</Value>
+					</Entry>
+					<Entry Key="YRD">
+						<Value>yard</Value>
+					</Entry>
+				</InlineKeyword>
+			</KeywordFormat>
+		</FormatEnum>
+		<Controls>
+			<ControlGroupUsage GroupId="RequiredHeaderData" />
+		</Controls>
+		<ChangeExpression>
+			<Dependency>./$BaseUnitOfMeasure</Dependency>
+			<Description>The value of BaseUnitOfMeasure must exist on AlternativeUnitOfMeasures as well</Description>
+		</ChangeExpression>
+	</CharacteristicDefinition>
+	<TableDefinition Id="AlternativeUnitOfMeasures" SupportsOriginalValue="true">
+		<Controls>
+			<ControlGroupUsage GroupId="RequiredHeaderData" />
+		</Controls>
+		<ColumnDefinition Id="AlternativeUnitOfMeasure" Key="true">
+			<FormatEnum>
+				<KeywordFormat>
+					<InlineKeyword>
+						<Entry Key="5B">
+							<Value>Batch</Value>
+						</Entry>
+						<Entry Key="ACT">
+							<Value>activity</Value>
+						</Entry>
+						<Entry Key="ANN">
+							<Value>Year</Value>
+						</Entry>
+						<Entry Key="AU">
+							<Value>Activity unit</Value>
+						</Entry>
+						<Entry Key="DAY">
+							<Value>Day</Value>
+						</Entry>
+						<Entry Key="DZN">
+							<Value>dozen</Value>
+						</Entry>
+						<Entry Key="E49">
+							<Value>working day</Value>
+						</Entry>
+						<Entry Key="EA">
+							<Value>Each</Value>
+						</Entry>
+						<Entry Key="FOT">
+							<Value>Foot</Value>
+						</Entry>
+						<Entry Key="FTQ">
+							<Value>cubic foot</Value>
+						</Entry>
+						<Entry Key="GLL">
+							<Value>gallon (US)</Value>
+						</Entry>
+						<Entry Key="GRM">
+							<Value>Gram</Value>
+						</Entry>
+						<Entry Key="HUR">
+							<Value>Hour</Value>
+						</Entry>
+						<Entry Key="INH">
+							<Value>Inch</Value>
+						</Entry>
+						<Entry Key="KGM">
+							<Value>kilogram</Value>
+						</Entry>
+						<Entry Key="KMT">
+							<Value>kilometre</Value>
+						</Entry>
+						<Entry Key="LBR">
+							<Value>pound</Value>
+						</Entry>
+						<Entry Key="LTR">
+							<Value>Litre</Value>
+						</Entry>
+						<Entry Key="MIN">
+							<Value>minute [unit of time]</Value>
+						</Entry>
+						<Entry Key="MMT">
+							<Value>millimetre</Value>
+						</Entry>
+						<Entry Key="MON">
+							<Value>month</Value>
+						</Entry>
+						<Entry Key="MTQ">
+							<Value>cubic metre</Value>
+						</Entry>
+						<Entry Key="MTR">
+							<Value>Metre</Value>
+						</Entry>
+						<Entry Key="ONZ">
+							<Value>ounce</Value>
+						</Entry>
+						<Entry Key="SEC">
+							<Value>second [unit of time]</Value>
+						</Entry>
+						<Entry Key="SMI">
+							<Value>mile (statute mile)</Value>
+						</Entry>
+						<Entry Key="STN">
+							<Value>ton (US) or short ton (UK/US)</Value>
+						</Entry>
+						<Entry Key="TNE">
+							<Value>tonne (metric ton)</Value>
+						</Entry>
+						<Entry Key="WEE">
+							<Value>Week</Value>
+						</Entry>
+						<Entry Key="XBG">
+							<Value>Bag</Value>
+						</Entry>
+						<Entry Key="XBX">
+							<Value>Box</Value>
+						</Entry>
+						<Entry Key="XCR">
+							<Value>Crate</Value>
+						</Entry>
+						<Entry Key="XCS">
+							<Value>Case</Value>
+						</Entry>
+						<Entry Key="XCT">
+							<Value>Carton</Value>
+						</Entry>
+						<Entry Key="XPK">
+							<Value>Package</Value>
+						</Entry>
+						<Entry Key="XPX">
+							<Value>Pallet</Value>
+						</Entry>
+						<Entry Key="XSX">
+							<Value>Set</Value>
+						</Entry>
+						<Entry Key="YRD">
+							<Value>yard</Value>
+						</Entry>
+					</InlineKeyword>
+				</KeywordFormat>
+			</FormatEnum>
+			<Controls>
+				<Control Lifecycle="CREATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="REQUIRED">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+					</Scope>
+				</Control>
+				<Control Lifecycle="UPDATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="REQUIRED">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+					</Scope>
+					<Scope ScopeId="RESPONSIBILITY">
+						<ProcessActivityId Id="HeaderMgmt" />
+					</Scope>
+				</Control>
+				<CellBasedControlExpression>
+					<Dependency>./$BaseUnitOfMeasure</Dependency>
+					<Description>Should only editable if the value not equals BaseUnitOfMeasure</Description>
+				</CellBasedControlExpression>
+			</Controls>
+		</ColumnDefinition>
+		<ColumnDefinition Id="NumeratorConversion">
+			<Controls>
+				<ControlGroupUsage GroupId="RequiredHeaderData" />
+			</Controls>
+		</ColumnDefinition>
+		<ColumnDefinition Id="DenominatorConversion">
+			<Controls>
+				<ControlGroupUsage GroupId="RequiredHeaderData" />
+			</Controls>
+		</ColumnDefinition>
+		<ValidationExpression>
+			<Dependency>./$BaseUnitOfMeasure</Dependency>
+			<Description>Check, if the BaseUnitOfMeasure is part of the AOM table.</Description>
+		</ValidationExpression>
+	</TableDefinition>
+	<ChildNode NodeId="Plants" MinOccur="1">
+		<Key Id="PlantId">
+			<FormatEnum>
+				<KeywordFormat>
+					<InlineKeyword>
+						<Entry Key="Berlin">
+							<Value>Berlin</Value>
+						</Entry>
+						<Entry Key="Hamburg">
+							<Value>Hamburg</Value>
+						</Entry>
+						<Entry Key="Dresden">
+							<Value>Dresden</Value>
+						</Entry>
+						<Entry Key="Rostock">
+							<Value>Rostock</Value>
+						</Entry>
+						<Entry Key="Stuttgard">
+							<Value>Stuttgard</Value>
+						</Entry>
+						<Entry Key="Frankurt">
+							<Value>Stuttgard</Value>
+						</Entry>
+						<Entry Key="Munich">
+							<Value>Munich</Value>
+						</Entry>
+					</InlineKeyword>
+				</KeywordFormat>
+			</FormatEnum>
+		</Key>
+		<Label>
+			<Text>Plant</Text>
+		</Label>
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="EDITABILITY">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="PlantMgmt" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+				</Scope>
+				<Scope ScopeId="RESPONSIBILITY">
+					<ProcessActivityId Id="PlantMgmt" />
+				</Scope>
+			</Control>
+			<ControlGroup GroupId="RequiredPlantData" />
+		</Controls>
+		<DeletionFlagLabel>
+			<Text>Deletion Flag</Text>
+		</DeletionFlagLabel>
+		<CharacteristicDefinition Id="ProductionSupervisor" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="RequiredPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="ProcessingTime" SupportsOriginalValue="true">
+			<Controls>
+				<Control Lifecycle="CREATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="EDITABILITY">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+						<ProcessActivityId Id="HeaderMgmt" />
+						<ProcessActivityId Id="PlantMgmt" />
+					</Scope>
+				</Control>
+				<Control Lifecycle="UPDATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="EDITABILITY">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+					</Scope>
+					<Scope ScopeId="RESPONSIBILITY">
+						<ProcessActivityId Id="PlantMgmt" />
+					</Scope>
+				</Control>
+				<ControlGroup GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="BaseQuantity" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="StorageCostsIndicator" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="ValuationCategory" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="MinimumLotSize" SupportsOriginalValue="true">
+			<FormatNumeric>
+				<TotalDigits>4</TotalDigits>
+			</FormatNumeric>
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="MaximumLotSize" SupportsOriginalValue="true">
+			<FormatNumeric>
+				<TotalDigits>4</TotalDigits>
+			</FormatNumeric>
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="FixedLotSize" SupportsOriginalValue="true">
+			<FormatNumeric>
+				<TotalDigits>4</TotalDigits>
+			</FormatNumeric>
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalPlantData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<ChildNode NodeId="StorageLocations" MinOccur="1">
+			<Key Id="StorageLocationId" />
+			<Label>
+				<Text>Storage Location</Text>
+			</Label>
+			<Controls>
+				<Control Lifecycle="CREATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="EDITABILITY">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+						<ProcessActivityId Id="HeaderMgmt" />
+						<ProcessActivityId Id="PlantMgmt" />
+					</Scope>
+					<Scope ScopeId="REQUIRED">
+						<ProcessActivityId Id="StorageMgmt" />
+					</Scope>
+				</Control>
+				<Control Lifecycle="UPDATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="REQUIRED">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+					</Scope>
+					<Scope ScopeId="RESPONSIBILITY">
+						<ProcessActivityId Id="StorageMgmt" />
+					</Scope>
+				</Control>
+				<ControlGroup GroupId="RequiredStorageLocationData" />
+			</Controls>
+			<DeletionFlagLabel>
+				<Text>Deletion Flag</Text>
+			</DeletionFlagLabel>
+			<CharacteristicDefinition Id="StockInQualityInspection" SupportsOriginalValue="true">
+				<Controls>
+					<ControlGroupUsage GroupId="RequiredStorageLocationData" />
+				</Controls>
+			</CharacteristicDefinition>
+			<CharacteristicDefinition Id="TotalStock" SupportsOriginalValue="true">
+				<Controls>
+					<Control Lifecycle="CREATE">
+						<Scope ScopeId="VISIBILITY">
+							<ProcessActivityId Id="*" />
+						</Scope>
+						<Scope ScopeId="EDITABILITY">
+							<ProcessActivityId Id="$DRAFT" />
+							<ProcessActivityId Id="Requester" />
+							<ProcessActivityId Id="HeaderMgmt" />
+							<ProcessActivityId Id="StorageMgmt" />
+						</Scope>
+					</Control>
+					<Control Lifecycle="UPDATE">
+						<Scope ScopeId="VISIBILITY">
+							<ProcessActivityId Id="*" />
+						</Scope>
+						<Scope ScopeId="EDITABILITY">
+							<ProcessActivityId Id="$DRAFT" />
+							<ProcessActivityId Id="Requester" />
+						</Scope>
+						<Scope ScopeId="RESPONSIBILITY">
+							<ProcessActivityId Id="StorageMgmt" />
+						</Scope>
+					</Control>
+					<ControlGroup GroupId="OptionalStorageLocationData" />
+				</Controls>
+			</CharacteristicDefinition>
+			<CharacteristicDefinition Id="BlockedStock" SupportsOriginalValue="true">
+				<Controls>
+					<ControlGroupUsage GroupId="OptionalStorageLocationData" />
+				</Controls>
+			</CharacteristicDefinition>
+		</ChildNode>
+	</ChildNode>
+	<ChildNode NodeId="SalesOrganizations" MinOccur="1">
+		<Key Id="SalesOrganization" />
+		<Key Id="DistributionChannel" />
+		<Label>
+			<Text>Sales Organization</Text>
+		</Label>
+		<Controls>
+			<Control Lifecycle="CREATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="EDITABILITY">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+					<ProcessActivityId Id="HeaderMgmt" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="DistributionMgmt" />
+				</Scope>
+			</Control>
+			<Control Lifecycle="UPDATE">
+				<Scope ScopeId="VISIBILITY">
+					<ProcessActivityId Id="*" />
+				</Scope>
+				<Scope ScopeId="REQUIRED">
+					<ProcessActivityId Id="$DRAFT" />
+					<ProcessActivityId Id="Requester" />
+				</Scope>
+				<Scope ScopeId="RESPONSIBILITY">
+					<ProcessActivityId Id="DistributionMgmt" />
+				</Scope>
+			</Control>
+			<ControlGroup GroupId="RequiredSalesOrganizationData" />
+		</Controls>
+		<CharacteristicDefinition Id="StatisticsGroup" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="RequiredSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="VolumeRebateGroup" SupportsOriginalValue="true">
+			<Controls>
+				<Control Lifecycle="CREATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="EDITABILITY">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+						<ProcessActivityId Id="HeaderMgmt" />
+						<ProcessActivityId Id="DistributionMgmt" />
+					</Scope>
+				</Control>
+				<Control Lifecycle="UPDATE">
+					<Scope ScopeId="VISIBILITY">
+						<ProcessActivityId Id="*" />
+					</Scope>
+					<Scope ScopeId="EDITABILITY">
+						<ProcessActivityId Id="$DRAFT" />
+						<ProcessActivityId Id="Requester" />
+					</Scope>
+					<Scope ScopeId="RESPONSIBILITY">
+						<ProcessActivityId Id="DistributionMgmt" />
+					</Scope>
+				</Control>
+				<ControlGroup GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="CommissionGroup" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="CashDiscount" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="DeliveryUnit" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="SalesUnit" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="MinimumOrderQuantity" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="MinimumDeliveryQuantity" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="ItemCategoryGroup" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="DeliveringPlant" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="Pricing" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="ListedInStoreFrom" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<CharacteristicDefinition Id="ListedInStoreTo" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="OptionalSalesOrganizationData" />
+			</Controls>
+		</CharacteristicDefinition>
+		<TableDefinition Id="SalesTexts" SupportsOriginalValue="true">
+			<Controls>
+				<ControlGroupUsage GroupId="RequiredSalesOrganizationData" />
+			</Controls>
+			<ColumnDefinition Id="Language" Key="true">
+				<FormatEnum>
+					<ValuePresetting>
+						<DefaultValue>en</DefaultValue>
+					</ValuePresetting>
+					<KeywordFormat>
+						<InlineKeyword>
+							<Entry Key="de">
+								<Value>de</Value>
+							</Entry>
+							<Entry Key="en">
+								<Value>en</Value>
+							</Entry>
+						</InlineKeyword>
+					</KeywordFormat>
+				</FormatEnum>
+				<Controls>
+					<ControlGroupUsage GroupId="RequiredSalesOrganizationData" />
+				</Controls>
+			</ColumnDefinition>
+			<ColumnDefinition Id="Text">
+				<Controls>
+					<ControlGroupUsage GroupId="RequiredSalesOrganizationData" />
+				</Controls>
+			</ColumnDefinition>
+		</TableDefinition>
+	</ChildNode>
+	<BPMOLabel>
+		<Text>MDM Material</Text>
+	</BPMOLabel>
+	<BPMODescription>
+		<Text><![CDATA[<h4>Sample implementation of a Material MDM Process</h4>]]></Text>
+	</BPMODescription>
+	<Languages DefaultLanguage="en" />
+	<Lifecycles>
+		<Lifecycle Id="CREATE" ProcessDefinitionId="MDM_Material_Create">
+			<Description>
+				<Text><![CDATA[<ul><li>The initiator creates a new material by entering all data he knows at that point in time and starts the process.</li><li>Each structure (Header, Plants, Storage Locations or Sales-Organizations) belongs to a specific unit within an organization, which is responsible for the data on the structure. The process engine therefore creates tasks for each unit, and the task participants can maintain existing data entered by the initiator or add additional information on their corresponding structure. </li><li>After all tasks have been completed, the data will be written to a backend system.</li></ul>]]></Text>
+			</Description>
+		</Lifecycle>
+		<Lifecycle Id="UPDATE" SupportOriginalValue="true" ProcessDefinitionId="MDM_Material_Update">
+			<Description>
+				<Text><![CDATA[<ul><li>The initiator selects an existing material from a backend system (for example SAP ERP), modifies data on different structures and starts the process.</li><li>Each structure belongs to a specific unit within an organization, which is responsible for the data on the structure. The process engine therefore resolves the required approval activities by evaluating the modified data of the material change request and will create corresponding approval tasks</li><li>Within each approval activity, the participant can either approve or reject the change. If all necessary approval activities have been completed, all changes will be transferred to the backend system.</li><li>If an approver declines a task, all other approval task are canceled and the token is sent back to the initiator. The initiator may refine the request to proceed with the approval again or simply cancels the process.</li></ul>]]></Text>
+			</Description>
+		</Lifecycle>
+	</Lifecycles>
+	<ProcessActivities>
+		<ProcessActivityId Id="*" />
+		<ProcessActivityId Id="$DRAFT">
+			<Label>
+				<Text>Draft</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="Requester">
+			<Label>
+				<Text>Requester</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="HeaderMgmt">
+			<Label>
+				<Text>Header Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="PlantMgmt">
+			<Label>
+				<Text>Plant Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="StorageMgmt">
+			<Label>
+				<Text>Storage Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="DistributionMgmt">
+			<Label>
+				<Text>Distribution Management</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="Approver">
+			<Label>
+				<Text>Approver</Text>
+			</Label>
+		</ProcessActivityId>
+		<ProcessActivityId Id="CreateMaterial" />
+	</ProcessActivities>
+	<ProcessChoices>
+		<ProcessChoice Id="Approve" Type="FORWARD" />
+		<ProcessChoice Id="Complete" Type="FORWARD" />
+		<ProcessChoice Id="Repeat" Type="FORWARD" RequiresComment="true" />
+		<ProcessChoice Id="Decline" Type="SIGNAL" RequiresComment="true" />
+		<ProcessChoice Id="Cancel" Type="FORWARD" RequiresComment="true" />
+		<Assignment ProcessActivityId="Requester">
+			<ProcessChoiceId>Repeat</ProcessChoiceId>
+			<ProcessChoiceId>Cancel</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="Approver">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment Lifecycle="CREATE" ProcessActivityId="HeaderMgmt">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="StorageMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="DistributionMgmt" Lifecycle="CREATE">
+			<ProcessChoiceId>Complete</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="HeaderMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="PlantMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="StorageMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+		<Assignment ProcessActivityId="DistributionMgmt" Lifecycle="UPDATE">
+			<ProcessChoiceId>Approve</ProcessChoiceId>
+			<ProcessChoiceId>Decline</ProcessChoiceId>
+		</Assignment>
+	</ProcessChoices>
+	<ClassArtifacts UITechnology="Vaadin" Package="org.agito.demo.mdm.material" />
+	<Actions>
+		<Action>FindMaterial</Action>
+		<Action>ReadMaterial</Action>
+		<Action>UpdateMaterial</Action>
+		<Action>CreateMaterial</Action>
+		<Action>EvaluateApproveActivities</Action>
+	</Actions>
+</BPMODefinition>
