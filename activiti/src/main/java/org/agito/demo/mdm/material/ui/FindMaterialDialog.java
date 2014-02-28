@@ -14,18 +14,20 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ShortcutAction.KeyCode;
-import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import de.agito.cps.ui.vaadin.bpmo.styles.CssName;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.ColumnWidth;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
+import de.agito.cps.ui.vaadin.bpmo.styles.Style;
+import de.agito.cps.ui.vaadin.common.resources.UIDataTypeFactory;
 
 /**
  * @author Jörg Burmeister
@@ -41,48 +43,36 @@ public class FindMaterialDialog extends Window {
 	final BeanItemContainer<MaterialHeaderDTO> container = new BeanItemContainer<MaterialHeaderDTO>(
 			MaterialHeaderDTO.class);
 	final Table table = new Table("", container);
-	final Button buttonOK = new Button("OK") {
-
-		private static final long serialVersionUID = -4682784358651527031L;
-
-		{
-			setEnabled(false);
-			setData(ButtonAction.OK);
-		}
-
-	};
 
 	public void init(final MaterialBPMOAccess bpmoAccess, final Button.ClickListener clickListener) {
 		setCaption("Find Material");
 		setModal(true);
+		setWidth(41, Unit.EM);
+		setResizable(false);
 		setCloseShortcut(KeyCode.ESCAPE);
-		setWidth(505, Sizeable.UNITS_PIXELS);
-		VerticalLayout bodyLayout = new VerticalLayout();
+
+		CssLayout bodyLayout = new CssLayout();
+		// use the float layout approach
+		bodyLayout.addStyleName(ColumnWidth.PIXEL_250.getStyle());
+		bodyLayout.addStyleName(MaxColums.COL2.getStyle());
+		bodyLayout.addStyleName(Style.MARGIN.getStyle());
 		setContent(bodyLayout);
-		bodyLayout.setSizeFull();
-		bodyLayout.setMargin(true);
+
 		final TextField materialNumber = new TextField(bpmoAccess.getMaterialNumber().getContext().getDefinition()
 				.getLabel().getText());
 		materialNumber.setInputPrompt("# 1-19 available");
 		materialNumber.setNullRepresentation("");
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
 				.getText());
-		materialName.setWidth(300, UNITS_PIXELS);
-		HorizontalLayout body = new HorizontalLayout();
-		body.setWidth(500, UNITS_PIXELS);
-		bodyLayout.addComponent(body);
-		body.addComponent(materialNumber);
-		body.addComponent(materialName);
 
-		CssLayout buttonLayout = new CssLayout();
-		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
-		buttonLayout.setMargin(false, true, true, true);
-		buttonLayout.setStyleName(CssName.BUTTON_CONTAINER.getCssClass());
-		bodyLayout.addComponent(buttonLayout);
+		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_1,
+				materialNumber));
+		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_1,
+				materialName));
 
 		Button button = new Button("Search");
 		button.setClickShortcut(KeyCode.ENTER);
-		button.addListener(new ClickListener() {
+		button.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = -7929426254254303014L;
 
 			@Override
@@ -102,25 +92,38 @@ public class FindMaterialDialog extends Window {
 						.getParent().execute(MaterialBPMOAction.FindMaterial, parameters);
 				container.addAll(list);
 				if (container.size() == 0)
-					getWindow().showNotification("No entries found");
+					Notification.show("No entries found");
 			}
 		});
-		buttonLayout.addComponent(button);
+		bodyLayout.addComponent(UIDataTypeFactory.getInstance()
+				.createComponentWrapper(Colspan.DIMENSION_FULL, button));
 
-		table.setWidth(100, UNITS_PERCENTAGE);
+		table.setWidth(100, Unit.PERCENTAGE);
 		table.setPageLength(5);
 		table.setImmediate(true);
 		table.setSelectable(true);
-		table.addListener(new ValueChangeListener() {
-			private static final long serialVersionUID = -4171877488661232263L;
 
-			@Override
-			public void valueChange(ValueChangeEvent event) {
-				buttonOK.setEnabled(table.getValue() != null);
-			}
-		});
+		bodyLayout
+				.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_FULL, table));
 
-		table.addListener(new ItemClickEvent.ItemClickListener() {
+		Button cancelButton = new Button("Cancel");
+		cancelButton.addStyleName(Style.FLOAT_RIGHT.getStyle());
+		cancelButton.addStyleName(Style.MARGIN.getStyle());
+		cancelButton.addClickListener(clickListener);
+		cancelButton.setData(ButtonAction.CANCEL);
+		cancelButton.setClickShortcut(KeyCode.ESCAPE);
+
+		final Button buttonOK = new Button("OK");
+		buttonOK.addStyleName(Style.FLOAT_RIGHT.getStyle());
+		buttonOK.addStyleName(Style.MARGIN.getStyle());
+		buttonOK.setEnabled(false);
+		buttonOK.setData(ButtonAction.OK);
+		buttonOK.addClickListener(clickListener);
+
+		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_FULL,
+				buttonOK, cancelButton));
+
+		table.addItemClickListener(new ItemClickEvent.ItemClickListener() {
 			private static final long serialVersionUID = 666727040165970080L;
 
 			@Override
@@ -131,25 +134,16 @@ public class FindMaterialDialog extends Window {
 				}
 			}
 		});
-		bodyLayout.addComponent(table);
 
-		buttonLayout = new CssLayout();
-		buttonLayout.setWidth(100, UNITS_PERCENTAGE);
-		buttonLayout.setMargin(false, true, true, true);
-		buttonLayout.setStyleName(CssName.BUTTON_CONTAINER.getCssClass());
-		bodyLayout.addComponent(buttonLayout);
+		table.addValueChangeListener(new ValueChangeListener() {
+			private static final long serialVersionUID = -4171877488661232263L;
 
-		buttonLayout.addComponent(new Button("Cancel") {
-			private static final long serialVersionUID = -303529397058170688L;
-			{
-				addListener(clickListener);
-				setData(ButtonAction.CANCEL);
-				setClickShortcut(KeyCode.ESCAPE);
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				buttonOK.setEnabled(table.getValue() != null);
 			}
 		});
 
-		buttonOK.addListener(clickListener);
-		buttonLayout.addComponent(buttonOK);
 	}
 
 	public MaterialHeaderDTO getSelectedMaterial() {

@@ -2,35 +2,33 @@ package org.agito.demo.mdm.material;
 
 // @@begin imports
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
+import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog;
+import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
+
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
+
 import de.agito.cps.core.bpmo.BPMOState;
 import de.agito.cps.core.bpmo.ClientMode;
 import de.agito.cps.ui.vaadin.bpmo.BPMOUIController;
+import de.agito.cps.ui.vaadin.bpmo.BPMOUi;
 import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
 import de.agito.cps.ui.vaadin.bpmo.annotation.StyleController;
 import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
-import de.agito.cps.ui.vaadin.bpmo.enums.SeparatorStyle;
-import de.agito.cps.ui.vaadin.bpmo.enums.UNIT;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowTabSheet;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
 import de.agito.cps.ui.vaadin.bpmo.styles.IFlowStyleController;
-import java.util.HashMap;
-import java.util.Map;
-import org.agito.demo.mdm.material.MaterialBPMO;
-import org.agito.demo.mdm.material.MaterialBPMOAccess;
-import org.agito.demo.mdm.material.MaterialBPMOAction;
-import org.agito.demo.mdm.material.MaterialBPMOController.ActionParameter;
-import org.agito.demo.mdm.material.MaterialBPMOLanguage;
-import org.agito.demo.mdm.material.MaterialBPMOLifecycle;
-import org.agito.demo.mdm.material.MaterialBPMOProcessActivity;
-import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog;
-import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
 
 // @@end
 
@@ -41,7 +39,9 @@ import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
  * @author andreas.weise
  */
 // @@end
-public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
+public class MaterialBPMOUIController
+		extends
+		BPMOUIController<MaterialBPMOAccess, MaterialBPMOAction, MaterialBPMOLifecycle, MaterialBPMOLanguage, MaterialBPMOProcessActivity, MaterialBPMO> {
 
 	public MaterialBPMOUIController(final IBPMOUIControllerContext context) {
 		super(context);
@@ -56,24 +56,27 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	public void cpsInitHeader(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:Header
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
+		layoutManager.setMaxCols(MaxColums.COL3);
+
 		layoutManager
-				.createAndAddSeparator()
+				.createAndAddBlockHeader()
 				.setTitle(
 						bpmoAccess.getMaterialNumber().getValue() == null ? "Material" : "Material ".concat(bpmoAccess
-								.getMaterialNumber().getValue())).setTitleStyleName(SeparatorStyle.H1)
-				.addTitleStyleName(SeparatorStyle.HR).setContentWidth(90, UNIT.PERCENTAGE);
+								.getMaterialNumber().getValue())).setColspan(Colspan.DIMENSION_FULL);
+
 		layoutManager.createAndAddElements(MaterialBPMO.MaterialNumber, MaterialBPMO.Name, MaterialBPMO.MaterialType);
-		layoutManager.addLineBreak();
-		
-		
+
+		layoutManager.newLine();
+
 		IFlowTabSheet tabSheet = layoutManager.createAndAddTabSheet();
-		tabSheet.setDimension(3);
+		tabSheet.setColspan(Colspan.DIMENSION_3);
 		tabSheet.createAndAddTabContent("Dimension").createAndAddElements(MaterialBPMO.GrossWeight,
 				MaterialBPMO.NetWeight, MaterialBPMO.AllowedPackagingWeight, MaterialBPMO.Volume,
 				MaterialBPMO.AllowedPackagingVolume, MaterialBPMO.BaseUnitOfMeasure);
 		tabSheet.createAndAddTabContent("Packaging").addRemainingElements(MaterialBPMO.AlternativeUnitOfMeasures);
 
-		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setDimension(4);
+		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setColspan(
+				Colspan.DIMENSION_FULL);
 
 		if (bpmoAccess.getBPMOHeader().getBPMOState() == BPMOState.DRAFT
 				&& (MaterialBPMOLifecycle.valueOf(bpmoAccess.getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
@@ -89,7 +92,6 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 				openFindMaterialDialog(bpmoAccess);
 			}
 		}
-
 		// @@end
 	}
 
@@ -118,13 +120,18 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		// @@begin body:init:Plants
 
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
-				.setContentWidth(90, UNIT.PERCENTAGE);
+		layoutManager.setMaxCols(MaxColums.COL3);
+
+		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
+				.setColspan(Colspan.DIMENSION_FULL);
+
 		layoutManager.addRemainingElements(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
 				MaterialBPMO.Plants.FixedLotSize);
-		layoutManager.addLineBreak();
-		layoutManager.createAndAddGroupContent().addRemainingElements().setCaption("Lot Sizes").setDimension(3);
+
+		layoutManager.newLine();
+
+		layoutManager.createAndAddGroupContent().addRemainingElements().setCaption("Lot Sizes")
+				.setColspan(Colspan.DIMENSION_1);
 
 		// @@end
 	}
@@ -151,9 +158,10 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 		// @@begin body:init:Plants$StorageLocations
 
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
-				.setContentWidth(90, UNIT.PERCENTAGE);
+		layoutManager.setMaxCols(MaxColums.COL3);
+
+		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
+				.setColspan(Colspan.DIMENSION_FULL);
 
 		// @@end
 	}
@@ -179,9 +187,9 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	public void cpsInitSalesOrganizations(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:SalesOrganizations
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.createAndAddSeparator().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setTitleStyleName(SeparatorStyle.H1).addTitleStyleName(SeparatorStyle.HR)
-				.setContentWidth(90, UNIT.PERCENTAGE);
+		layoutManager.setMaxCols(MaxColums.COL3);
+		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
+				.setColspan(Colspan.DIMENSION_FULL);
 		// @@end
 	}
 
@@ -223,7 +231,8 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 	 */
 	private void openFindMaterialDialog(final MaterialBPMOAccess bpmoAccess) {
 		final FindMaterialDialog findMaterialDialog = new FindMaterialDialog();
-		styleController.getActionMenu().getWindow().addWindow(findMaterialDialog);
+		BPMOUi.getCurrent().addWindow(findMaterialDialog);
+		findMaterialDialog.focus();
 		findMaterialDialog.init(bpmoAccess, new ClickListener() {
 			private static final long serialVersionUID = -5884817909375913870L;
 
@@ -241,7 +250,7 @@ public class MaterialBPMOUIController extends BPMOUIController<MaterialBPMOAcces
 					styleController.getActionMenu().getMenuItemById(MenutItem.FIND_MATERIAL).setVisible(false);
 					break;
 				}
-				styleController.getActionMenu().getWindow().removeWindow(findMaterialDialog);
+				BPMOUi.getCurrent().removeWindow(findMaterialDialog);
 			}
 		});
 	}
