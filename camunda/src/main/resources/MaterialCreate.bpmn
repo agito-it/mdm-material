@@ -206,22 +206,6 @@
       <errorEventDefinition errorRef="NotApproved"/>
     </boundaryEvent>
     <sequenceFlow id="flow42" name="" isImmediate="true" sourceRef="boundaryerror1" targetRef="Requester"/>
-    <serviceTask id="CreateMaterial" activiti:async="true" activiti:class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionDelegate" name="Create Material in ERP" implementation="webService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        <activiti:field name="action">
-          <activiti:string>CreateMaterial</activiti:string>
-        </activiti:field>
-        <activiti:field name="mode">
-          <activiti:string>EDIT</activiti:string>
-        </activiti:field>
-      </extensionElements>
-      <incoming>sid-A3C2B724-D639-46DF-AE66-20B3103E3F21</incoming>
-      <outgoing>flow6</outgoing>
-    </serviceTask>
-    <sequenceFlow id="flow6" name="" isImmediate="true" sourceRef="CreateMaterial" targetRef="endevent2"/>
     <userTask id="Requester" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" name="Requester" implementation="webService">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
@@ -239,7 +223,7 @@
       </extensionElements>
       <incoming>cancel</incoming>
     </endEvent>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" gatewayDirection="Diverging" default="repeat">
+    <exclusiveGateway id="exclusivegateway1" name="Repeat request?" gatewayDirection="Diverging" default="repeat">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
       </extensionElements>
@@ -266,6 +250,22 @@
       <outgoing>flow30</outgoing>
     </startEvent>
     <sequenceFlow id="flow30" name="" isImmediate="true" sourceRef="startevent1" targetRef="subprocess1"/>
+    <serviceTask id="CreateMaterial" activiti:async="true" activiti:class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionDelegate" name="Create Material in ERP" implementation="webService">
+      <extensionElements>
+        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+        <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
+        <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
+        <activiti:field name="action">
+          <activiti:string>CreateMaterial</activiti:string>
+        </activiti:field>
+        <activiti:field name="mode">
+          <activiti:string>EDIT</activiti:string>
+        </activiti:field>
+      </extensionElements>
+      <incoming>sid-A3C2B724-D639-46DF-AE66-20B3103E3F21</incoming>
+      <outgoing>flow6</outgoing>
+    </serviceTask>
+    <sequenceFlow id="flow6" name="" isImmediate="true" sourceRef="CreateMaterial" targetRef="endevent2"/>
   </process>
   <bpmndi:BPMNDiagram id="sid-55f04070-8a2d-4f54-98a4-8a8546846624">
     <bpmndi:BPMNPlane id="sid-543c1d7a-a616-451c-ab85-a55aec653b3e" bpmnElement="sid-6d7ff4ae-f63b-4579-b964-a744494ebc23">
@@ -314,7 +314,7 @@
       <bpmndi:BPMNShape id="exclusivegateway1_gui" bpmnElement="exclusivegateway1" isMarkerVisible="true">
         <omgdc:Bounds height="40.0" width="40.0" x="564.0" y="94.0"/>
         <bpmndi:BPMNLabel labelStyle="sid-8b89ac16-2898-43bb-9629-39318a7117f5">
-          <omgdc:Bounds height="22.0" width="116.0" x="592.0" y="376.0"/>
+          <omgdc:Bounds height="22.0" width="101.0" x="535.0" y="74.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="subprocess1_gui" bpmnElement="subprocess1" isExpanded="true">
@@ -571,10 +571,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="StorageMgmt_gui" targetElement="_BPMNShape_ParallelGateway_2">
         <omgdi:waypoint xsi:type="omgdc:Point" x="717.0" y="568.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="776.0" y="569.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="776.0" y="568.0"/>
         <omgdi:waypoint xsi:type="omgdc:Point" x="776.0" y="422.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="773.0" y="556.0"/>
+          <omgdc:Bounds height="6.0" width="6.0" x="773.0" y="555.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="DeclineHeaderMgmt_gui" targetElement="errorendevent1_gui">
