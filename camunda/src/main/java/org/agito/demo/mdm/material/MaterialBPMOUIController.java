@@ -23,6 +23,7 @@ import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
 import de.agito.cps.ui.vaadin.bpmo.annotation.StyleController;
 import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowBlockHeader.CaptionStyle;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
@@ -62,7 +63,8 @@ public class MaterialBPMOUIController
 				.createAndAddBlockHeader()
 				.setTitle(
 						bpmoAccess.getMaterialNumber().getValue() == null ? "Material" : "Material ".concat(bpmoAccess
-								.getMaterialNumber().getValue())).setColspan(Colspan.DIMENSION_FULL);
+								.getMaterialNumber().getValue())).setCationStyle(CaptionStyle.H1)
+				.setColspan(Colspan.DIMENSION_FULL);
 
 		layoutManager.createAndAddElements(MaterialBPMO.MaterialNumber, MaterialBPMO.Name, MaterialBPMO.MaterialType);
 
@@ -123,7 +125,7 @@ public class MaterialBPMOUIController
 		layoutManager.setMaxCols(MaxColums.COL3);
 
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setColspan(Colspan.DIMENSION_FULL);
+				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
 
 		layoutManager.addRemainingElements(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
 				MaterialBPMO.Plants.FixedLotSize);
@@ -161,7 +163,7 @@ public class MaterialBPMOUIController
 		layoutManager.setMaxCols(MaxColums.COL3);
 
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setColspan(Colspan.DIMENSION_FULL);
+				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
 
 		// @@end
 	}
@@ -189,7 +191,7 @@ public class MaterialBPMOUIController
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
 		layoutManager.setMaxCols(MaxColums.COL3);
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setColspan(Colspan.DIMENSION_FULL);
+				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
 		// @@end
 	}
 
