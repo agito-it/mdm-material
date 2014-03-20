@@ -47,7 +47,7 @@ public class FindMaterialDialog extends Window {
 	public void init(final MaterialBPMOAccess bpmoAccess, final Button.ClickListener clickListener) {
 		setCaption("Find Material");
 		setModal(true);
-		setWidth(41, Unit.EM);
+		setWidth(530, Unit.PIXELS);
 		setResizable(false);
 		setCloseShortcut(KeyCode.ESCAPE);
 
