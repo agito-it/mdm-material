@@ -1,680 +1,492 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="sid-ad85d01d-96e0-4f08-bf87-1302fb3616de" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="7.8.0" targetNamespace="http://www.activiti.org/test">
-  <error id="NotApproved" errorCode="NotApproved" name="NotApproved"/>
-  <signal id="Decline" name="Decline"/>
-  <collaboration id="sid-7882f1d2-6d1e-40b7-b7e3-510cca832b49">
-    <extensionElements>
-      <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="8d96ea27467c4600a9a4e10f7db618c4"/>
-    </extensionElements>
-    <participant id="MaterialUpdateProcess" name="Material Update Process" processRef="MDM_Material_Update">
-      <extensionElements/>
-    </participant>
-  </collaboration>
-  <process id="MDM_Material_Update" name="Material Update Process" isExecutable="true">
-    <extensionElements/>
-    <laneSet id="sid-936ecc8c-fe1c-4e66-a4d5-e6c8a6895a3f">
-      <lane id="RequesterLane" name="Requester">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue=""/>
-        </extensionElements>
-        <flowNodeRef>startevent1</flowNodeRef>
-        <flowNodeRef>Requester</flowNodeRef>
-        <flowNodeRef>endevent1</flowNodeRef>
-        <flowNodeRef>exclusivegateway1</flowNodeRef>
-      </lane>
-      <lane id="ApproverLane" name="Approver">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue=""/>
-        </extensionElements>
-        <flowNodeRef>subprocess1</flowNodeRef>
-        <flowNodeRef>boundaryerror1</flowNodeRef>
-      </lane>
-      <lane id="TechnicalSystemsLane" name="Technical Systems">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue=""/>
-        </extensionElements>
-        <flowNodeRef>UpdateMaterial</flowNodeRef>
-        <flowNodeRef>endevent2</flowNodeRef>
-      </lane>
-    </laneSet>
-    <startEvent id="startevent1" name="Start">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-        <signavio:signavioMetaData metaKey="preceedingprocesses" metaValue=""/>
-      </extensionElements>
-      <outgoing>flow30</outgoing>
-    </startEvent>
-    <userTask id="Requester" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" name="Requester" implementation="webService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-      </extensionElements>
-      <incoming>flow42</incoming>
-      <outgoing>flow43</outgoing>
-    </userTask>
-    <endEvent id="endevent1" name="End">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-        <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-      </extensionElements>
-      <incoming>cancel</incoming>
-    </endEvent>
-    <subProcess id="subprocess1" name="Approve changes">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-        <activiti:executionListener class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionListener" event="start">
-          <activiti:field name="action">
-            <activiti:string>EvaluateApproveActivities</activiti:string>
-          </activiti:field>
-          <activiti:field name="variable">
-            <activiti:string>requiredActivities</activiti:string>
-          </activiti:field>
-        </activiti:executionListener>
-      </extensionElements>
-      <incoming>flow30</incoming>
-      <incoming>sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6</incoming>
-      <outgoing>flow29</outgoing>
-      <endEvent id="errorendevent4" name="">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>flow39</incoming>
-        <errorEventDefinition errorRef="NotApproved"/>
-      </endEvent>
-      <userTask id="DistributionMgmt" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" name="Distribution Management" implementation="webService">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-          <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-          <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        </extensionElements>
-        <incoming>DistributionMgmtFlow</incoming>
-        <outgoing>flow35</outgoing>
-      </userTask>
-      <boundaryEvent id="DeclineDistributionMgmt" name="declined" attachedToRef="DistributionMgmt">
-        <outgoing>flow39</outgoing>
-        <signalEventDefinition signalRef="Decline"/>
-      </boundaryEvent>
-      <sequenceFlow id="flow35" name="appoved" isImmediate="true" sourceRef="DistributionMgmt" targetRef="inclusivegateway2">
-        <extensionElements>
-          <signavio:signavioLabel align="left" distance="7.825013" from="0" orientation="ll" ref="text_name" to="1" valign="bottom" x="618.7635533771125" y="314.26667426338923"/>
-        </extensionElements>
-      </sequenceFlow>
-      <sequenceFlow id="flow39" name="" isImmediate="true" sourceRef="DeclineDistributionMgmt" targetRef="errorendevent4">
-        <extensionElements>
-          <signavio:signavioLabel align="right" distance="8.250549" from="0" orientation="lr" ref="text_name" to="1" valign="bottom" x="545.2194496656728" y="274.0177522019688"/>
-        </extensionElements>
-      </sequenceFlow>
-      <boundaryEvent id="DeclinePantMgmt" name="declined" attachedToRef="PlantMgmt">
-        <outgoing>sid-4BFF493A-039D-4B70-B1E4-9CF44611AEA1</outgoing>
-        <signalEventDefinition signalRef="Decline"/>
-      </boundaryEvent>
-      <sequenceFlow id="sid-4BFF493A-039D-4B70-B1E4-9CF44611AEA1" name="" sourceRef="DeclinePantMgmt" targetRef="errorendevent2"/>
-      <userTask id="PlantMgmt" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" name="Plant Management" implementation="webService">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-          <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-          <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        </extensionElements>
-        <incoming>PlantMgmtFlow</incoming>
-        <outgoing>flow32</outgoing>
-      </userTask>
-      <sequenceFlow id="flow32" name="appoved" isImmediate="true" sourceRef="PlantMgmt" targetRef="inclusivegateway2">
-        <extensionElements>
-          <signavio:signavioLabel align="left" distance="7.815625" from="0" orientation="ll" ref="text_name" to="1" valign="bottom" x="629.0" y="549.55"/>
-        </extensionElements>
-      </sequenceFlow>
-      <endEvent id="errorendevent2" name="">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>sid-4BFF493A-039D-4B70-B1E4-9CF44611AEA1</incoming>
-        <errorEventDefinition errorRef="NotApproved"/>
-      </endEvent>
-      <boundaryEvent id="DeclineHeaderMgmt" name="declined" attachedToRef="HeaderMgmt">
-        <outgoing>flow36</outgoing>
-        <signalEventDefinition signalRef="Decline"/>
-      </boundaryEvent>
-      <sequenceFlow id="flow36" name="" isImmediate="true" sourceRef="DeclineHeaderMgmt" targetRef="errorendevent1">
-        <extensionElements>
-          <signavio:signavioLabel align="center" ref="text_name" valign="middle" x="7945.329462705903" y="-45165.9078641747"/>
-        </extensionElements>
-      </sequenceFlow>
-      <userTask id="HeaderMgmt" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" activiti:exclusive="false" name="Header Management" implementation="webService">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-          <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-          <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        </extensionElements>
-        <incoming>HeaderMgmtFlow</incoming>
-        <outgoing>flow31</outgoing>
-      </userTask>
-      <sequenceFlow id="flow31" name="appoved" isImmediate="true" sourceRef="HeaderMgmt" targetRef="inclusivegateway2">
-        <extensionElements>
-          <signavio:signavioLabel align="left" distance="-1.2939444" from="0" orientation="ul" ref="text_name" to="1" valign="top" x="627.6697618860841" y="446.4520315439474"/>
-        </extensionElements>
-      </sequenceFlow>
-      <endEvent id="errorendevent1" name="">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>flow36</incoming>
-        <errorEventDefinition errorRef="NotApproved"/>
-      </endEvent>
-      <boundaryEvent id="DeclineStorageMgmt" name="declined" attachedToRef="StorageMgmt">
-        <outgoing>flow38</outgoing>
-        <signalEventDefinition signalRef="Decline"/>
-      </boundaryEvent>
-      <sequenceFlow id="flow38" name="" isImmediate="true" sourceRef="DeclineStorageMgmt" targetRef="errorendevent3">
-        <extensionElements>
-          <signavio:signavioLabel align="left" distance="-6.8358164" from="0" orientation="ul" ref="text_name" to="1" valign="top" x="550.3571166708508" y="357.4521498342912"/>
-        </extensionElements>
-      </sequenceFlow>
-      <userTask id="StorageMgmt" activiti:candidateGroups="roleAnyone" activiti:candidateUsers="${$cpsInitiator}" name="Storage Management" implementation="webService">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-          <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-          <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        </extensionElements>
-        <incoming>StorageMgmtFlow</incoming>
-        <outgoing>flow33</outgoing>
-      </userTask>
-      <sequenceFlow id="flow33" name="appoved" isImmediate="true" sourceRef="StorageMgmt" targetRef="inclusivegateway2">
-        <extensionElements>
-          <signavio:signavioLabel align="left" distance="7.607277" from="0" orientation="ll" ref="text_name" to="1" valign="bottom" x="625.9341496884496" y="405.26661409758316"/>
-        </extensionElements>
-      </sequenceFlow>
-      <inclusiveGateway id="inclusivegateway1" name="Apporval required?" gatewayDirection="Diverging" default="ErrorFlow">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioLabel align="center" ref="text_name" valign="middle" x="4.0" y="63.0"/>
-        </extensionElements>
-        <incoming>flow7</incoming>
-        <outgoing>ErrorFlow</outgoing>
-        <outgoing>StorageMgmtFlow</outgoing>
-        <outgoing>DistributionMgmtFlow</outgoing>
-        <outgoing>PlantMgmtFlow</outgoing>
-        <outgoing>HeaderMgmtFlow</outgoing>
-      </inclusiveGateway>
-      <sequenceFlow id="ErrorFlow" name="unchanged" isImmediate="true" sourceRef="inclusivegateway1" targetRef="errorendevent5">
-        <extensionElements>
-          <signavio:signavioLabel align="right" distance="9.428572" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="266.42857142857156" y="351.02595764062545"/>
-        </extensionElements>
-      </sequenceFlow>
-      <sequenceFlow id="StorageMgmtFlow" name="required" isImmediate="true" sourceRef="inclusivegateway1" targetRef="StorageMgmt">
-        <extensionElements>
-          <signavio:signavioLabel align="center" distance="10.605399" from="0" ref="text_name" to="1" valign="middle" x="367.3600261259087" y="402.67470978207143"/>
-        </extensionElements>
-        <conditionExpression xsi:type="tFormalExpression" id="sid-33405477-194c-4bef-8035-6764efb6b7c4"><![CDATA[${requiredActivities.contains("StorageMgmt")}]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow id="DistributionMgmtFlow" name="required" isImmediate="true" sourceRef="inclusivegateway1" targetRef="DistributionMgmt">
-        <extensionElements>
-          <signavio:signavioLabel align="center" distance="19.386736" from="0" ref="text_name" to="1" valign="middle" x="365.95014021767724" y="355.50265710571523"/>
-        </extensionElements>
-        <conditionExpression xsi:type="tFormalExpression" id="sid-568e461b-2fae-4959-9278-897bcab68bc4"><![CDATA[${requiredActivities.contains("DistributionMgmt")}]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow id="PlantMgmtFlow" name="required" isImmediate="true" sourceRef="inclusivegateway1" targetRef="PlantMgmt">
-        <extensionElements>
-          <signavio:signavioLabel align="right" distance="-0.5191943" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="375.32292721307135" y="506.29657769175833"/>
-        </extensionElements>
-        <conditionExpression xsi:type="tFormalExpression" id="sid-7f05fda7-e657-4527-8afd-305180aac62a"><![CDATA[${requiredActivities.contains("PlantMgmt")}]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow id="HeaderMgmtFlow" name="required" isImmediate="true" sourceRef="inclusivegateway1" targetRef="HeaderMgmt">
-        <extensionElements>
-          <signavio:signavioLabel align="right" distance="-1.9625525" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="386.59219865308165" y="457.8320522057476"/>
-        </extensionElements>
-        <conditionExpression xsi:type="tFormalExpression" id="sid-4328fcce-8a2b-4c7b-a86d-6c8db6d6d98b"><![CDATA[${requiredActivities.contains("HeaderMgmt")}]]></conditionExpression>
-      </sequenceFlow>
-      <startEvent id="startevent2" name="Start">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="preceedingprocesses" metaValue=""/>
-        </extensionElements>
-        <outgoing>flow7</outgoing>
-      </startEvent>
-      <sequenceFlow id="flow7" name="" isImmediate="true" sourceRef="startevent2" targetRef="inclusivegateway1"/>
-      <inclusiveGateway id="inclusivegateway2" name="" gatewayDirection="Converging">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-        </extensionElements>
-        <incoming>flow33</incoming>
-        <incoming>flow35</incoming>
-        <incoming>flow31</incoming>
-        <incoming>flow32</incoming>
-        <outgoing>flow24</outgoing>
-      </inclusiveGateway>
-      <sequenceFlow id="flow24" name="" isImmediate="true" sourceRef="inclusivegateway2" targetRef="endevent3"/>
-      <endEvent id="endevent3" name="End">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>flow24</incoming>
-      </endEvent>
-      <endEvent id="errorendevent3" name="">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>flow38</incoming>
-        <errorEventDefinition errorRef="NotApproved"/>
-      </endEvent>
-      <endEvent id="errorendevent5" name="">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-          <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-        </extensionElements>
-        <incoming>ErrorFlow</incoming>
-        <errorEventDefinition errorRef="NotApproved"/>
-      </endEvent>
-    </subProcess>
-    <boundaryEvent id="boundaryerror1" name="Decline catch" attachedToRef="subprocess1">
-      <outgoing>flow42</outgoing>
-      <errorEventDefinition errorRef="NotApproved"/>
-    </boundaryEvent>
-    <serviceTask id="UpdateMaterial" activiti:async="true" activiti:class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionDelegate" name="Update Material in ERP" implementation="webService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue=""/>
-        <activiti:field name="action">
-          <activiti:string>UpdateMaterial</activiti:string>
-        </activiti:field>
-      </extensionElements>
-      <incoming>flow29</incoming>
-      <outgoing>sid-3424BB02-B88E-4199-ABE8-911DD9D23F48</outgoing>
-    </serviceTask>
-    <endEvent id="endevent2" name="End">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-        <signavio:signavioMetaData metaKey="followingprocesses" metaValue=""/>
-      </extensionElements>
-      <incoming>sid-3424BB02-B88E-4199-ABE8-911DD9D23F48</incoming>
-    </endEvent>
-    <sequenceFlow id="flow43" name="" isImmediate="true" sourceRef="Requester" targetRef="exclusivegateway1"/>
-    <sequenceFlow id="flow30" name="" isImmediate="true" sourceRef="startevent1" targetRef="subprocess1"/>
-    <sequenceFlow id="flow29" name="" isImmediate="true" sourceRef="subprocess1" targetRef="UpdateMaterial"/>
-    <sequenceFlow id="sid-3424BB02-B88E-4199-ABE8-911DD9D23F48" name="" sourceRef="UpdateMaterial" targetRef="endevent2"/>
-    <sequenceFlow id="flow42" name="" isImmediate="true" sourceRef="boundaryerror1" targetRef="Requester"/>
-    <exclusiveGateway id="exclusivegateway1" name="Repeat request?" gatewayDirection="Diverging" default="sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff"/>
-      </extensionElements>
-      <incoming>flow43</incoming>
-      <outgoing>cancel</outgoing>
-      <outgoing>sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6</outgoing>
-    </exclusiveGateway>
-    <sequenceFlow id="cancel" name="cancel" isImmediate="true" sourceRef="exclusivegateway1" targetRef="endevent1">
-      <extensionElements>
-        <signavio:signavioLabel align="left" distance="8.065625" from="0" orientation="ll" ref="text_name" to="1" valign="bottom" x="694.0" y="119.80000000000007"/>
-      </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression" id="sid-c35397c9-c202-48f0-b4c7-b8cdc52b2d99"><![CDATA[${$cpsChoiceIdRequester.equals("Cancel")}]]></conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6" name="repeat" sourceRef="exclusivegateway1" targetRef="subprocess1">
-      <extensionElements>
-        <signavio:signavioLabel align="right" distance="-9.5" from="0" orientation="ur" ref="text_name" to="1" valign="bottom" x="620.1216875212606" y="160.42668780157206"/>
-      </extensionElements>
-    </sequenceFlow>
-  </process>
-  <bpmndi:BPMNDiagram id="sid-56321d83-1947-4498-9876-ab4004209e5f">
-    <bpmndi:BPMNPlane id="sid-d84db511-fa3d-4d25-ad44-13f8fec3ef8a" bpmnElement="sid-7882f1d2-6d1e-40b7-b7e3-510cca832b49">
-      <bpmndi:BPMNShape id="MaterialUpdateProcess_gui" bpmnElement="MaterialUpdateProcess" isHorizontal="true">
-        <omgdc:Bounds height="759.0" width="917.0" x="12.0" y="0.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="900.0" width="12.0" x="900.0" y="900.0"/>
-        </bpmndi:BPMNLabel>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://activiti.org/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_qOSfgLWFEeO0FMRJWbMxBA" targetNamespace="http://activiti.org/bpmn">
+  <bpmn2:collaboration id="_Collaboration_4">
+    <bpmn2:participant id="MaterialUpdateProcess" name="Material Update Process" processRef="MDM_Material_Update"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="MDM_Material_Update" name="MDM Material Update Process" isExecutable="true">
+    <bpmn2:laneSet id="LaneSet_1" name="Lane Set 1">
+      <bpmn2:lane id="RequesterLane" name="Requester">
+        <bpmn2:flowNodeRef>MaterialUpdateProcessStartEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>RepeatRequestExclusiveGateway</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>MaterialUpdateProcessCancelEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Requester</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="ApproverLane" name="Approver">
+        <bpmn2:flowNodeRef>ApproveChangesSubProcess</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>DeclineCatchBoundaryEvent</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="TechnicalSystemsLane" name="Technical Systems">
+        <bpmn2:flowNodeRef>UpdateMaterial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>MaterialUpdateProcessCompleteEndEvent</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="MaterialUpdateProcessStartEvent">
+      <bpmn2:outgoing>StartApproveChangesSubProcessSequenceFlow</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="StartApproveChangesSubProcessSequenceFlow" name="" sourceRef="MaterialUpdateProcessStartEvent" targetRef="ApproveChangesSubProcess"/>
+    <bpmn2:serviceTask id="UpdateMaterial" camunda:class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionDelegate" camunda:async="true" name="Update Material in ERP">
+      <bpmn2:extensionElements>
+        <camunda:field name="action">
+          <camunda:string>UpdateMaterial</camunda:string>
+        </camunda:field>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>UpdateMaterialFlow</bpmn2:incoming>
+      <bpmn2:outgoing>MaterialUpdateProcessCompleteSequenceFlow</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="MaterialUpdateProcessCompleteSequenceFlow" name="" sourceRef="UpdateMaterial" targetRef="MaterialUpdateProcessCompleteEndEvent"/>
+    <bpmn2:subProcess id="ApproveChangesSubProcess" name="Approve Changes">
+      <bpmn2:extensionElements>
+        <camunda:executionListener class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionListener" event="start">
+          <camunda:field name="action">
+            <camunda:string>EvaluateApproveActivities</camunda:string>
+          </camunda:field>
+          <camunda:field name="variable">
+            <camunda:string>requiredActivities</camunda:string>
+          </camunda:field>
+        </camunda:executionListener>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>StartApproveChangesSubProcessSequenceFlow</bpmn2:incoming>
+      <bpmn2:incoming>RepeatSequenceFlow</bpmn2:incoming>
+      <bpmn2:outgoing>UpdateMaterialFlow</bpmn2:outgoing>
+      <bpmn2:endEvent id="EndEvent_1">
+        <bpmn2:incoming>UnchangedFlow</bpmn2:incoming>
+        <bpmn2:errorEventDefinition id="ErrorEventDefinition_1" errorRef="Error_1"/>
+      </bpmn2:endEvent>
+      <bpmn2:boundaryEvent id="DistributionMgmtBoundaryEvent" name="declined" attachedToRef="DistributionMgmt">
+        <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
+        <bpmn2:signalEventDefinition id="SignalEventDefinition_4" signalRef="Signal_1"/>
+      </bpmn2:boundaryEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_9" name="" sourceRef="DistributionMgmtBoundaryEvent" targetRef="DistributionMgmtEndEvent"/>
+      <bpmn2:userTask id="DistributionMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Distribution Management">
+        <bpmn2:incoming>DistributionMgmtFlow</bpmn2:incoming>
+        <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="SequenceFlow_13" name="" sourceRef="DistributionMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+      <bpmn2:endEvent id="DistributionMgmtEndEvent">
+        <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
+        <bpmn2:errorEventDefinition id="ErrorEventDefinition_5" errorRef="Error_1"/>
+      </bpmn2:endEvent>
+      <bpmn2:inclusiveGateway id="ApprovalRequiredInclusiveGateway" name="Approval required?" default="UnchangedFlow">
+        <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+        <bpmn2:outgoing>UnchangedFlow</bpmn2:outgoing>
+        <bpmn2:outgoing>DistributionMgmtFlow</bpmn2:outgoing>
+        <bpmn2:outgoing>StorageMgmtFlow</bpmn2:outgoing>
+        <bpmn2:outgoing>HeaderMgmtFlow</bpmn2:outgoing>
+        <bpmn2:outgoing>PlantMgmtFlow</bpmn2:outgoing>
+      </bpmn2:inclusiveGateway>
+      <bpmn2:sequenceFlow id="UnchangedFlow" name="unchanged" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="EndEvent_1"/>
+      <bpmn2:sequenceFlow id="DistributionMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="DistributionMgmt">
+        <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("DistributionMgmt")}]]></bpmn2:conditionExpression>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="StorageMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="StorageMgmt">
+        <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("StorageMgmt")}]]></bpmn2:conditionExpression>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="HeaderMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="HeaderMgmt">
+        <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("HeaderMgmt")}]]></bpmn2:conditionExpression>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="PlantMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="PlantMgmt">
+        <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("PlantMgmt")}]]></bpmn2:conditionExpression>
+      </bpmn2:sequenceFlow>
+      <bpmn2:userTask id="StorageMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Storage Management">
+        <bpmn2:incoming>StorageMgmtFlow</bpmn2:incoming>
+        <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="SequenceFlow_14" name="" sourceRef="StorageMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+      <bpmn2:boundaryEvent id="StorageMgmtBoundaryEvent" name="declined" attachedToRef="StorageMgmt">
+        <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+        <bpmn2:signalEventDefinition id="SignalEventDefinition_3" signalRef="Signal_1"/>
+      </bpmn2:boundaryEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_10" name="" sourceRef="StorageMgmtBoundaryEvent" targetRef="StorageMgmtEndEvent"/>
+      <bpmn2:endEvent id="StorageMgmtEndEvent">
+        <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+        <bpmn2:errorEventDefinition id="ErrorEventDefinition_4" errorRef="Error_1"/>
+      </bpmn2:endEvent>
+      <bpmn2:inclusiveGateway id="ApprovalRequiredInclusiveGatewayMerge">
+        <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+        <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
+        <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
+        <bpmn2:incoming>SequenceFlow_16</bpmn2:incoming>
+        <bpmn2:outgoing>ApproveChangesEndSequenceFlow</bpmn2:outgoing>
+      </bpmn2:inclusiveGateway>
+      <bpmn2:sequenceFlow id="ApproveChangesEndSequenceFlow" name="" sourceRef="ApprovalRequiredInclusiveGatewayMerge" targetRef="ApproveChangesEndEvent"/>
+      <bpmn2:userTask id="HeaderMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Header Management">
+        <bpmn2:incoming>HeaderMgmtFlow</bpmn2:incoming>
+        <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="SequenceFlow_15" name="" sourceRef="HeaderMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+      <bpmn2:boundaryEvent id="HeaderMgmtBoundaryEvent" name="declined" attachedToRef="HeaderMgmt">
+        <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
+        <bpmn2:signalEventDefinition id="SignalEventDefinition_2" signalRef="Signal_1"/>
+      </bpmn2:boundaryEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_11" name="" sourceRef="HeaderMgmtBoundaryEvent" targetRef="HeaderMgmtEndEvent"/>
+      <bpmn2:endEvent id="HeaderMgmtEndEvent">
+        <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
+        <bpmn2:errorEventDefinition id="ErrorEventDefinition_3" errorRef="Error_1"/>
+      </bpmn2:endEvent>
+      <bpmn2:userTask id="PlantMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Plant Management">
+        <bpmn2:incoming>PlantMgmtFlow</bpmn2:incoming>
+        <bpmn2:outgoing>SequenceFlow_16</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="SequenceFlow_16" name="" sourceRef="PlantMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+      <bpmn2:boundaryEvent id="PlantMgmtBoundaryEvent" name="declined" attachedToRef="PlantMgmt">
+        <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
+        <bpmn2:signalEventDefinition id="SignalEventDefinition_1" signalRef="Signal_1"/>
+      </bpmn2:boundaryEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_12" name="" sourceRef="PlantMgmtBoundaryEvent" targetRef="PlantMgmtEndEvent"/>
+      <bpmn2:endEvent id="PlantMgmtEndEvent">
+        <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
+        <bpmn2:errorEventDefinition id="ErrorEventDefinition_2" errorRef="Error_1"/>
+      </bpmn2:endEvent>
+      <bpmn2:startEvent id="ApproveChangesStartEvent">
+        <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="ApproveChangesStartEvent" targetRef="ApprovalRequiredInclusiveGateway"/>
+      <bpmn2:endEvent id="ApproveChangesEndEvent">
+        <bpmn2:incoming>ApproveChangesEndSequenceFlow</bpmn2:incoming>
+      </bpmn2:endEvent>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="UpdateMaterialFlow" name="" sourceRef="ApproveChangesSubProcess" targetRef="UpdateMaterial"/>
+    <bpmn2:exclusiveGateway id="RepeatRequestExclusiveGateway" name="Repeat request?" default="RepeatSequenceFlow">
+      <bpmn2:incoming>RepeatRequestGatewaySequenceFlow</bpmn2:incoming>
+      <bpmn2:outgoing>CancelSequenceFlow</bpmn2:outgoing>
+      <bpmn2:outgoing>RepeatSequenceFlow</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="CancelSequenceFlow" name="cancel" sourceRef="RepeatRequestExclusiveGateway" targetRef="MaterialUpdateProcessCancelEndEvent">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${$cpsChoiceIdRequester.equals("Cancel")}]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="MaterialUpdateProcessCancelEndEvent">
+      <bpmn2:incoming>CancelSequenceFlow</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="RepeatSequenceFlow" name="repeat" sourceRef="RepeatRequestExclusiveGateway" targetRef="ApproveChangesSubProcess"/>
+    <bpmn2:userTask id="Requester" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Requester">
+      <bpmn2:incoming>RequesterSequenceFlow</bpmn2:incoming>
+      <bpmn2:outgoing>RepeatRequestGatewaySequenceFlow</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="RepeatRequestGatewaySequenceFlow" name="" sourceRef="Requester" targetRef="RepeatRequestExclusiveGateway"/>
+    <bpmn2:boundaryEvent id="DeclineCatchBoundaryEvent" name="" attachedToRef="ApproveChangesSubProcess">
+      <bpmn2:outgoing>RequesterSequenceFlow</bpmn2:outgoing>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_6"/>
+    </bpmn2:boundaryEvent>
+    <bpmn2:sequenceFlow id="RequesterSequenceFlow" name="" sourceRef="DeclineCatchBoundaryEvent" targetRef="Requester"/>
+    <bpmn2:endEvent id="MaterialUpdateProcessCompleteEndEvent">
+      <bpmn2:incoming>MaterialUpdateProcessCompleteSequenceFlow</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmn2:error id="Error_1" errorCode="NotApproved" name="NotApproved"/>
+  <bpmn2:signal id="Signal_1" name="Decline"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="_Collaboration_4">
+      <bpmndi:BPMNShape id="_BPMNShape_Participant_4" bpmnElement="MaterialUpdateProcess" isHorizontal="true">
+        <dc:Bounds height="1025.0" width="831.0" x="0.0" y="0.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="RequesterLane_gui" bpmnElement="RequesterLane" isHorizontal="true">
-        <omgdc:Bounds height="139.0" width="887.0" x="42.0" y="0.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="900.0" width="12.0" x="56.0" y="900.0"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="_BPMNShape_Lane_13" bpmnElement="RequesterLane" isHorizontal="true">
+        <dc:Bounds height="215.0" width="801.0" x="30.0" y="0.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ApproverLane_gui" bpmnElement="ApproverLane" isHorizontal="true">
-        <omgdc:Bounds height="479.0" width="887.0" x="42.0" y="139.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="900.0" width="12.0" x="56.0" y="900.0"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="_BPMNShape_Lane_14" bpmnElement="ApproverLane" isHorizontal="true">
+        <dc:Bounds height="643.0" width="801.0" x="30.0" y="214.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TechnicalSystemsLane_gui" bpmnElement="TechnicalSystemsLane" isHorizontal="true">
-        <omgdc:Bounds height="139.0" width="887.0" x="42.0" y="619.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="900.0" width="12.0" x="56.0" y="900.0"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="_BPMNShape_Lane_15" bpmnElement="TechnicalSystemsLane" isHorizontal="true">
+        <dc:Bounds height="169.0" width="801.0" x="30.0" y="856.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="startevent1_gui" bpmnElement="startevent1">
-        <omgdc:Bounds height="30.0" width="30.0" x="66.0" y="37.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="34.0" x="64.0" y="17.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Requester_gui" bpmnElement="Requester">
-        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="51.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="12.0" width="900.0" x="900.0" y="415.3"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="endevent1_gui" bpmnElement="endevent1">
-        <omgdc:Bounds height="28.0" width="28.0" x="807.0" y="65.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="29.0" x="807.0" y="98.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="exclusivegateway1_gui" bpmnElement="exclusivegateway1" isMarkerVisible="true">
-        <omgdc:Bounds height="40.0" width="40.0" x="600.0" y="58.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="101.0" x="571.0" y="41.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="subprocess1_gui" bpmnElement="subprocess1" isExpanded="true">
-        <omgdc:Bounds height="406.0" width="724.0" x="131.0" y="188.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="12.0" width="900.0" x="900.0" y="541.8"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="startevent2_gui" bpmnElement="startevent2">
-        <omgdc:Bounds height="30.0" width="30.0" x="144.0" y="384.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="34.0" x="142.0" y="416.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="inclusivegateway1_gui" bpmnElement="inclusivegateway1">
-        <omgdc:Bounds height="40.0" width="40.0" x="237.0" y="378.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="112.0" x="185.0" y="434.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="errorendevent5_gui" bpmnElement="errorendevent5">
-        <omgdc:Bounds height="28.0" width="28.0" x="244.0" y="262.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_7" bpmnElement="MaterialUpdateProcessStartEvent">
+        <dc:Bounds height="36.0" width="36.0" x="63.0" y="86.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="255.0" y="333.0"/>
+          <dc:Bounds height="0.0" width="0.0" x="81.0" y="172.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="HeaderMgmt_gui" bpmnElement="HeaderMgmt">
-        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="435.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="24.0" width="76.285706" x="900.0" y="761.5"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="_BPMNShape_SubProcess_5" bpmnElement="ApproveChangesSubProcess" isExpanded="true">
+        <dc:Bounds height="577.0" width="673.0" x="122.0" y="256.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="PlantMgmt_gui" bpmnElement="PlantMgmt">
-        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="519.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="24.0" width="900.0" x="900.0" y="839.55"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StorageMgmt_gui" bpmnElement="StorageMgmt">
-        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="324.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="24.0" width="900.0" x="900.0" y="900.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="inclusivegateway2_gui" bpmnElement="inclusivegateway2">
-        <omgdc:Bounds height="40.0" width="40.0" x="696.0" y="378.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="StartApproveChangesSubProcessSequenceFlow" sourceElement="_BPMNShape_StartEvent_7" targetElement="_BPMNShape_SubProcess_5">
+        <di:waypoint xsi:type="dc:Point" x="81.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="80.0" y="544.0"/>
+        <di:waypoint xsi:type="dc:Point" x="122.0" y="544.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="713.0" y="423.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="78.0" y="301.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_8" bpmnElement="ApproveChangesStartEvent">
+        <dc:Bounds height="36.0" width="36.0" x="134.0" y="592.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="152.0" y="633.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="endevent3_gui" bpmnElement="endevent3">
-        <omgdc:Bounds height="28.0" width="28.0" x="792.0" y="385.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="29.0" x="791.0" y="415.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_InclusiveGateway_2" bpmnElement="ApprovalRequiredInclusiveGateway">
+        <dc:Bounds height="50.0" width="50.0" x="230.0" y="584.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="112.0" x="280.0" y="592.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="errorendevent1_gui" bpmnElement="errorendevent1">
-        <omgdc:Bounds height="28.0" width="28.0" x="547.0" y="378.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_BPMNShape_StartEvent_8" targetElement="_BPMNShape_InclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="610.0"/>
+        <di:waypoint xsi:type="dc:Point" x="230.0" y="609.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="558.0" y="411.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="192.0" y="610.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_13" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="158.0" y="352.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="176.0" y="393.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="errorendevent2_gui" bpmnElement="errorendevent2">
-        <omgdc:Bounds height="28.0" width="28.0" x="547.0" y="471.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="UnchangedFlow" sourceElement="_BPMNShape_InclusiveGateway_2" targetElement="_BPMNShape_EndEvent_13">
+        <di:waypoint xsi:type="dc:Point" x="247.0" y="584.0"/>
+        <di:waypoint xsi:type="dc:Point" x="182.0" y="388.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="558.0" y="504.0"/>
+          <dc:Bounds height="22.0" width="69.0" x="145.0" y="472.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_11" bpmnElement="DistributionMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="386.0" y="376.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="DistributionMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_2" targetElement="_BPMNShape_UserTask_11">
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="584.0"/>
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="416.0"/>
+        <di:waypoint xsi:type="dc:Point" x="386.0" y="416.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="290.0" y="393.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_12" bpmnElement="StorageMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="386.0" y="496.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="StorageMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_2" targetElement="_BPMNShape_UserTask_12">
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="584.0"/>
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="535.0"/>
+        <di:waypoint xsi:type="dc:Point" x="386.0" y="536.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="290.0" y="513.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_13" bpmnElement="HeaderMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="381.0" y="612.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="HeaderMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_2" targetElement="_BPMNShape_UserTask_13">
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="634.0"/>
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="652.0"/>
+        <di:waypoint xsi:type="dc:Point" x="381.0" y="652.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="290.0" y="624.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_14" bpmnElement="PlantMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="381.0" y="724.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="PlantMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_2" targetElement="_BPMNShape_UserTask_14">
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="634.0"/>
+        <di:waypoint xsi:type="dc:Point" x="255.0" y="764.0"/>
+        <di:waypoint xsi:type="dc:Point" x="381.0" y="764.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="290.0" y="741.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_9" bpmnElement="DistributionMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="468.0" y="358.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="459.0" y="338.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="errorendevent3_gui" bpmnElement="errorendevent3">
-        <omgdc:Bounds height="28.0" width="28.0" x="564.0" y="289.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_10" bpmnElement="StorageMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="468.0" y="478.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="575.0" y="322.0"/>
+          <dc:Bounds height="22.0" width="54.0" x="459.0" y="458.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="errorendevent4_gui" bpmnElement="errorendevent4">
-        <omgdc:Bounds height="28.0" width="28.0" x="547.0" y="201.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_11" bpmnElement="HeaderMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="463.0" y="594.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="558.0" y="303.0"/>
+          <dc:Bounds height="22.0" width="54.0" x="454.0" y="575.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DistributionMgmt_gui" bpmnElement="DistributionMgmt">
-        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="246.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="24.0" width="900.0" x="900.0" y="900.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_12" bpmnElement="PlantMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="463.0" y="706.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="454.0" y="686.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DeclineDistributionMgmt_gui" bpmnElement="DeclineDistributionMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="505.0" y="231.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="54.0" x="453.0" y="228.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_14" bpmnElement="DistributionMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="530.0" y="358.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="548.0" y="399.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DeclineHeaderMgmt_gui" bpmnElement="DeclineHeaderMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="510.0" y="420.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="54.0" x="461.0" y="417.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_15" bpmnElement="StorageMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="530.0" y="478.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="548.0" y="519.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DeclineStorageMgmt_gui" bpmnElement="DeclineStorageMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="510.0" y="316.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="54.0" x="467.0" y="304.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_16" bpmnElement="HeaderMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="525.0" y="594.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="543.0" y="635.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DeclinePantMgmt_gui" bpmnElement="DeclinePantMgmt">
-        <omgdc:Bounds height="30.0" width="30.0" x="510.0" y="506.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="54.0" x="462.0" y="503.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_17" bpmnElement="PlantMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="518.0" y="706.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="536.0" y="747.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="boundaryerror1_gui" bpmnElement="boundaryerror1">
-        <omgdc:Bounds height="30.0" width="30.0" x="318.0" y="173.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="85.0" x="288.0" y="204.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_9" sourceElement="_BPMNShape_BoundaryEvent_9" targetElement="_BPMNShape_EndEvent_14">
+        <di:waypoint xsi:type="dc:Point" x="504.0" y="376.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="376.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="504.0" y="376.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_10" sourceElement="_BPMNShape_BoundaryEvent_10" targetElement="_BPMNShape_EndEvent_15">
+        <di:waypoint xsi:type="dc:Point" x="504.0" y="496.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="496.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="506.0" y="496.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="SequenceFlow_11" sourceElement="_BPMNShape_BoundaryEvent_11" targetElement="_BPMNShape_EndEvent_16">
+        <di:waypoint xsi:type="dc:Point" x="499.0" y="612.0"/>
+        <di:waypoint xsi:type="dc:Point" x="525.0" y="612.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="499.0" y="612.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="SequenceFlow_12" sourceElement="_BPMNShape_BoundaryEvent_12" targetElement="_BPMNShape_EndEvent_17">
+        <di:waypoint xsi:type="dc:Point" x="499.0" y="724.0"/>
+        <di:waypoint xsi:type="dc:Point" x="518.0" y="724.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="499.0" y="724.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_InclusiveGateway_3" bpmnElement="ApprovalRequiredInclusiveGatewayMerge">
+        <dc:Bounds height="50.0" width="50.0" x="638.0" y="584.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="663.0" y="639.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UpdateMaterial_gui" bpmnElement="UpdateMaterial">
-        <omgdc:Bounds height="55.0" width="105.0" x="631.0" y="657.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-          <omgdc:Bounds height="24.0" width="900.0" x="900.0" y="900.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="SequenceFlow_13" sourceElement="_BPMNShape_UserTask_11" targetElement="_BPMNShape_InclusiveGateway_3">
+        <di:waypoint xsi:type="dc:Point" x="486.0" y="416.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="416.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="584.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="508.0" y="416.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="SequenceFlow_14" sourceElement="_BPMNShape_UserTask_12" targetElement="_BPMNShape_InclusiveGateway_3">
+        <di:waypoint xsi:type="dc:Point" x="486.0" y="536.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="536.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="584.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="596.0" y="536.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="SequenceFlow_15" sourceElement="_BPMNShape_UserTask_13" targetElement="_BPMNShape_InclusiveGateway_3">
+        <di:waypoint xsi:type="dc:Point" x="481.0" y="652.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="652.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="634.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="605.0" y="652.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_16" bpmnElement="SequenceFlow_16" sourceElement="_BPMNShape_UserTask_14" targetElement="_BPMNShape_InclusiveGateway_3">
+        <di:waypoint xsi:type="dc:Point" x="481.0" y="764.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="764.0"/>
+        <di:waypoint xsi:type="dc:Point" x="663.0" y="634.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="660.0" y="733.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_18" bpmnElement="ApproveChangesEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="734.0" y="592.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="752.0" y="633.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="endevent2_gui" bpmnElement="endevent2">
-        <omgdc:Bounds height="28.0" width="28.0" x="827.0" y="671.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="29.0" x="826.0" y="701.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_17" bpmnElement="ApproveChangesEndSequenceFlow" sourceElement="_BPMNShape_InclusiveGateway_3" targetElement="_BPMNShape_EndEvent_18">
+        <di:waypoint xsi:type="dc:Point" x="688.0" y="609.0"/>
+        <di:waypoint xsi:type="dc:Point" x="734.0" y="610.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="710.0" y="610.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_ServiceTask_4" bpmnElement="UpdateMaterial">
+        <dc:Bounds height="80.0" width="100.0" x="533.0" y="926.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_21" bpmnElement="UpdateMaterialFlow" sourceElement="_BPMNShape_SubProcess_5" targetElement="_BPMNShape_ServiceTask_4">
+        <di:waypoint xsi:type="dc:Point" x="458.0" y="832.0"/>
+        <di:waypoint xsi:type="dc:Point" x="458.0" y="885.0"/>
+        <di:waypoint xsi:type="dc:Point" x="583.0" y="885.0"/>
+        <di:waypoint xsi:type="dc:Point" x="583.0" y="926.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="479.0" y="885.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_20" bpmnElement="MaterialUpdateProcessCompleteEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="732.0" y="948.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="750.0" y="989.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="PlantMgmtFlow_gui" bpmnElement="PlantMgmtFlow">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="277.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="546.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="420.0" y="546.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="52.0" x="360.0" y="519.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="cancel_gui" bpmnElement="cancel">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="640.0" y="78.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="807.0" y="79.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="44.0" x="672.0" y="59.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow42_gui" bpmnElement="flow42">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="333.0" y="173.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="333.0" y="79.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="420.0" y="78.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_22" bpmnElement="MaterialUpdateProcessCompleteSequenceFlow" sourceElement="_BPMNShape_ServiceTask_4" targetElement="_BPMNShape_EndEvent_20">
+        <di:waypoint xsi:type="dc:Point" x="633.0" y="966.0"/>
+        <di:waypoint xsi:type="dc:Point" x="732.0" y="966.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="330.0" y="303.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="655.0" y="966.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow43_gui" bpmnElement="flow43">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="524.0" y="78.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="600.0" y="78.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_13" bpmnElement="DeclineCatchBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="206.0" y="238.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="557.0" y="303.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="221.0" y="279.0"/>
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="StorageMgmtFlow_gui" bpmnElement="StorageMgmtFlow">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="277.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="351.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="420.0" y="351.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="52.0" x="360.0" y="324.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="ErrorFlow_gui" bpmnElement="ErrorFlow">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="257.0" y="378.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="258.0" y="290.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="69.0" x="182.0" y="330.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow39_gui" bpmnElement="flow39">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="535.0" y="235.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="547.0" y="226.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_15" bpmnElement="Requester">
+        <dc:Bounds height="80.0" width="100.0" x="170.0" y="77.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_23" bpmnElement="RequesterSequenceFlow" sourceElement="_BPMNShape_BoundaryEvent_13" targetElement="_BPMNShape_UserTask_15">
+        <di:waypoint xsi:type="dc:Point" x="224.0" y="238.0"/>
+        <di:waypoint xsi:type="dc:Point" x="224.0" y="198.0"/>
+        <di:waypoint xsi:type="dc:Point" x="220.0" y="198.0"/>
+        <di:waypoint xsi:type="dc:Point" x="220.0" y="157.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="532.0" y="307.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="217.0" y="191.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow36_gui" bpmnElement="flow36">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="538.0" y="420.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="549.0" y="406.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="6.0" width="6.0" x="546.0" y="407.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow35_gui" bpmnElement="flow35">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="524.0" y="273.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="716.0" y="274.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="716.0" y="378.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="53.0" x="588.0" y="246.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow38_gui" bpmnElement="flow38">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="540.0" y="323.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="564.0" y="310.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_6" bpmnElement="RepeatRequestExclusiveGateway" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="332.0" y="91.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="542.0" y="320.0"/>
+          <dc:Bounds height="22.0" width="101.0" x="308.0" y="71.0"/>
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow31_gui" bpmnElement="flow31">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="524.0" y="462.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="612.0" y="462.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="612.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="696.0" y="398.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="53.0" x="588.0" y="459.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow32_gui" bpmnElement="flow32">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="524.0" y="546.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="716.0" y="546.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="716.0" y="418.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="53.0" x="588.0" y="519.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow33_gui" bpmnElement="flow33">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="524.0" y="351.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="612.0" y="351.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="612.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="696.0" y="398.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="53.0" x="588.0" y="325.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow30_gui" bpmnElement="flow30">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="81.0" y="67.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="81.0" y="392.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="131.0" y="392.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_24" bpmnElement="RepeatRequestGatewaySequenceFlow" sourceElement="_BPMNShape_UserTask_15" targetElement="_BPMNShape_ExclusiveGateway_6">
+        <di:waypoint xsi:type="dc:Point" x="270.0" y="117.0"/>
+        <di:waypoint xsi:type="dc:Point" x="332.0" y="116.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="78.0" y="303.0"/>
+          <dc:Bounds height="6.0" width="6.0" x="292.0" y="173.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow29_gui" bpmnElement="flow29">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="493.0" y="594.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="493.0" y="685.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="631.0" y="684.0"/>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_21" bpmnElement="MaterialUpdateProcessCancelEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="746.0" y="99.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="513.0" y="685.0"/>
+          <dc:Bounds height="0.0" width="0.0" x="764.0" y="172.0"/>
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow24_gui" bpmnElement="flow24">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="736.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="758.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="792.0" y="399.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_25" bpmnElement="CancelSequenceFlow" sourceElement="_BPMNShape_ExclusiveGateway_6" targetElement="_BPMNShape_EndEvent_21">
+        <di:waypoint xsi:type="dc:Point" x="382.0" y="116.0"/>
+        <di:waypoint xsi:type="dc:Point" x="564.0" y="116.0"/>
+        <di:waypoint xsi:type="dc:Point" x="746.0" y="117.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="767.0" y="398.0"/>
+          <dc:Bounds height="22.0" width="44.0" x="519.0" y="97.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DistributionMgmtFlow_gui" bpmnElement="DistributionMgmtFlow">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="277.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="273.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="420.0" y="273.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="52.0" x="360.0" y="246.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="HeaderMgmtFlow_gui" bpmnElement="HeaderMgmtFlow">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="277.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="398.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="349.0" y="462.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="420.0" y="462.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="52.0" x="360.0" y="435.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-4BFF493A-039D-4B70-B1E4-9CF44611AEA1_gui" bpmnElement="sid-4BFF493A-039D-4B70-B1E4-9CF44611AEA1">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="540.0" y="506.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="547.0" y="499.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_26" bpmnElement="RepeatSequenceFlow" sourceElement="_BPMNShape_ExclusiveGateway_6" targetElement="_BPMNShape_SubProcess_5">
+        <di:waypoint xsi:type="dc:Point" x="357.0" y="141.0"/>
+        <di:waypoint xsi:type="dc:Point" x="357.0" y="198.0"/>
+        <di:waypoint xsi:type="dc:Point" x="458.0" y="198.0"/>
+        <di:waypoint xsi:type="dc:Point" x="458.0" y="256.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="541.0" y="503.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6_gui" bpmnElement="sid-67838F2C-63A2-4011-8830-AE2B52B2B9D6">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="620.0" y="98.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="620.0" y="143.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="493.0" y="143.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="493.0" y="188.0"/>
-        <bpmndi:BPMNLabel labelStyle="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-          <omgdc:Bounds height="22.0" width="42.0" x="576.0" y="111.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-3424BB02-B88E-4199-ABE8-911DD9D23F48_gui" bpmnElement="sid-3424BB02-B88E-4199-ABE8-911DD9D23F48">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="735.0" y="684.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="827.0" y="685.0"/>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="778.0" y="685.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="flow7_gui" bpmnElement="flow7">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="174.0" y="399.0"/>
-        <omgdi:waypoint xsi:type="omgdc:Point" x="237.0" y="398.0"/>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="6.0" width="6.0" x="200.0" y="399.0"/>
+          <dc:Bounds height="22.0" width="42.0" x="382.0" y="172.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
-    <bpmndi:BPMNLabelStyle id="sid-1798a77e-388e-4461-bf2d-5a2576cde298">
-      <omgdc:Font name="Arial" size="11.0"/>
-    </bpmndi:BPMNLabelStyle>
-    <bpmndi:BPMNLabelStyle id="sid-d8c604f6-5127-48d9-8bda-8675598981a1">
-      <omgdc:Font name="Arial" size="12.0"/>
-    </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
-</definitions>
+</bpmn2:definitions>
