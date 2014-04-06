@@ -34,7 +34,7 @@ public class MaterialTest {
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialCreate.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -52,7 +52,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -70,7 +70,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialCreate.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -96,7 +96,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -124,7 +124,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialCreate.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -187,7 +187,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialCreate.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -272,7 +272,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -312,7 +312,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -364,7 +364,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test
@@ -419,7 +419,7 @@ public class MaterialTest {
 
 	}
 
-	@Deployment(resources = { "MaterialCreate.bpmn", "MaterialUpdate.bpmn" })
+	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
 	@Test

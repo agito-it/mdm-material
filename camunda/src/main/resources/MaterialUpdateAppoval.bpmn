@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://activiti.org/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_PMF50LvuEeOcMNENcSChuQ" targetNamespace="http://activiti.org/bpmn">
+  <bpmn2:collaboration id="_Collaboration_5">
+    <bpmn2:participant id="MaterialUpdateApprovalProcess" name="Material Update Approval" processRef="MDM_Material_Update_Approval"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="MDM_Material_Update_Approval" name="MaterialUpdateApproval" isExecutable="true">
+    <bpmn2:extensionElements>
+      <camunda:executionListener class="de.agito.cps.process.camunda.listener.ExecuteBPMOActionListener" event="start">
+        <camunda:field name="action">
+          <camunda:string>EvaluateApproveActivities</camunda:string>
+        </camunda:field>
+        <camunda:field name="variable">
+          <camunda:string>requiredActivities</camunda:string>
+        </camunda:field>
+      </camunda:executionListener>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_1" name="Lane Set 1">
+      <bpmn2:lane id="ApproverLane" name="Approver">
+        <bpmn2:flowNodeRef>MaterialUpdateApprovalStartEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ApprovalRequiredInclusiveGateway</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>DistributionMgmt</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>StorageMgmt</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>HeaderMgmt</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>PlantMgmt</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ApprovalRequiredInclusiveGatewayMerge</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>MaterialUpdateApprovalEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>UchangedEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>DistributionMgmtBoundaryEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>StorageMgmtBoundaryEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>HeaderMgmtBoundaryEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>PlantMgmtBoundaryEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>HeaderMgmtEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>PlantMgmtEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>StorageMgmtEndEvent</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>DistributionMgmtEndEvent</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="MaterialUpdateApprovalStartEvent">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:inclusiveGateway id="ApprovalRequiredInclusiveGateway" name="Approval required?" default="UnchangedFlow">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>DistributionMgmtFlow</bpmn2:outgoing>
+      <bpmn2:outgoing>StorageMgmtFlow</bpmn2:outgoing>
+      <bpmn2:outgoing>HeaderMgmtFlow</bpmn2:outgoing>
+      <bpmn2:outgoing>PlantMgmtFlow</bpmn2:outgoing>
+      <bpmn2:outgoing>UnchangedFlow</bpmn2:outgoing>
+    </bpmn2:inclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="MaterialUpdateApprovalStartEvent" targetRef="ApprovalRequiredInclusiveGateway"/>
+    <bpmn2:sequenceFlow id="DistributionMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="DistributionMgmt">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("DistributionMgmt")}]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="DistributionMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Distribution Management">
+      <bpmn2:incoming>DistributionMgmtFlow</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="StorageMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="StorageMgmt">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("StorageMgmt")}]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="StorageMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Storage Management">
+      <bpmn2:incoming>StorageMgmtFlow</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="HeaderMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="HeaderMgmt">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("HeaderMgmt")}]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="PlantMgmtFlow" name="required" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="PlantMgmt">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[${requiredActivities.contains("PlantMgmt")}]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="HeaderMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Header Management">
+      <bpmn2:incoming>HeaderMgmtFlow</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="PlantMgmt" camunda:candidateUsers="${$cpsInitiator}" camunda:candidateGroups="roleAnyone" name="Plant Management">
+      <bpmn2:incoming>PlantMgmtFlow</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="DistributionMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+    <bpmn2:exclusiveGateway id="ApprovalRequiredInclusiveGatewayMerge">
+      <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" name="" sourceRef="StorageMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" name="" sourceRef="HeaderMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_9" name="" sourceRef="PlantMgmt" targetRef="ApprovalRequiredInclusiveGatewayMerge"/>
+    <bpmn2:endEvent id="MaterialUpdateApprovalEndEvent">
+      <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" name="" sourceRef="ApprovalRequiredInclusiveGatewayMerge" targetRef="MaterialUpdateApprovalEndEvent"/>
+    <bpmn2:endEvent id="UchangedEndEvent">
+      <bpmn2:incoming>UnchangedFlow</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_1" errorRef="Error_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="UnchangedFlow" name="Unchanged" sourceRef="ApprovalRequiredInclusiveGateway" targetRef="UchangedEndEvent"/>
+    <bpmn2:boundaryEvent id="DistributionMgmtBoundaryEvent" name="declined" attachedToRef="DistributionMgmt">
+      <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
+      <bpmn2:signalEventDefinition id="SignalEventDefinition_1" signalRef="Signal_1"/>
+    </bpmn2:boundaryEvent>
+    <bpmn2:boundaryEvent id="StorageMgmtBoundaryEvent" name="declined" attachedToRef="StorageMgmt">
+      <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+      <bpmn2:signalEventDefinition id="SignalEventDefinition_2" signalRef="Signal_1"/>
+    </bpmn2:boundaryEvent>
+    <bpmn2:boundaryEvent id="HeaderMgmtBoundaryEvent" name="declined" attachedToRef="HeaderMgmt">
+      <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
+      <bpmn2:signalEventDefinition id="SignalEventDefinition_3" signalRef="Signal_1"/>
+    </bpmn2:boundaryEvent>
+    <bpmn2:boundaryEvent id="PlantMgmtBoundaryEvent" name="declined" attachedToRef="PlantMgmt">
+      <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
+      <bpmn2:signalEventDefinition id="SignalEventDefinition_4" signalRef="Signal_1"/>
+    </bpmn2:boundaryEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_12" name="" sourceRef="DistributionMgmtBoundaryEvent" targetRef="DistributionMgmtEndEvent"/>
+    <bpmn2:endEvent id="HeaderMgmtEndEvent">
+      <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_4" errorRef="Error_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="PlantMgmtEndEvent">
+      <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_5" errorRef="Error_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="StorageMgmtEndEvent">
+      <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_3" errorRef="Error_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_13" name="" sourceRef="StorageMgmtBoundaryEvent" targetRef="StorageMgmtEndEvent"/>
+    <bpmn2:endEvent id="DistributionMgmtEndEvent">
+      <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_2" errorRef="Error_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_14" name="" sourceRef="HeaderMgmtBoundaryEvent" targetRef="HeaderMgmtEndEvent"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_15" name="" sourceRef="PlantMgmtBoundaryEvent" targetRef="PlantMgmtEndEvent"/>
+  </bpmn2:process>
+  <bpmn2:error id="Error_1" errorCode="NotApproved" name="NotApproved"/>
+  <bpmn2:signal id="Signal_1" name="Decline"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="_Collaboration_5">
+      <bpmndi:BPMNShape id="_BPMNShape_Participant_6" bpmnElement="MaterialUpdateApprovalProcess" isHorizontal="true">
+        <dc:Bounds height="540.0" width="633.0" x="4.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_Lane_18" bpmnElement="ApproverLane" isHorizontal="true">
+        <dc:Bounds height="540.0" width="603.0" x="34.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_10" bpmnElement="MaterialUpdateApprovalStartEvent">
+        <dc:Bounds height="36.0" width="36.0" x="65.0" y="269.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="83.0" y="310.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_InclusiveGateway_4" bpmnElement="ApprovalRequiredInclusiveGateway">
+        <dc:Bounds height="50.0" width="50.0" x="151.0" y="262.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="112.0" x="201.0" y="269.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_StartEvent_10" targetElement="_BPMNShape_InclusiveGateway_4">
+        <di:waypoint xsi:type="dc:Point" x="101.0" y="287.0"/>
+        <di:waypoint xsi:type="dc:Point" x="151.0" y="287.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="123.0" y="287.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_17" bpmnElement="DistributionMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="252.0" y="59.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="DistributionMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_4" targetElement="_BPMNShape_UserTask_17">
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="262.0"/>
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="99.0"/>
+        <di:waypoint xsi:type="dc:Point" x="252.0" y="99.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="192.0" y="73.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_18" bpmnElement="StorageMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="252.0" y="167.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="StorageMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_4" targetElement="_BPMNShape_UserTask_18">
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="262.0"/>
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="207.0"/>
+        <di:waypoint xsi:type="dc:Point" x="226.0" y="207.0"/>
+        <di:waypoint xsi:type="dc:Point" x="252.0" y="207.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="192.0" y="180.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_19" bpmnElement="HeaderMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="252.0" y="299.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="HeaderMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_4" targetElement="_BPMNShape_UserTask_19">
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="312.0"/>
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="339.0"/>
+        <di:waypoint xsi:type="dc:Point" x="252.0" y="339.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="192.0" y="312.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_20" bpmnElement="PlantMgmt">
+        <dc:Bounds height="80.0" width="100.0" x="252.0" y="407.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="PlantMgmtFlow" sourceElement="_BPMNShape_InclusiveGateway_4" targetElement="_BPMNShape_UserTask_20">
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="312.0"/>
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="447.0"/>
+        <di:waypoint xsi:type="dc:Point" x="252.0" y="447.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="52.0" x="192.0" y="420.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_7" bpmnElement="ApprovalRequiredInclusiveGatewayMerge" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="468.0" y="246.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="493.0" y="301.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_6" sourceElement="_BPMNShape_UserTask_17" targetElement="_BPMNShape_ExclusiveGateway_7">
+        <di:waypoint xsi:type="dc:Point" x="352.0" y="99.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="99.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="246.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="374.0" y="99.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="_BPMNShape_UserTask_18" targetElement="_BPMNShape_ExclusiveGateway_7">
+        <di:waypoint xsi:type="dc:Point" x="352.0" y="207.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="207.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="246.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="439.0" y="207.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="SequenceFlow_8" sourceElement="_BPMNShape_UserTask_19" targetElement="_BPMNShape_ExclusiveGateway_7">
+        <di:waypoint xsi:type="dc:Point" x="352.0" y="339.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="339.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="296.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="441.0" y="339.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_9" sourceElement="_BPMNShape_UserTask_20" targetElement="_BPMNShape_ExclusiveGateway_7">
+        <di:waypoint xsi:type="dc:Point" x="352.0" y="447.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="447.0"/>
+        <di:waypoint xsi:type="dc:Point" x="493.0" y="296.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="490.0" y="442.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_23" bpmnElement="MaterialUpdateApprovalEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="568.0" y="253.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="586.0" y="294.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_10" sourceElement="_BPMNShape_ExclusiveGateway_7" targetElement="_BPMNShape_EndEvent_23">
+        <di:waypoint xsi:type="dc:Point" x="518.0" y="271.0"/>
+        <di:waypoint xsi:type="dc:Point" x="568.0" y="271.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="540.0" y="271.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_24" bpmnElement="UchangedEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="68.0" y="93.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="UnchangedFlow" sourceElement="_BPMNShape_InclusiveGateway_4" targetElement="_BPMNShape_EndEvent_24">
+        <di:waypoint xsi:type="dc:Point" x="163.0" y="262.0"/>
+        <di:waypoint xsi:type="dc:Point" x="95.0" y="129.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="109.0" y="163.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_15" bpmnElement="DistributionMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="334.0" y="41.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="360.0" y="21.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_16" bpmnElement="StorageMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="334.0" y="149.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="360.0" y="128.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_17" bpmnElement="HeaderMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="334.0" y="281.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="360.0" y="261.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_BoundaryEvent_18" bpmnElement="PlantMgmtBoundaryEvent">
+        <dc:Bounds height="36.0" width="36.0" x="334.0" y="389.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="22.0" width="54.0" x="360.0" y="369.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_25" bpmnElement="DistributionMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="396.0" y="41.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="414.0" y="82.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="SequenceFlow_12" sourceElement="_BPMNShape_BoundaryEvent_15" targetElement="_BPMNShape_EndEvent_25">
+        <di:waypoint xsi:type="dc:Point" x="370.0" y="59.0"/>
+        <di:waypoint xsi:type="dc:Point" x="396.0" y="59.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="392.0" y="59.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_26" bpmnElement="StorageMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="396.0" y="149.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="414.0" y="190.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_27" bpmnElement="HeaderMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="396.0" y="281.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="414.0" y="322.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_28" bpmnElement="PlantMgmtEndEvent">
+        <dc:Bounds height="36.0" width="36.0" x="396.0" y="389.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="414.0" y="430.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="SequenceFlow_13" sourceElement="_BPMNShape_BoundaryEvent_16" targetElement="_BPMNShape_EndEvent_26">
+        <di:waypoint xsi:type="dc:Point" x="370.0" y="167.0"/>
+        <di:waypoint xsi:type="dc:Point" x="396.0" y="167.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="380.0" y="167.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="SequenceFlow_14" sourceElement="_BPMNShape_BoundaryEvent_17" targetElement="_BPMNShape_EndEvent_27">
+        <di:waypoint xsi:type="dc:Point" x="370.0" y="299.0"/>
+        <di:waypoint xsi:type="dc:Point" x="396.0" y="299.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="380.0" y="299.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="SequenceFlow_15" sourceElement="_BPMNShape_BoundaryEvent_18" targetElement="_BPMNShape_EndEvent_28">
+        <di:waypoint xsi:type="dc:Point" x="370.0" y="407.0"/>
+        <di:waypoint xsi:type="dc:Point" x="396.0" y="407.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="380.0" y="407.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
