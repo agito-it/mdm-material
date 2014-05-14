@@ -27,7 +27,7 @@ import de.agito.cps.test.activiti.annotations.BPMOTestUserId;
 public class MaterialTest {
 
 	@Rule
-	public BPMOTestRule bpmoRule = BPMOTestRule.init().applicationId("MDM_Material");
+	public BPMOTestRule bpmoRule = BPMOTestRule.init().applicationId("MDM_Material").variant("DEFAULT");
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
