@@ -23,11 +23,12 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
+import de.agito.cps.ui.vaadin.bpmo.layout.IStyle;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.ColumnWidth;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
 import de.agito.cps.ui.vaadin.bpmo.styles.Style;
-import de.agito.cps.ui.vaadin.common.resources.UIDataTypeFactory;
+import de.agito.cps.ui.vaadin.common.component.ComponentWrapper;
 
 /**
  * @author Jörg Burmeister
@@ -65,10 +66,8 @@ public class FindMaterialDialog extends Window {
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
 				.getText());
 
-		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_1,
-				materialNumber));
-		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_1,
-				materialName));
+		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_1 }, materialNumber));
+		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_1 }, materialName));
 
 		Button button = new Button("Search");
 		button.setClickShortcut(KeyCode.ENTER);
@@ -82,7 +81,7 @@ public class FindMaterialDialog extends Window {
 				parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NAME.toString(), materialName.getValue());
 				try {
 					parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NUMBER.toString(),
-							Integer.valueOf((String) materialNumber.getValue()));
+							Integer.valueOf(materialNumber.getValue()));
 				} catch (Exception e) {
 					materialNumber.setValue(null);
 					parameters.put(ActionParameter.MATERIAL_HEADER_QUERY_ATTIBUTE_NUMBER.toString(), new Integer(0));
@@ -95,16 +94,14 @@ public class FindMaterialDialog extends Window {
 					Notification.show("No entries found");
 			}
 		});
-		bodyLayout.addComponent(UIDataTypeFactory.getInstance()
-				.createComponentWrapper(Colspan.DIMENSION_FULL, button));
+		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, button));
 
 		table.setWidth(100, Unit.PERCENTAGE);
 		table.setPageLength(5);
 		table.setImmediate(true);
 		table.setSelectable(true);
 
-		bodyLayout
-				.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_FULL, table));
+		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, table));
 
 		Button cancelButton = new Button("Cancel");
 		cancelButton.addStyleName(Style.FLOAT_RIGHT.getStyle());
@@ -120,8 +117,7 @@ public class FindMaterialDialog extends Window {
 		buttonOK.setData(ButtonAction.OK);
 		buttonOK.addClickListener(clickListener);
 
-		bodyLayout.addComponent(UIDataTypeFactory.getInstance().createComponentWrapper(Colspan.DIMENSION_FULL,
-				buttonOK, cancelButton));
+		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, buttonOK, cancelButton));
 
 		table.addItemClickListener(new ItemClickEvent.ItemClickListener() {
 			private static final long serialVersionUID = 666727040165970080L;
