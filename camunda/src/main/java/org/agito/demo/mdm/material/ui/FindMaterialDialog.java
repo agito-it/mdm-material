@@ -14,21 +14,16 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-
-import de.agito.cps.ui.vaadin.bpmo.layout.IStyle;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.ColumnWidth;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
-import de.agito.cps.ui.vaadin.bpmo.styles.Style;
-import de.agito.cps.ui.vaadin.common.component.ComponentWrapper;
 
 /**
  * @author Jörg Burmeister
@@ -52,22 +47,24 @@ public class FindMaterialDialog extends Window {
 		setResizable(false);
 		setCloseShortcut(KeyCode.ESCAPE);
 
-		CssLayout bodyLayout = new CssLayout();
-		// use the float layout approach
-		bodyLayout.addStyleName(ColumnWidth.PIXEL_250.getStyle());
-		bodyLayout.addStyleName(MaxColums.COL2.getStyle());
-		bodyLayout.addStyleName(Style.MARGIN.getStyle());
+		VerticalLayout bodyLayout = new VerticalLayout();
+		bodyLayout.setSpacing(true);
+		bodyLayout.setMargin(true);
 		setContent(bodyLayout);
 
+		HorizontalLayout fieldLayout = new HorizontalLayout();
+		fieldLayout.setSpacing(true);
+		fieldLayout.setWidth(100, Unit.PERCENTAGE);
+		bodyLayout.addComponent(fieldLayout);
 		final TextField materialNumber = new TextField(bpmoAccess.getMaterialNumber().getContext().getDefinition()
 				.getLabel().getText());
 		materialNumber.setInputPrompt("# 1-19 available");
 		materialNumber.setNullRepresentation("");
+		materialNumber.setWidth(100, Unit.PERCENTAGE);
 		final TextField materialName = new TextField(bpmoAccess.getName().getContext().getDefinition().getLabel()
 				.getText());
-
-		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_1 }, materialNumber));
-		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_1 }, materialName));
+		materialName.setWidth(100, Unit.PERCENTAGE);
+		fieldLayout.addComponents(materialNumber, materialName);
 
 		Button button = new Button("Search");
 		button.setClickShortcut(KeyCode.ENTER);
@@ -94,30 +91,31 @@ public class FindMaterialDialog extends Window {
 					Notification.show("No entries found");
 			}
 		});
-		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, button));
+		bodyLayout.addComponent(button);
+		bodyLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
 
 		table.setWidth(100, Unit.PERCENTAGE);
 		table.setPageLength(5);
 		table.setImmediate(true);
 		table.setSelectable(true);
 
-		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, table));
-
+		bodyLayout.addComponent(table);
 		Button cancelButton = new Button("Cancel");
-		cancelButton.addStyleName(Style.FLOAT_RIGHT.getStyle());
-		cancelButton.addStyleName(Style.MARGIN.getStyle());
 		cancelButton.addClickListener(clickListener);
 		cancelButton.setData(ButtonAction.CANCEL);
 		cancelButton.setClickShortcut(KeyCode.ESCAPE);
 
 		final Button buttonOK = new Button("OK");
-		buttonOK.addStyleName(Style.FLOAT_RIGHT.getStyle());
-		buttonOK.addStyleName(Style.MARGIN.getStyle());
 		buttonOK.setEnabled(false);
 		buttonOK.setData(ButtonAction.OK);
 		buttonOK.addClickListener(clickListener);
 
-		bodyLayout.addComponent(new ComponentWrapper(new IStyle[] { Colspan.DIMENSION_FULL }, buttonOK, cancelButton));
+		HorizontalLayout buttonLayout = new HorizontalLayout();
+		buttonLayout.setSpacing(true);
+		bodyLayout.setWidth(100, Unit.PERCENTAGE);
+		buttonLayout.addComponents(cancelButton, buttonOK);
+		bodyLayout.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
+		bodyLayout.addComponent(buttonLayout);
 
 		table.addItemClickListener(new ItemClickEvent.ItemClickListener() {
 			private static final long serialVersionUID = 666727040165970080L;
