@@ -10,6 +10,7 @@ import org.agito.demo.mdm.material.dto.MaterialHeaderDTO;
 import org.agito.demo.mdm.material.ui.FindMaterialDialog;
 import org.agito.demo.mdm.material.ui.FindMaterialDialog.ButtonAction;
 
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
@@ -23,9 +24,7 @@ import de.agito.cps.ui.vaadin.bpmo.IBPMOUIControllerContext;
 import de.agito.cps.ui.vaadin.bpmo.annotation.Navigation;
 import de.agito.cps.ui.vaadin.bpmo.annotation.StyleController;
 import de.agito.cps.ui.vaadin.bpmo.enums.NavigationType;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowBlockHeader.CaptionStyle;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.Colspan;
-import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayout.MaxColums;
+import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowBlockHeader.TitleStyle;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowLayoutManager;
 import de.agito.cps.ui.vaadin.bpmo.layout.flow.IFlowTabSheet;
 import de.agito.cps.ui.vaadin.bpmo.navigation.IDefaultActionMenuBar;
@@ -57,28 +56,28 @@ public class MaterialBPMOUIController
 	public void cpsInitHeader(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:Header
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.setMaxCols(MaxColums.COL3);
 
 		layoutManager
 				.createAndAddBlockHeader()
 				.setTitle(
 						bpmoAccess.getMaterialNumber().getValue() == null ? "Material" : "Material ".concat(bpmoAccess
-								.getMaterialNumber().getValue())).setCationStyle(CaptionStyle.H1)
-				.setColspan(Colspan.DIMENSION_FULL);
+								.getMaterialNumber().getValue()))
+				.setDescription(
+						"Sed rhoncus augue vitae ligula tempor posuere. Donec vel lorem tellus. In quis dapibus felis, id malesuada lacus. Donec aliquam accumsan magna sed imperdiet. Praesent aliquet in erat vitae sodales. Vivamus volutpat feugiat velit, nec feugiat enim cursus id. Cras iaculis, urna eu viverra elementum, purus lectus pretium tortor, eu laoreet sapien leo vitae dui. Proin cursus rutrum lectus, at fermentum nunc lobortis ut. Vivamus in massa rutrum; commodo sapien id, facilisis magna. Praesent porttitor turpis ac nulla aliquam faucibus.")
+				.setColspan(4);
 
 		layoutManager.createAndAddElements(MaterialBPMO.MaterialNumber, MaterialBPMO.Name, MaterialBPMO.MaterialType);
 
 		layoutManager.newLine();
 
 		IFlowTabSheet tabSheet = layoutManager.createAndAddTabSheet();
-		tabSheet.setColspan(Colspan.DIMENSION_3);
+		tabSheet.setColspan(3);
 		tabSheet.createAndAddTabContent("Dimension").createAndAddElements(MaterialBPMO.GrossWeight,
 				MaterialBPMO.NetWeight, MaterialBPMO.AllowedPackagingWeight, MaterialBPMO.Volume,
 				MaterialBPMO.AllowedPackagingVolume, MaterialBPMO.BaseUnitOfMeasure);
 		tabSheet.createAndAddTabContent("Packaging").addRemainingElements(MaterialBPMO.AlternativeUnitOfMeasures);
 
-		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setColspan(
-				Colspan.DIMENSION_FULL);
+		layoutManager.createAndAddTableContent(MaterialBPMO.AlternativeUnitOfMeasures).setColspan(4);
 
 		if (bpmoAccess.getBPMOHeader().getBPMOState() == BPMOState.DRAFT
 				&& (MaterialBPMOLifecycle.valueOf(bpmoAccess.getBPMOHeader().getLifecycle()) == MaterialBPMOLifecycle.UPDATE)) {
@@ -87,6 +86,7 @@ public class MaterialBPMOUIController
 				menuBar.add(MenutItem.FIND_MATERIAL, MenutItem.FIND_MATERIAL.getLabel(), new Command() {
 					private static final long serialVersionUID = 200736023610368808L;
 
+					@Override
 					public void menuSelected(MenuItem selectedItem) {
 						openFindMaterialDialog(bpmoAccess);
 					}
@@ -122,18 +122,16 @@ public class MaterialBPMOUIController
 		// @@begin body:init:Plants
 
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.setMaxCols(MaxColums.COL3);
-
+		layoutManager.setMaxWidth(1200, Unit.PIXELS);
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
+				.setTitleStyle(TitleStyle.H3).setWidth(100, Unit.PERCENTAGE);
 
 		layoutManager.addRemainingElements(MaterialBPMO.Plants.MaximumLotSize, MaterialBPMO.Plants.MinimumLotSize,
 				MaterialBPMO.Plants.FixedLotSize);
 
 		layoutManager.newLine();
 
-		layoutManager.createAndAddGroupContent().addRemainingElements().setCaption("Lot Sizes")
-				.setColspan(Colspan.DIMENSION_1);
+		layoutManager.createAndAddGroupContent().addRemainingElements().setTitle("Lot Sizes").setColspan(2);
 
 		// @@end
 	}
@@ -158,12 +156,10 @@ public class MaterialBPMOUIController
 	@Navigation(artifact = "Header.Plants.StorageLocations", type = NavigationType.NODE_ELEMENT_INIT)
 	public void cpsInitPlants$StorageLocations(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:Plants$StorageLocations
-
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.setMaxCols(MaxColums.COL3);
-
+		layoutManager.setMaxWidth(1200, Unit.PIXELS);
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
+				.setWidth(100, Unit.PERCENTAGE);
 
 		// @@end
 	}
@@ -189,9 +185,11 @@ public class MaterialBPMOUIController
 	public void cpsInitSalesOrganizations(final MaterialBPMOAccess bpmoAccess) {
 		// @@begin body:init:SalesOrganizations
 		IFlowLayoutManager layoutManager = styleController.getLayoutManager();
-		layoutManager.setMaxCols(MaxColums.COL3);
+		layoutManager.setMaxWidth(1200, Unit.PIXELS);
 		layoutManager.createAndAddBlockHeader().setTitle(bpmoAccess.getContext().getHumanizedPath())
-				.setCationStyle(CaptionStyle.H2).setColspan(Colspan.DIMENSION_FULL);
+				.setWidth(100, Unit.PERCENTAGE);
+		layoutManager.addRemainingElements(MaterialBPMO.SalesOrganizations.SalesTexts);
+		layoutManager.newLine();
 		// @@end
 	}
 
