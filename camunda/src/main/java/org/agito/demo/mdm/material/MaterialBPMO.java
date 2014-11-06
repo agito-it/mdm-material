@@ -12,14 +12,14 @@ import de.agito.cps.core.bpmo.api.enums.IBONode;
 /**
  * Enum for MaterialBPMO.
  *
- * @author Jörg Burmeister
+ * @author joerg.burmeister
  */
 public enum MaterialBPMO implements IBODataElement {
 
 	/**
 	 * <b>Material Number</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -28,7 +28,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Name</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -37,7 +37,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Material Type</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -46,7 +46,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Gross Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -55,7 +55,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Net Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -64,7 +64,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Volume</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -73,7 +73,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Allowed Packaging Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -82,7 +82,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Allowed Packaging Volume</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -91,7 +91,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Container Requiements</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -100,7 +100,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Storage Conditions</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -109,7 +109,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Transportation Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -118,7 +118,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Label Type</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -127,7 +127,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Label Form</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -136,7 +136,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Base Unit Of Measure</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -145,7 +145,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Alternative Unit Of Measures</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType TABLE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	AlternativeUnitOfMeasures("AlternativeUnitOfMeasures", "Header$AlternativeUnitOfMeasures", ControlType.INTERACTIVE),
@@ -153,7 +153,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Alternative Unit Of Measure</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType COLUMN}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -162,7 +162,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Numerator Conversion</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType COLUMN}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -171,7 +171,7 @@ public enum MaterialBPMO implements IBODataElement {
 	/**
 	 * <b>Denominator Conversion</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType COLUMN}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -221,7 +221,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Plant Id</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType NODE_KEY}<i><br>
 		 * <i>{@link DataType ENUM}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -230,7 +230,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Production Supervisor</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -239,7 +239,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Processing Time</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -248,7 +248,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Base Quantity</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -257,7 +257,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Storage Costs Indicator</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -266,7 +266,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Valuation Category</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -275,7 +275,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Minimum Lot Size</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType NUMERIC}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -284,7 +284,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Maximum Lot Size</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType NUMERIC}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -293,7 +293,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Fixed Lot Size</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType NUMERIC}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -317,7 +317,7 @@ public enum MaterialBPMO implements IBODataElement {
 			/**
 			 * <b>Storage Location Id</b>
 			 * <p>
-			 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+			 * <i>{@link ArtifactType NODE_KEY}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
 			 * <i>{@link ControlType INTERACTIVE}<i><br>
 			 */
@@ -326,7 +326,7 @@ public enum MaterialBPMO implements IBODataElement {
 			/**
 			 * <b>Stock In Quality Inspection</b>
 			 * <p>
-			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+			 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
 			 * <i>{@link ControlType INTERACTIVE}<i><br>
 			 */
@@ -335,7 +335,7 @@ public enum MaterialBPMO implements IBODataElement {
 			/**
 			 * <b>Total Stock</b>
 			 * <p>
-			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+			 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
 			 * <i>{@link ControlType INTERACTIVE}<i><br>
 			 */
@@ -344,7 +344,7 @@ public enum MaterialBPMO implements IBODataElement {
 			/**
 			 * <b>Blocked Stock</b>
 			 * <p>
-			 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+			 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 			 * <i>{@link DataType STRING}<i><br>
 			 * <i>{@link ControlType INTERACTIVE}<i><br>
 			 */
@@ -372,7 +372,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Sales Organization</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType NODE_KEY}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -381,7 +381,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Distribution Channel</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType NODE_KEY}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -390,7 +390,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Statistics Group</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -399,7 +399,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Volume Rebate Group</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -408,7 +408,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Commission Group</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -417,7 +417,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Cash Discount</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -426,7 +426,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Delivery Unit</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -435,7 +435,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Sales Unit</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -444,7 +444,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Minimum Order Quantity</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -453,7 +453,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Minimum Delivery Quantity</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -462,7 +462,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Item Category Group</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -471,7 +471,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Delivering Plant</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -480,7 +480,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Pricing</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -489,7 +489,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Listed In Store From</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -498,7 +498,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Listed In Store To</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -507,7 +507,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Sales Texts</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType TABLE}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
 		SalesTexts("SalesTexts", "Header.SalesOrganizations$SalesTexts", ControlType.INTERACTIVE),
@@ -515,7 +515,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Language</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType COLUMN}<i><br>
 		 * <i>{@link DataType ENUM}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */
@@ -524,7 +524,7 @@ public enum MaterialBPMO implements IBODataElement {
 		/**
 		 * <b>Text</b>
 		 * <p>
-		 * <i>{@link DefinitionArtifactType COLUMN_DEFINITION}<i><br>
+		 * <i>{@link ArtifactType COLUMN}<i><br>
 		 * <i>{@link DataType STRING}<i><br>
 		 * <i>{@link ControlType INTERACTIVE}<i><br>
 		 */

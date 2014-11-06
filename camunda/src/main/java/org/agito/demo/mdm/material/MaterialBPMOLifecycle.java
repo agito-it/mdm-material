@@ -7,7 +7,7 @@ import de.agito.cps.core.bpmo.api.enums.ILifecycle;
 /**
  * Lifecycle Enum for MaterialBPMO.
  *
- * @author Jörg Burmeister
+ * @author joerg.burmeister
  */
 public enum MaterialBPMOLifecycle implements ILifecycle {
 

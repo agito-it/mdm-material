@@ -20,7 +20,7 @@ import org.agito.demo.mdm.material.MaterialBPMOLanguage;
 /**
  * BPMOAccess for Header.
  * 
- * @author Jörg Burmeister
+ * @author joerg.burmeister
  */
 public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 
@@ -29,7 +29,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Material Number</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -37,7 +37,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Name</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -45,7 +45,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Material Type</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -53,7 +53,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Gross Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -61,7 +61,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Net Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -69,7 +69,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Volume</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -77,7 +77,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Allowed Packaging Weight</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -85,7 +85,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Allowed Packaging Volume</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -93,7 +93,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Container Requiements</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -101,7 +101,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Storage Conditions</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -109,7 +109,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Transportation Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -117,7 +117,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Label Type</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -125,7 +125,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Label Form</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -133,7 +133,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Base Unit Of Measure</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType ENUM}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -141,28 +141,28 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Alternative Unit Of Measures</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType TABLE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public AlternativeUnitOfMeasures getAlternativeUnitOfMeasures() { return super.<AlternativeUnitOfMeasures>getTableAccessOV(AlternativeUnitOfMeasures.class, "Header$AlternativeUnitOfMeasures"); }
 	/**
 	 * <b>Plant</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public Plants getPlants() { return super.<Plants>getNodeAccess(Plants.class, "Header.Plants"); }
 	/**
 	 * <b>Plant Id</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE_KEY}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public Plants.PlantId getPlants$PlantId() { return super.<Plants.PlantId>getKeyAccess(Plants.PlantId.class, "Header.Plants$PlantId"); }
 	/**
 	 * <b>Production Supervisor</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -170,7 +170,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Processing Time</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -178,7 +178,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Base Quantity</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -186,7 +186,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Storage Costs Indicator</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -194,7 +194,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Valuation Category</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -202,7 +202,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Minimum Lot Size</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType NUMERIC}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -210,7 +210,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Maximum Lot Size</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType NUMERIC}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -218,7 +218,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Fixed Lot Size</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType NUMERIC}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -226,21 +226,21 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Storage Location</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public Plants.StorageLocations getPlants$StorageLocations() { return super.<Plants.StorageLocations>getNodeAccess(Plants.StorageLocations.class, "Header.Plants.StorageLocations"); }
 	/**
 	 * <b>Storage Location Id</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE_KEY}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public Plants.StorageLocations.StorageLocationId getPlants$StorageLocations$StorageLocationId() { return super.<Plants.StorageLocations.StorageLocationId>getKeyAccess(Plants.StorageLocations.StorageLocationId.class, "Header.Plants.StorageLocations$StorageLocationId"); }
 	/**
 	 * <b>Stock In Quality Inspection</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -248,7 +248,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Total Stock</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -256,7 +256,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Blocked Stock</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -264,28 +264,28 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Sales Organization</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public SalesOrganizations getSalesOrganizations() { return super.<SalesOrganizations>getNodeAccess(SalesOrganizations.class, "Header.SalesOrganizations"); }
 	/**
 	 * <b>Sales Organization</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE_KEY}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public SalesOrganizations.SalesOrganization getSalesOrganizations$SalesOrganization() { return super.<SalesOrganizations.SalesOrganization>getKeyAccess(SalesOrganizations.SalesOrganization.class, "Header.SalesOrganizations$SalesOrganization"); }
 	/**
 	 * <b>Distribution Channel</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType NODE_KEY_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType NODE_KEY}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public SalesOrganizations.DistributionChannel getSalesOrganizations$DistributionChannel() { return super.<SalesOrganizations.DistributionChannel>getKeyAccess(SalesOrganizations.DistributionChannel.class, "Header.SalesOrganizations$DistributionChannel"); }
 	/**
 	 * <b>Statistics Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -293,7 +293,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Volume Rebate Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -301,7 +301,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Commission Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -309,7 +309,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Cash Discount</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -317,7 +317,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Delivery Unit</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -325,7 +325,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Sales Unit</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -333,7 +333,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Minimum Order Quantity</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -341,7 +341,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Minimum Delivery Quantity</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -349,7 +349,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Item Category Group</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -357,7 +357,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Delivering Plant</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -365,7 +365,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Pricing</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -373,7 +373,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Listed In Store From</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -381,7 +381,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Listed In Store To</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType CHARACTERISTIC_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType CHARACTERISTIC}<i><br>
 	 * <i>{@link DataType STRING}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
@@ -389,7 +389,7 @@ public final class MaterialBPMOAccess extends BPMOAccess<MaterialBPMOAccess> {
 	/**
 	 * <b>Sales Texts</b>
 	 * <p>
-	 * <i>{@link DefinitionArtifactType TABLE_DEFINITION}<i><br>
+	 * <i>{@link ArtifactType TABLE}<i><br>
 	 * <i>{@link ControlType INTERACTIVE}<i><br>
 	 */
 	public SalesOrganizations.SalesTexts getSalesOrganizations$SalesTexts() { return super.<SalesOrganizations.SalesTexts>getTableAccessOV(SalesOrganizations.SalesTexts.class, "Header.SalesOrganizations$SalesTexts"); }

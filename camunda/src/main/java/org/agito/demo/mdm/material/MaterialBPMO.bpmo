@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <BPMODefinition Version="1.0.0" BPMOId="MaterialBPMO" MaxOccur="1" MinOccur="1" NodeId="Header" xmlns="http://de.agito/cps/core">
-	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true">
+	<CharacteristicDefinition Id="MaterialNumber" SupportsOriginalValue="true" Indexable="true">
 		<Controls>
 			<Control Lifecycle="CREATE">
 				<Scope ScopeId="VISIBILITY">
@@ -17,7 +17,7 @@
 			</Control>
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="Name" SupportsOriginalValue="true">
+	<CharacteristicDefinition Id="Name" SupportsOriginalValue="true" Indexable="true">
 		<Controls>
 			<Control Lifecycle="CREATE">
 				<Scope ScopeId="VISIBILITY">
@@ -44,7 +44,7 @@
 			<ControlGroup GroupId="RequiredHeaderData" />
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="MaterialType" SupportsOriginalValue="true">
+	<CharacteristicDefinition Id="MaterialType" SupportsOriginalValue="true" Indexable="true">
 		<FormatEnum>
 			<KeywordFormat>
 				<InlineKeyword>
@@ -150,7 +150,7 @@
 			<ControlGroupUsage GroupId="OptionalHeaderData" />
 		</Controls>
 	</CharacteristicDefinition>
-	<CharacteristicDefinition Id="BaseUnitOfMeasure" SupportsOriginalValue="true">
+	<CharacteristicDefinition Id="BaseUnitOfMeasure" SupportsOriginalValue="true" Indexable="true">
 		<FormatEnum>
 			<KeywordFormat>
 				<InlineKeyword>

@@ -96,6 +96,43 @@ public class MaterialTest {
 
 	}
 
+	@Deployment(resources = { "MaterialCreate.bpmn" })
+	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
+	@BPMOTestUserId("bob")
+	@Test
+	public void testSearchContent() {
+
+		// create bpmo
+		IBPMO bpmo = bpmoRule.getBpmoEngine().getRuntimeService()
+				.createBPMO(MaterialBPMO.$BPMO, MaterialBPMOLifecycle.CREATE, "001");
+
+		// fill bpmo
+		MaterialBPMOAccess access = new MaterialBPMOAccess(bpmo.getBPMOData());
+		access.getName().setValue("Test");
+		access.getMaterialType().setValue("1");
+		access.getBaseUnitOfMeasure().setValue("DZN");
+
+		// start process
+		bpmo.startProcess();
+
+		// assert
+		Assert.assertNotNull(bpmoRule.getBpmoEngine().getRuntimeService().createProcessHistoryQuery()
+				.processInstanceId(bpmo.getBPMOHeader().getProcessInstanceId())
+				.eventType(ProcessAgentEventType.PROCESS_START).singleResult());
+
+		Assert.assertNotNull(bpmoRule.getBpmoEngine().getRuntimeService().createBPMOHeaderQuery()
+				.contentValueEquals(access.getName().getDefinition().getDefinitionHash(), "Test").singleResult());
+		Assert.assertNotNull(bpmoRule.getBpmoEngine().getRuntimeService().createBPMOHeaderQuery()
+				.contentKeyEquals(access.getBaseUnitOfMeasure().getDefinition().getDefinitionHash(), "DZN")
+				.singleResult());
+		Assert.assertNotNull(bpmoRule.getBpmoEngine().getRuntimeService().createBPMOHeaderQuery()
+				.contentKeyEquals(access.getMaterialType().getDefinition().getDefinitionHash(), "1").singleResult());
+		Assert.assertNotNull(bpmoRule.getBpmoEngine().getRuntimeService().createBPMOHeaderQuery()
+				.contentValueLike(access.getMaterialType().getDefinition().getDefinitionHash(), "*ZFER*")
+				.singleResult());
+
+	}
+
 	@Deployment(resources = { "MaterialUpdate.bpmn", "MaterialUpdateAppoval.bpmn" })
 	@BPMODeployment(resources = "org/agito/demo/mdm/material/MaterialBPMO.bpmo")
 	@BPMOTestUserId("bob")
